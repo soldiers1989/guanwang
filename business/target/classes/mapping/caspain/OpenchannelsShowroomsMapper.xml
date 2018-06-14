@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.OpenchannelsShowroomsMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.OpenchannelsShowrooms" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="house_id" property="houseId" jdbcType="VARCHAR" />
+    <result column="raw_house_id" property="rawHouseId" jdbcType="VARCHAR" />
+    <result column="err_msg" property="errMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.caspain.OpenchannelsShowroomsWithBLOBs" extends="BaseResultMap" >
+    <result column="extra" property="extra" jdbcType="LONGVARCHAR" />
+    <result column="raw_data" property="rawData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, created_by_id, updated_by_id, deleted_by_id, 
+    version, is_delete, room_id, channel, status, house_id, raw_house_id, err_msg
+  </sql>
+  <sql id="Blob_Column_List" >
+    extra, raw_data
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from openchannels_showrooms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from openchannels_showrooms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from openchannels_showrooms
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from openchannels_showrooms
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsExample" >
+    delete from openchannels_showrooms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsWithBLOBs" >
+    insert into openchannels_showrooms (id, created_at, updated_at, 
+      deleted_at, created_by_id, updated_by_id, 
+      deleted_by_id, version, is_delete, 
+      room_id, channel, status, 
+      house_id, raw_house_id, err_msg, 
+      extra, raw_data)
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{createdById,jdbcType=INTEGER}, #{updatedById,jdbcType=INTEGER}, 
+      #{deletedById,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{roomId,jdbcType=INTEGER}, #{channel,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT}, 
+      #{houseId,jdbcType=VARCHAR}, #{rawHouseId,jdbcType=VARCHAR}, #{errMsg,jdbcType=VARCHAR}, 
+      #{extra,jdbcType=LONGVARCHAR}, #{rawData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsWithBLOBs" >
+    insert into openchannels_showrooms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="rawHouseId != null" >
+        raw_house_id,
+      </if>
+      <if test="errMsg != null" >
+        err_msg,
+      </if>
+      <if test="extra != null" >
+        extra,
+      </if>
+      <if test="rawData != null" >
+        raw_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawHouseId != null" >
+        #{rawHouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null" >
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null" >
+        #{extra,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rawData != null" >
+        #{rawData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsExample" resultType="java.lang.Integer" >
+    select count(*) from openchannels_showrooms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update openchannels_showrooms
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.roomId != null" >
+        room_id = #{record.roomId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=SMALLINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.houseId != null" >
+        house_id = #{record.houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawHouseId != null" >
+        raw_house_id = #{record.rawHouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errMsg != null" >
+        err_msg = #{record.errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extra != null" >
+        extra = #{record.extra,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.rawData != null" >
+        raw_data = #{record.rawData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update openchannels_showrooms
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=SMALLINT},
+      house_id = #{record.houseId,jdbcType=VARCHAR},
+      raw_house_id = #{record.rawHouseId,jdbcType=VARCHAR},
+      err_msg = #{record.errMsg,jdbcType=VARCHAR},
+      extra = #{record.extra,jdbcType=LONGVARCHAR},
+      raw_data = #{record.rawData,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update openchannels_showrooms
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=SMALLINT},
+      house_id = #{record.houseId,jdbcType=VARCHAR},
+      raw_house_id = #{record.rawHouseId,jdbcType=VARCHAR},
+      err_msg = #{record.errMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsWithBLOBs" >
+    update openchannels_showrooms
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawHouseId != null" >
+        raw_house_id = #{rawHouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null" >
+        err_msg = #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null" >
+        extra = #{extra,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rawData != null" >
+        raw_data = #{rawData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.caspain.OpenchannelsShowroomsWithBLOBs" >
+    update openchannels_showrooms
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      room_id = #{roomId,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      house_id = #{houseId,jdbcType=VARCHAR},
+      raw_house_id = #{rawHouseId,jdbcType=VARCHAR},
+      err_msg = #{errMsg,jdbcType=VARCHAR},
+      extra = #{extra,jdbcType=LONGVARCHAR},
+      raw_data = #{rawData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.OpenchannelsShowrooms" >
+    update openchannels_showrooms
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      room_id = #{roomId,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      house_id = #{houseId,jdbcType=VARCHAR},
+      raw_house_id = #{rawHouseId,jdbcType=VARCHAR},
+      err_msg = #{errMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

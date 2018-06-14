@@ -1,0 +1,2102 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-weight: 300;
+}
+
+html,
+a {
+    font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+    color: #777778;
+    font-size: 14px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+iframe,
+img {
+    border: 0;
+    vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-style: normal;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tr {
+    text-align: right;
+}
+
+.hover, .db {
+    display: block;
+}
+
+.dn {
+    display: none;
+}
+
+.cr {
+    color: #ff5153;
+}
+
+.clear {
+    clear: both;
+    line-height: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+}
+
+.ct, .ct:hover {
+    cursor: text;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.cblue {
+    color: #40c2ff;
+}
+
+.loading {
+    /*background: url(../images/loading.gif) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/loading.gif) 1x, url(../images/loading@2x.gif) 2x) no-repeat;*/
+    /*background-position: center center;*/
+}
+
+.imgErr {
+    background: url(img/imgErr.png) no-repeat;
+    background: -webkit-image-set(url(img/imgErr.png) 1x, url(img/imgErr@2x.png) 2x) no-repeat;
+    background-position: center center;
+    background-color: #f2f3f5;
+}
+
+.bigImgErr {
+    background: url(img/bigImgErr@2x.png) no-repeat;
+    background: -webkit-image-set(url(img/bigImgErr@2x.png) 1x, url(img/bigImgErr@2x.png) 2x) no-repeat;
+    background-position: center center;
+    background-color: #f2f3f5;
+}
+
+.elps {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+
+img {
+    vertical-align: top;
+    max-width: 100%;
+}
+
+.elps {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.onmargin {
+    margin: 0 !important;
+    margin: 0;
+}
+
+.mt--1 {
+    margin-top: -1px !important;
+    margin-top: -1px;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+    margin-top: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+    margin-top: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
+    margin-top: 15px;
+}
+
+.mr-5 {
+    margin-right: 5px !important;
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px !important;
+    margin-right: 10px;
+}
+
+.mr-15 {
+    margin-right: 15px !important;
+    margin-right: 15px;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+    margin-bottom: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px !important;
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+    margin-bottom: 15px;
+}
+
+.ml-5 {
+    margin-left: 5px !important;
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+    margin-left: 10px;
+}
+
+.ml-15 {
+    margin-left: 15px !important;
+    margin-left: 15px;
+}
+
+.main {
+    background: #f2f3f5;
+    padding-top: 20px;
+}
+
+.i-main {
+    width: 1200px;
+    margin: auto;
+    background: #fff;
+}
+
+.u-h1 {
+    font-size: 24px;
+    color: #585959;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
+.u-breadcrumb {
+    width: 1200px;
+    line-height: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.u-breadcrumb li {
+    float: left;
+    padding: 0 2px;
+    font-family: SimSun;
+}
+
+.u-breadcrumb li.current a,
+.u-breadcrumb li.current a:hover {
+    color: #c0c1c2;
+    text-decoration: none;
+    cursor: text;
+}
+
+.u-select {
+    height: 30px;
+    float: left;
+    position: relative;
+    width: 120px;
+    min-width: 120px;
+}
+
+.u-select b {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -3px;
+    width: 12px;
+    height: 6px;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+    background-position: -93px -30px;
+}
+
+.u-select span {
+    display: block;
+    padding: 0 30px 0 10px;
+    border: 1px solid #d7d7d9;
+    border-radius: 3px;
+    line-height: 28px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.u-select ul {
+    display: none;
+    border: 1px solid #d7d7d9;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    background: #fff;
+    cursor: pointer;
+    max-height: 140px;
+    height: 140px \9;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.u-select ul li {
+    line-height: 28px;
+    height: 28px;
+    padding: 0 10px;
+    color: #777778;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.u-select ul li:hover {
+    background: #f2f3f5;
+}
+
+.u-select.hover {
+    z-index: 100;
+}
+
+.u-select.hover span {
+    border-radius: 3px 3px 0 0;
+}
+
+.u-select.hover ul {
+    display: block;
+}
+
+.u-searchSelect {
+    height: 42px;
+    margin: auto;
+    max-width: 100px;
+    position: relative;
+}
+
+.u-searchSelect b {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -3px;
+    width: 12px;
+    height: 6px;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+    background-position: -93px -30px;
+}
+
+.u-searchSelect span {
+    display: block;
+    margin: 0 20px 0 0;
+    text-align: center;
+    border-radius: 3px;
+    line-height: 42px;
+    font-size: 14px;
+}
+
+.u-searchSelect .u-searchSelect-ul {
+    display: none;
+    float: left;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    background: #f7f8fa;
+    padding: 10px 0;
+    min-height: 300px;
+    width: 120px;
+    margin-left: -61px;
+}
+
+.u-searchSelect .u-searchSelect-ul i.ico-arrow-bbt {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li {
+    line-height: 28px;
+    color: #777778;
+    font-size: 14px;
+    border: solid #f7f8fa;
+    border-width: 1px 0;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li strong {
+    padding: 0 10px;
+    position: relative;
+    display: block;
+    z-index: 1;
+    font-weight: normal;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li.hover {
+    background: #fff;
+    border-color: #ddd;
+    width: 121px;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li.hover .sublist {
+    display: block;
+    padding: 10px 0;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li.hover strong {
+    background: #fff;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist {
+    display: none;
+    position: absolute;
+    top: -1px;
+    left: 120px;
+    min-height: 300px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item {
+    width: 400px;
+    float: left;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item dl {
+    overflow: hidden;
+    width: auto;
+    line-height: 22px;
+    padding: 4px 0;
+}
+.u-searchSelect-ul .sublist .item em{
+    font-style: normal;
+    padding:0 10px;
+}
+.u-searchSelect-ul .sublist .item em a:hover{
+    color:#40C2FF;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item dl dt {
+    text-align: right;
+    float: left;
+    width: 20px;
+    padding-right: 10px;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item dl dd {
+    float: right;
+    width: 370px;
+    margin: 0;
+    padding: 0;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item dl dd a {
+    float: left;
+    padding: 0 5px;
+    margin: 2px 4px 2px 0;
+    line-height: 18px;
+    background: transparent;
+    color: #777778;
+}
+
+.u-searchSelect .u-searchSelect-ul ul li .sublist .item dl dd a:hover {
+    color: #49bff5;
+    text-decoration: none;
+}
+
+.u-searchSelect.hover {
+    z-index: 100;
+}
+
+.u-searchSelect.hover span {
+    border-radius: 3px 3px 0 0;
+}
+
+.u-searchSelect.hover .u-searchSelect-ul {
+    display: block;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist {
+    width: 400px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item {
+    /*width: 130px;*/
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl {
+    float: left;
+    vertical-align: top;
+    padding: 0;
+    height: 30px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl dt .ico-metro-start {
+    margin-top: 9px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl dt .ico-metro-end {
+    margin-bottom: 9px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl dd {
+    width: 100px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl dd a {
+    height: 30px;
+    margin-right: 0;
+    padding: 0;
+    line-height: 26px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl dd a:hover {
+    color: #49bff5;
+    text-decoration: none;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl:hover dt .ico-metro-start, .u-searchSelect.u-metroSearchSelect ul li .sublist .item dl.hover dt .ico-metro-start {
+    background-position: -50px -88px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl:hover dt .ico-metro, .u-searchSelect.u-metroSearchSelect ul li .sublist .item dl.hover dt .ico-metro {
+    background-position: -74px -88px;
+}
+
+.u-searchSelect.u-metroSearchSelect ul li .sublist .item dl:hover dt .ico-metro-end, .u-searchSelect.u-metroSearchSelect ul li .sublist .item dl.hover dt .ico-metro-end {
+    background-position: -50px -109px;
+}
+
+.u-selectOther {
+    height: 30px;
+    float: left;
+    position: relative;
+    width: 120px;
+    min-width: 120px;
+}
+
+.u-selectOther b {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -3px;
+    width: 12px;
+    height: 6px;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+    background-position: -93px -30px;
+}
+
+.u-selectOther span {
+    display: block;
+    padding: 0 30px 0 10px;
+    border: 1px solid #d7d7d9;
+    border-radius: 3px;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.u-selectOther .u-selectOther-sub {
+    display: none;
+    background: #fff;
+    cursor: pointer;
+    height: 140px \9;
+    width: 220px;
+    padding: 10px 0 0 0;
+    margin-top: -1px;
+    margin-left: -102px;
+    border-radius: 3px 0 3px 3px;
+    border: 1px solid #d7d7d9;
+}
+
+.u-selectOther .u-selectOther-sub .u-selectOther-subItem {
+    height: 30px;
+    padding: 0 10px 10px 10px;
+    color: #777778;
+    font-size: 14px;
+}
+
+.u-selectOther .u-selectOther-sub .u-selectOther-subItem label {
+    text-align: right;
+    width: 60px;
+    padding: 0 10px 0 0;
+}
+
+.u-selectOther .u-selectOther-sub .u-selectOther-subItem .ico-checkbox {
+    margin: 6px 5px 0 0;
+}
+
+.u-selectOther.u-hover {
+    z-index: 100;
+}
+
+.u-selectOther.u-hover .u-selectOther-span {
+    border-radius: 3px 3px 0 0;
+}
+
+.u-selectOther.u-hover .u-selectOther-sub {
+    display: block;
+}
+
+.u-dropdown {
+    position: relative;
+}
+
+.u-dropdown .dropdownMenu {
+    display: none;
+    position: absolute;
+    top: 32px;
+    margin-left: -52px;
+    left: 50%;
+}
+
+.u-dropdown .dropdownMenu i {
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+    left: 50%;
+    width: 19px;
+    height: 10px;
+    margin-left: -9px;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+    background-position: -31px -88px;
+}
+
+.u-dropdown .dropdownMenu ul {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px;
+    width: 84px;
+    background: #fff;
+}
+
+.u-dropdown .dropdownMenu ul li a {
+    display: block;
+    color: #777778;
+}
+
+.u-dropdown.hover {
+    z-index: 1000;
+}
+
+.u-dropdown.hover .dropdownMenu {
+    display: block;
+}
+
+.m-login {
+    width: 400px;
+    height: 410px;
+    border-radius: 3px;
+}
+
+.checkbox {
+    cursor: pointer;
+}
+
+:-webkit-autofill {
+    box-shadow: 0 0 0 100px #FFF inset;
+    -webkit-text-fill-color: #574751;
+    -webkit-text-fill-color: var(--maroon);
+    color: #574751;
+    color: var(--maroon);
+}
+
+.submitSuccess {
+    margin-top: 10px;
+    padding: 100px 0 0 0;
+    background: url(img/success.png) no-repeat;
+    background: -webkit-image-set(url(img/success.png) 1x, url(img/success@2x.png) 2x) no-repeat;
+    background-position: center top;
+    text-align: center;
+}
+
+.submitSuccess a {
+    color: #40c2ff;
+    padding: 0 5px;
+}
+
+.lowIE {
+    background: #40c2ff;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.lowIE a {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    vertical-align: middle;
+    color: #fff;
+    _margin-top: 4px;
+}
+
+.lowIE a img {
+    height: 40px;
+    float: left;
+}
+
+@-webkit-keyframes wiggle {
+    33% {
+        -webkit-transform: rotateZ(1deg);
+        transform: rotateZ(1deg);
+    }
+    to {
+        -webkit-transform: rotateZ(-1deg);
+        transform: rotateZ(-1deg);
+    }
+}
+
+@keyframes wiggle {
+    33% {
+        -webkit-transform: rotateZ(1deg);
+        transform: rotateZ(1deg);
+    }
+    to {
+        -webkit-transform: rotateZ(-1deg);
+        transform: rotateZ(-1deg);
+    }
+}
+
+.wiggle {
+    will-change: transform;
+    -webkit-animation-name: wiggle;
+    -webkit-animation-duration: 150ms;
+    -webkit-animation-iteration-count: 4;
+    animation-name: wiggle;
+    animation-duration: 150ms;
+    animation-iteration-count: 4;
+}
+
+.btn,
+.btn:hover {
+    background: #fff;
+    color: #0ea0ef;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 10px 12px;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn[disabled=disabled], .btn.disabled,
+.btn:hover[disabled=disabled],
+.btn:hover.disabled {
+    color: rgba(102, 102, 102, 0.6);
+    cursor: not-allowed;
+}
+
+.btn.btn-default, .btn.btn-default:hover,
+.btn:hover.btn-default,
+.btn:hover.btn-default:hover {
+    color: #777778;
+    border: 1px solid #d7d7d9;
+    background: #fff;
+}
+
+.btn.btn-primary,
+.btn:hover.btn-primary {
+    color: #fff;
+    background: #40c2ff;
+}
+
+.btn.btn-primary[disabled=disabled],
+.btn:hover.btn-primary[disabled=disabled] {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+}
+
+.btn.btn-primary:hover,
+.btn:hover.btn-primary:hover {
+    background: #59cbff;
+}
+
+.btn.btn-danger,
+.btn:hover.btn-danger {
+    color: #fff;
+    background: #ff5153;
+}
+
+.btn.btn-danger[disabled=disabled],
+.btn:hover.btn-danger[disabled=disabled] {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+}
+
+.btn.btn-danger:hover,
+.btn:hover.btn-danger:hover {
+    background: #ff5c5f;
+}
+
+/*********************************
+
+skin
+
+*********************************/
+.skin {
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+}
+
+.ico {
+    vertical-align: top;
+    display: inline-block;
+    background: url(img/skin.png) no-repeat;
+    background: -webkit-image-set(url(img/skin.png) 1x, url(img/skin@2x.png) 2x) no-repeat;
+}
+
+.ico-search {
+    background-position: 0 -22px;
+    width: 22px;
+    height: 22px;
+}
+
+.ico-search-w {
+    background-position: 0 0;
+    width: 22px;
+    height: 22px;
+}
+
+.ico-arrow-down {
+    background-position: -93px -30px;
+    width: 12px;
+    height: 6px;
+}
+
+.ico-user-g {
+    background-position: -66px -22px;
+    width: 22px;
+    height: 22px;
+}
+
+.ico-map-marker {
+    background-position: -26px -22px;
+    width: 14px;
+    height: 20px;
+}
+
+.ico-map-marker-w {
+    background-position: -26px 0;
+    width: 14px;
+    height: 20px;
+}
+
+.ico-checkbox {
+    cursor: pointer;
+    background-position: -454px -36px;
+    width: 18px;
+    height: 18px;
+}
+
+.ico-checkbox.checked {
+    background-position: -454px -54px;
+}
+
+.ico-radio {
+    cursor: pointer;
+    background-position: -454px 0;
+    width: 18px;
+    height: 18px;
+}
+
+.ico-radio.checked {
+    background-position: -454px -18px;
+}
+
+.ico-close-b {
+    cursor: pointer;
+    background-position: -490px -40px;
+    width: 10px;
+    height: 10px;
+}
+
+.ico-userArrow-up {
+    background-position: -110px -50px;
+    width: 25px;
+    height: 12px;
+}
+
+.ico-doubleArrow {
+    background-position: -472px -40px;
+    width: 18px;
+    height: 18px;
+}
+
+.ico-doubleArrow.down {
+    background-position: -472px -56px;
+}
+
+.ico-phone {
+    background-position: -117px -62px;
+    width: 12px;
+    height: 24px;
+}
+
+.ico-camera {
+    background-position: -160px 0;
+    width: 28px;
+    height: 28px;
+}
+
+.ico-edit-w {
+    background-position: -247px -70px;
+    width: 30px;
+    height: 30px;
+}
+
+.ico-edit-g {
+    background-position: -218px 0;
+    width: 30px;
+    height: 30px;
+}
+
+.ico-delete {
+    background-position: 0 -44px;
+    width: 22px;
+    height: 22px;
+}
+
+.ico-delete:hover {
+    background-position: 0 -66px;
+}
+
+.ico-delete-big {
+    background-position: -110px -88px;
+    width: 25px;
+    height: 35px;
+}
+
+.ico-delete-big:hover {
+    background-position: -135px -88px;
+}
+
+.ico-more {
+    background-position: -68px -46px;
+    width: 18px;
+    height: 18px;
+}
+
+.ico-more.hover {
+    background-position: -68px -68px;
+}
+
+.ico-accountPhone {
+    background-position: -159px -27px;
+    width: 29px;
+    height: 29px;
+}
+
+.ico-accountVerify {
+    background-position: -159px -56px;
+    width: 29px;
+    height: 29px;
+}
+
+.ico-arrow-bbl {
+    background-position: -454px -73px;
+    width: 7px;
+    height: 12px;
+}
+
+.ico-arrow-bbt {
+    background-position: -12px -88px;
+    width: 20px;
+    height: 9px;
+}
+
+.ico-metro-start {
+    background-position: 0 -88px;
+    width: 12px;
+    height: 21px;
+}
+
+.ico-metro {
+    background-position: -62px -88px;
+    width: 12px;
+    height: 30px;
+}
+
+.ico-metro-end {
+    background-position: 0 -109px;
+    width: 12px;
+    height: 21px;
+}
+
+.ico-share {
+    background-position: -135px 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.ico-collection {
+    background-position: -110px 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.ico-collection.checked {
+    background-position: -110px -25px;
+}
+
+/*********************************
+
+room skin
+
+*********************************/
+.ico-room {
+    width: 42px;
+    height: 42px;
+    vertical-align: top;
+    display: inline-block;
+    background: url(img/ico-room.png) no-repeat;
+    background: -webkit-image-set(url(img/ico-room.png) 1x, url(img/ico-room@2x.png) 2x) no-repeat;
+}
+
+.ico-room-wifi {
+    background-position: 0 0;
+}
+
+.ico-room-bathroom {
+    background-position: -42px 0;
+}
+
+.ico-room-air {
+    background-position: -84px 0;
+}
+
+.ico-room-refrigerator {
+    background-position: -126px 0;
+}
+
+.ico-room-washer {
+    background-position: -168px 0;
+}
+
+.ico-room-tv {
+    background-position: -210px 0;
+}
+
+.ico-room-kitchen {
+    background-position: -252px 0;
+}
+
+.ico-room-balcony {
+    background-position: -294px 0;
+}
+
+.ico-room-window {
+    background-position: -336px 0;
+}
+
+.ico-room-bed {
+    background-position: -420px 0;
+}
+
+.ico-room-chest {
+    background-position: -463px 0;
+}
+
+.ico-room-desk {
+    background-position: -508px 0;
+}
+
+.ico-room-heating {
+    background-position: -554px 0px;
+}
+
+.ico-room-oven {
+    background-position: -600px 0px;
+}
+
+.ico-room-waterheater {
+    background-position: -644px 0px;
+}
+
+.ico-room-sofa {
+    background-position: -695px 0px;
+}
+
+.ico-room-cabinet {
+    background-position: -739px -0px;
+}
+
+.ico-room-underground {
+    background-position: -378px 0;
+}
+
+.ico-room-apartment {
+    background-position: 0 -42px;
+}
+
+.ico-room-apartment.checked {
+    background-position: 0 -84px;
+}
+
+.ico-room-traffic {
+    background-position: -42px -42px;
+}
+
+.ico-room-traffic.checked {
+    background-position: -42px -84px;
+}
+
+.ico-room-supermarket {
+    background-position: -84px -42px;
+}
+
+.ico-room-supermarket.checked {
+    background-position: -84px -84px;
+}
+
+.ico-room-food {
+    background-position: -126px -42px;
+}
+
+.ico-room-food.checked {
+    background-position: -126px -84px;
+}
+
+.ico-room-bank {
+    background-position: -168px -42px;
+}
+
+.ico-room-bank.checked {
+    background-position: -168px -84px;
+}
+
+.ico-room-fitness {
+    background-position: -210px -42px;
+}
+
+.ico-room-fitness.checked {
+    background-position: -210px -84px;
+}
+
+.ico-room-hospital {
+    background-position: -252px -42px;
+}
+
+.ico-room-hospital.checked {
+    background-position: -252px -84px;
+}
+
+.ico-room-church {
+    background-position: -294px -42px;
+}
+
+.ico-room-church.checked {
+    background-position: -294px -84px;
+}
+
+.ico-shuidi {
+    background-position: -137px -27px;
+    width: 22px;
+    height: 22px;
+}
+
+.ico-setting {
+    background-position: -137px -51px;
+    width: 22px;
+    height: 22px;
+}
+
+.mapIcon {
+    display: block;
+    width: 33px;
+    height: 33px;
+    background: url(img/mapIcon.png) no-repeat;
+}
+
+.mapIcon0 {
+    display: block;
+    width: 17px;
+    height: 25px;
+    background: url(img/mapIcon0.png) no-repeat;
+}
+
+/*********************************
+
+banks skin
+
+*********************************/
+.ico-banks {
+    width: 120px;
+    height: 24px;
+    vertical-align: top;
+    display: inline-block;
+    /*background: url(../images/banks.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/banks.png) 1x, url(../images/banks@2x.png) 2x) no-repeat;*/
+}
+
+.ico-banks-alipay {
+    background-position: -120px -120px;
+    width: 120px;
+    height: 40px;
+}
+
+.ico-banks-jd {
+    background-position: 0 -120px;
+    width: 120px;
+    height: 40px;
+}
+
+.ico-banks-zhaoshang {
+    background-position: 0 0;
+}
+
+.ico-banks-zhanshe {
+    background-position: -120px 0;
+}
+
+.ico-banks-gongshang {
+    background-position: -240px 0;
+}
+
+.ico-banks-pingan {
+    background-position: -360px 0;
+}
+
+.ico-banks-minsheng {
+    background-position: 0 -24px;
+}
+
+.ico-banks-xingye {
+    background-position: -120px -24px;
+}
+
+.ico-banks-nongye {
+    background-position: -240px -24px;
+}
+
+.ico-banks-beijing {
+    background-position: -360px -24px;
+}
+
+.ico-banks-jiaotong {
+    background-position: 0 -48px;
+}
+
+.ico-banks-pufa {
+    background-position: -120px -48px;
+}
+
+.ico-banks-guangda {
+    background-position: -240px -48px;
+}
+
+.ico-banks-beinong {
+    background-position: -360px -48px;
+}
+
+.ico-banks-zhongxin {
+    background-position: 0 -72px;
+}
+
+.ico-banks-zhongguo {
+    background-position: -120px -72px;
+}
+
+.ico-banks-shanghai {
+    background-position: -240px -72px;
+}
+
+.ico-banks-guangdongfazhan {
+    background-position: -360px -72px;
+}
+
+.ico-banks-hangzhou {
+    background-position: 0 -96px;
+}
+
+.ico-banks-ningbo {
+    background-position: -120px -96px;
+}
+
+.ico-banks-fudian {
+    background-position: -240px -96px;
+}
+
+.ico-banks-youzheng {
+    background-position: -360px -96px;
+}
+
+.u-login {
+    width: 360px;
+    padding: 35px 20px;
+}
+
+.u-login .logo {
+    width: 230px;
+    height: 0;
+    _line-height: 0;
+    /* -webkit-background: url("../images/logo.svg") no-repeat; */
+    display: block;
+    /*background: url(../images/accountLogo.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/accountLogo.png) 1x, url(../images/accountLogo@2x.png) 2x) no-repeat;*/
+    overflow: hidden;
+    margin: 0 auto 30px;
+    padding-top: 65px;
+}
+
+.u-login .tab ul {
+    width: 264px;
+    margin: auto;
+    line-height: 30px;
+    height: 30px;
+    padding-bottom: 20px;
+}
+
+.u-login .tab ul li {
+    float: left;
+    margin: 0 45px;
+    padding: 0 3px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.u-login .tab ul li.current {
+    border-bottom: 2px solid #40c2ff;
+}
+
+.u-login dl {
+    overflow: hidden;
+    width: 360px;
+    position: relative;
+}
+
+.u-login dl.fixed {
+    height: 60px;
+}
+
+.u-login dl i.ico {
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+.u-login dl input.text {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 12px 8px 30px;
+    width: 316px;
+    line-height: 16px;
+    font-size: 14px;
+    transition: 1s;
+}
+
+.u-login dl input.text:focus {
+    border-color: #40c2ff;
+    transition: 1s;
+}
+
+.u-login dl label.error {
+    color: #ff5153;
+    font-size: 12px;
+    display: block;
+    text-align: left;
+}
+
+.u-login dl .loginCheckbox {
+    cursor: pointer;
+    line-height: 18px;
+    text-align: left;
+}
+
+.u-login dl .sendSms {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    border-radius: 0;
+    width: 100px;
+    height: 30px;
+    line-height: 20px;
+    background: #fff;
+    font-size: 14px;
+    color: #40c2ff;
+    padding-left: 10px;
+}
+
+.u-login dl .sendSms.disabled {
+    color: #c0c1c2;
+}
+
+.u-login dl .sendSms i {
+    position: absolute;
+    right: 90px;
+    top: 5px;
+    border-left: 1px solid #ddd;
+    height: 20px;
+    width: 0;
+}
+
+.u-login dl .btn {
+    width: 100%;
+}
+
+body {
+    background: none;
+}
+
+.v-modal {
+    width: 850px;
+    border-radius: 3px;
+    min-height: 400px;
+    background: #fff;
+}
+
+.v-modal h1 {
+    font-size: 16px;
+    border-bottom: 1px dashed #ddd;
+    line-height: 50px;
+    height: 50px;
+    padding: 0 20px;
+}
+
+.v-modal form {
+    width: 810px;
+    padding: 0 20px 20px;
+    overflow: hidden;
+}
+
+.v-modal form .container {
+    float: left;
+    width: 100%;
+}
+
+.v-modal form .container dl {
+    float: left;
+    width: 810px;
+    padding-top: 10px;
+}
+
+.v-modal form .container dl.col-4 {
+    width: 240px;
+    margin-right: 5px;
+}
+
+.v-modal form .container dl dt {
+    float: left;
+    width: 100%;
+    line-height: 30px;
+    height: 30px;
+}
+
+.v-modal form .container dl dd {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.v-modal form .container dl dd .text {
+    line-height: 16px;
+    /*height: 16px;*/
+    border: 1px solid #d7d7d9;
+    margin-right: 5px;
+    width: 218px;
+    padding: 9px 10px;
+    float: left;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #777778;
+}
+
+.v-modal form .container dl dd button {
+    float: left;
+    padding: 0;
+    line-height: 36px;
+    height: 36px;
+    padding: 0 20px;
+    font-size: 14px;
+    border: 1px solid #d7d7d9;
+}
+
+.v-modal form .container dl dd .u-select {
+    height: 36px;
+    width: 240px;
+    margin: none;
+}
+
+.v-modal form .container dl dd .u-select span {
+    line-height: 34px;
+}
+
+.v-modal form .container dl dd textarea {
+    width: 578px;
+    height: 78px;
+    padding: 10px;
+    border: 1px solid #d7d7d9;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #777778;
+}
+
+.v-modal form .container dl dd label.error {
+    color: #ff5153;
+    position: absolute;
+    z-index: 1;
+    left: 200px;
+    top: 7px;
+    height: 22px;
+    width: 22px;
+    vertical-align: top;
+    display: inline-block;
+    background: url(img/skin.png) no-repeat;
+    background: -webkit-image-set(url(img/skin.png) 1x, url(img/skin@2x.png) 2x) no-repeat;
+    background-position: -44px -66px;
+}
+
+.v-modal form .submit {
+    height: 42px;
+    width: 120px;
+}
+
+.ms_modal {
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1002;
+    border-radius: 3px;
+}
+
+.ms_modal .ms_modal-title {
+    padding: 6px 10px;
+    color: #333;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+.ms_modal .ms_modal-title a {
+    color: #fff;
+    font-size: 14px;
+}
+
+.ms_modal .ms_modal-body {
+    line-height: 30px;
+    text-align: center;
+    color: #222;
+    float: left;
+}
+
+.ms_modal .ms_modal-close {
+    position: absolute;
+    right: 12px;
+    font-size: 12px;
+    color: #fff;
+    top: 12px;
+    height: 25px;
+    width: 25px;
+    background: url(img/skin.png) no-repeat;
+    background: -webkit-image-set(url(img/skin.png) 1x, url(img/skin@2x.png) 2x) no-repeat;
+    background-position: -248px -44px;
+}
+
+.ms_modal-screen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .25;
+    filter: alpha(opacity=25);
+}
+
+.J_modal {
+    position: relative;
+    z-index: 10001;
+}
+
+.page {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #d9d9d9;
+}
+
+.page a, .page b, .page span {
+    display: inline-block;
+    border-radius: 3px;
+    text-decoration: none;
+    margin: 0 1px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 14px;
+    border: 1px solid #ddd;
+    background: #fff;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.page a:hover, .page span.current {
+    position: relative;
+    z-index: 1;
+    transition: .2s;
+    border: 1px solid #40c2ff;
+    background: #40c2ff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.page a em, .page span em {
+    padding: 0 0 0 3px;
+    font-style: normal;
+    font-family: SimSun;
+}
+
+.page b {
+    border-color: transparent;
+    padding: 0 8px;
+}
+
+/* Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+ */
+.noUi-target,
+.noUi-target * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.noUi-target {
+    position: relative;
+    direction: ltr;
+    width: 600px;
+}
+
+.noUi-base {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    /* Fix 401 */
+}
+
+.noUi-origin {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.noUi-handle {
+    position: relative;
+    z-index: 1;
+}
+
+.noUi-stacking .noUi-handle {
+    /* This class is applied to the lower origin when
+       its values is > 50%. */
+    z-index: 10;
+}
+
+.noUi-state-tap .noUi-origin {
+    -webkit-transition: left 0.3s, top 0.3s;
+    transition: left 0.3s, top 0.3s;
+}
+
+.noUi-state-drag * {
+    cursor: inherit !important;
+}
+
+/* Painting and performance;
+ * Browsers can paint handles in their own layer.
+ */
+.noUi-base {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+    height: 6px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 20px;
+    height: 20px;
+    left: -10px;
+    top: -7px;
+}
+
+.noUi-vertical {
+    width: 18px;
+}
+
+.noUi-vertical .noUi-handle {
+    width: 20px;
+    height: 20px;
+    left: -10px;
+    top: -7px;
+}
+
+/* Styling;
+ */
+.noUi-background {
+    background: #e3e4e6;
+}
+
+.noUi-connect {
+    background: #40c2ff;
+}
+
+.noUi-origin {
+    border-radius: 4px;
+}
+
+.noUi-target {
+    border-radius: 4px;
+    margin: 13px 0;
+}
+
+.noUi-target.noUi-connect {
+    box-shadow: inset 0 0 3px rgba(51, 51, 51, 0.45), 0 3px 6px -5px #BBB;
+}
+
+/* Handles and cursors;
+ */
+.noUi-draggable {
+    cursor: w-resize;
+}
+
+.noUi-vertical .noUi-draggable {
+    cursor: n-resize;
+}
+
+.noUi-handle {
+    vertical-align: top;
+    display: inline-block;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+    background-position: -45px -23px;
+    cursor: default;
+}
+
+/* Handle stripes;
+ */
+.noUi-handle:after {
+    left: 17px;
+}
+
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+    width: 14px;
+    height: 1px;
+    left: 6px;
+    top: 14px;
+}
+
+.noUi-vertical .noUi-handle:after {
+    top: 17px;
+}
+
+/* Disabled state;
+ */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+    background: #B8B8B8;
+}
+
+[disabled].noUi-origin,
+[disabled] .noUi-handle {
+    cursor: not-allowed;
+}
+
+.nonlinear-lower {
+    float: left;
+}
+
+.nonlinear-upper {
+    float: right;
+}
+
+.nonlinear-value {
+    width: 600px;
+}
+
+.autoSuggest {
+    float: left;
+    position: relative;
+}
+
+.autoSuggest input {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    width: 300px;
+    position: relative;
+}
+
+.autoSuggest ul {
+    height: auto;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    padding: 0;
+    display: none;
+    position: absolute;
+}
+
+.autoSuggest ul li {
+    list-style: none;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 0 12px;
+    color: #666;
+}
+
+.autoSuggest ul li:hover, .autoSuggest ul li.hover {
+    background: #eee;
+}
+
+/* Ion.RangeSlider
+// css version 2.0.3
+// © 2013-2014 Denis Ineshin | IonDen.com
+// ===================================================================================================================*/
+/* =====================================================================================================================
+// RangeSlider */
+.irs {
+    position: relative;
+    display: block;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.irs-line {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    outline: none !important;
+}
+
+.irs-line-left, .irs-line-mid, .irs-line-right {
+    position: absolute;
+    display: block;
+    top: 0;
+}
+
+.irs-line-left {
+    left: 0;
+    width: 11%;
+}
+
+.irs-line-mid {
+    left: 9%;
+    width: 82%;
+}
+
+.irs-line-right {
+    right: 0;
+    width: 11%;
+}
+
+.irs-bar {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 0;
+}
+
+.irs-bar-edge {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+}
+
+.irs-shadow {
+    position: absolute;
+    display: none;
+    left: 0;
+    width: 0;
+}
+
+.irs-slider {
+    position: absolute;
+    display: block;
+    cursor: default;
+    z-index: 1;
+}
+
+.irs-slider.type_last {
+    z-index: 2;
+}
+
+.irs-min {
+    position: absolute;
+    display: block;
+    left: 0;
+    cursor: default;
+}
+
+.irs-max {
+    position: absolute;
+    display: block;
+    right: 0;
+    cursor: default;
+}
+
+.irs-from, .irs-to, .irs-single {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    cursor: default;
+    white-space: nowrap;
+}
+
+.irs-grid {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.irs-with-grid .irs-grid {
+    display: block;
+}
+
+.irs-grid-pol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 8px;
+    background: #000;
+}
+
+.irs-grid-pol.small {
+    height: 4px;
+}
+
+.irs-grid-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 9px;
+    line-height: 9px;
+    padding: 0 3px;
+    color: #000;
+}
+
+.irs-disable-mask {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -1%;
+    width: 102%;
+    height: 100%;
+    cursor: default;
+    background: transparent;
+    z-index: 2;
+}
+
+.irs-disabled {
+    opacity: 0.4;
+}
+
+.lt-ie9 .irs-disabled {
+    filter: alpha(opacity=40);
+}
+
+.irs-hidden-input {
+    position: absolute !important;
+    display: block !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    outline: none !important;
+    z-index: -9999 !important;
+    background: none !important;
+    border-style: solid !important;
+    border-color: transparent !important;
+}
+
+/* Ion.RangeSlider, Flat UI Skin
+// css version 2.0.3
+// © Denis Ineshin, 2014    https://github.com/IonDen
+// ===================================================================================================================*/
+/* =====================================================================================================================
+// Skin details */
+.irs {
+    height: 40px;
+    width: 500px;
+}
+
+.irs-with-grid {
+    height: 60px;
+}
+
+.irs-line {
+    height: 6px;
+    top: 25px;
+}
+
+.irs-line-left {
+    border-radius: 3px 0 0 3px;
+    height: 6px;
+    background: #ddd;
+}
+
+.irs-line-mid {
+    height: 6px;
+    background: #ddd;
+}
+
+.irs-line-right {
+    height: 6px;
+    background: #ddd;
+    border-radius: 0 3px 3px 0;
+}
+
+.irs-bar {
+    height: 6px;
+    top: 25px;
+    background: #40c2ff;
+}
+
+.irs-bar-edge {
+    top: 25px;
+    height: 6px;
+    width: 9px;
+    background-position: 0 -90px;
+}
+
+.irs-shadow {
+    height: 3px;
+    top: 34px;
+    background: #000;
+    opacity: 0.25;
+}
+
+.lt-ie9 .irs-shadow {
+    filter: alpha(opacity=25);
+}
+
+.irs-slider, .irs-slider.state_hover, .irs-slider:hover {
+    top: 18px;
+    vertical-align: top;
+    display: inline-block;
+    background: url(img/skin.png) no-repeat;
+    background: -webkit-image-set(url(img/skin.png) 1x, url(img/skin@2x.png) 2x) no-repeat;
+    background-position: -45px -23px;
+    cursor: default;
+    width: 20px;
+    height: 20px;
+}
+
+.irs-min, .irs-max {
+    color: #999;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    top: 0;
+    padding: 1px 3px;
+    background: #e1e4e9;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.irs-from, .irs-to, .irs-single {
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0 5px;
+    background: #40c2ff;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    top: -2px;
+}
+
+.irs-from:after, .irs-to:after, .irs-single:after {
+    position: absolute;
+    display: block;
+    content: "";
+    bottom: -6px;
+    bottom: -6px \9;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -3px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    border-top-color: #40c2ff;
+}
+
+.irs-grid-pol {
+    background: #e1e4e9;
+}
+
+.irs-grid-text {
+    color: #999;
+}
+
+/*# sourceMappingURL=global.css.map */

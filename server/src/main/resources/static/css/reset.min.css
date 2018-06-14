@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+/*公共样式*/
+html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, form, fieldset, legend, table, button {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul, ol, li {
+    list-style-type: none;
+}
+
+b, strong {
+    font-weight: normal;
+}
+
+i, em {
+    font-style: normal;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+img {
+    border: none;
+    display: inline-block;
+    font-size: 0;
+    max-width: 100%;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: arial, "微软雅黑";
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}

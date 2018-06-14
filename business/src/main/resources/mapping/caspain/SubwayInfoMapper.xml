@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.SubwayInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.SubwayInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="INTEGER" />
+    <result column="subway_line" property="subwayLine" jdbcType="VARCHAR" />
+    <result column="subway_station" property="subwayStation" jdbcType="VARCHAR" />
+    <result column="sta_longitude" property="staLongitude" jdbcType="VARCHAR" />
+    <result column="sta_latitude" property="staLatitude" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="SubMap" type="com.web.business.model.api.SubwayStationVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="subway_station" property="subwayStation" jdbcType="VARCHAR" />
+    <result column="sta_longitude" property="staLongitude" jdbcType="VARCHAR" />
+    <result column="sta_latitude" property="staLatitude" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, city_name, city_code, subway_line, subway_station, sta_longitude, sta_latitude, 
+    created_at, created_by_id, updated_at, updated_by_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.SubwayInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from subway_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from subway_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from subway_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.SubwayInfoExample" >
+    delete from subway_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.SubwayInfo" >
+    insert into subway_info (id, city_name, city_code, 
+      subway_line, subway_station, sta_longitude, 
+      sta_latitude, created_at, created_by_id, 
+      updated_at, updated_by_id)
+    values (#{id,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{cityCode,jdbcType=INTEGER}, 
+      #{subwayLine,jdbcType=VARCHAR}, #{subwayStation,jdbcType=VARCHAR}, #{staLongitude,jdbcType=VARCHAR}, 
+      #{staLatitude,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{createdById,jdbcType=INTEGER}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updatedById,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.SubwayInfo" >
+    insert into subway_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="subwayLine != null" >
+        subway_line,
+      </if>
+      <if test="subwayStation != null" >
+        subway_station,
+      </if>
+      <if test="staLongitude != null" >
+        sta_longitude,
+      </if>
+      <if test="staLatitude != null" >
+        sta_latitude,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=INTEGER},
+      </if>
+      <if test="subwayLine != null" >
+        #{subwayLine,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStation != null" >
+        #{subwayStation,jdbcType=VARCHAR},
+      </if>
+      <if test="staLongitude != null" >
+        #{staLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="staLatitude != null" >
+        #{staLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.SubwayInfoExample" resultType="java.lang.Integer" >
+    select count(*) from subway_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update subway_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.subwayLine != null" >
+        subway_line = #{record.subwayLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subwayStation != null" >
+        subway_station = #{record.subwayStation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staLongitude != null" >
+        sta_longitude = #{record.staLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staLatitude != null" >
+        sta_latitude = #{record.staLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update subway_info
+    set id = #{record.id,jdbcType=INTEGER},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=INTEGER},
+      subway_line = #{record.subwayLine,jdbcType=VARCHAR},
+      subway_station = #{record.subwayStation,jdbcType=VARCHAR},
+      sta_longitude = #{record.staLongitude,jdbcType=VARCHAR},
+      sta_latitude = #{record.staLatitude,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.SubwayInfo" >
+    update subway_info
+    <set >
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=INTEGER},
+      </if>
+      <if test="subwayLine != null" >
+        subway_line = #{subwayLine,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStation != null" >
+        subway_station = #{subwayStation,jdbcType=VARCHAR},
+      </if>
+      <if test="staLongitude != null" >
+        sta_longitude = #{staLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="staLatitude != null" >
+        sta_latitude = #{staLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.SubwayInfo" >
+    update subway_info
+    set city_name = #{cityName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=INTEGER},
+      subway_line = #{subwayLine,jdbcType=VARCHAR},
+      subway_station = #{subwayStation,jdbcType=VARCHAR},
+      sta_longitude = #{staLongitude,jdbcType=VARCHAR},
+      sta_latitude = #{staLatitude,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{updatedById,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--getSubwayStationsByLines-->
+  <select id="getSubwayStationsByLines" parameterType="string" resultMap="SubMap">
+  SELECT subway_station,sta_longitude,sta_latitude FROM subway_info WHERE city_name = #{city} AND subway_line= #{subwayLine};
+  </select>
+  <!--getSubwayByLines-->
+  <select id="getSubwayByLines" parameterType="string" resultMap="SubMap">
+    SELECT subway_station,sta_longitude,sta_latitude FROM subway_info WHERE city_name = #{city} AND subway_line= #{subwayLine};
+  </select>
+</mapper>

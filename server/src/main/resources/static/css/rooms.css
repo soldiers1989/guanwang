@@ -1,0 +1,814 @@
+.main {
+    background: #f2f3f5;
+    padding-top: 20px;
+}
+
+.i-main {
+    width: 1200px;
+    margin: auto;
+    background: #fff;
+}
+
+.u-h1 {
+    font-size: 24px;
+    color: #585959;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
+.u-breadcrumb {
+    width: 1200px;
+    line-height: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.u-breadcrumb li {
+    float: left;
+    padding: 0 2px;
+    font-family: SimSun;
+}
+
+.v-room {
+    width: 1200px;
+    margin: 20px auto 0;
+    border-bottom: 30px solid #f2f3f5;
+    overflow: hidden;
+}
+
+.v-room .roomContent {
+    float: left;
+    background: #fff;
+    width: 900px;
+}
+
+.v-room .roomContent .preview {
+    height: 559px;
+    width: 900px;
+    overflow: hidden;
+}
+
+.v-room .roomContent .preview .preview-main {
+    float: left;
+    overflow: hidden;
+    width: 745px;
+    height: 559px;
+}
+
+.v-room .roomContent .preview .preview-main img {
+    width: 745px;
+    height: 559px;
+}
+
+.v-room .roomContent .preview .preview-nav {
+    float: right;
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 559px;
+}
+
+.v-room .roomContent .preview .preview-nav b {
+    background: rgba(0, 0, 0, 0.6);
+    background: #000 \9;
+    filter: alpha(opacity=60);
+    width: 100%;
+    height: 30px;
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    z-index: 11;
+}
+
+.v-room .roomContent .preview .preview-nav b em {
+    width: 17px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 12px;
+    margin-left: -8px;
+    background: url(img/ms_preview-arrow.png) no-repeat;
+    background: -webkit-image-set(url(img/ms_preview-arrow.png) 1x, url(img/ms_preview-arrow@2x.png) 2x) no-repeat;
+}
+
+.v-room .roomContent .preview .preview-nav b.up {
+    top: 0;
+}
+
+.v-room .roomContent .preview .preview-nav b.down {
+    bottom: 0;
+}
+
+.v-room .roomContent .preview .preview-nav b.down em {
+    background-position: -17px 0;
+}
+
+.v-room .roomContent .preview .preview-nav ul {
+    width: 150px;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.v-room .roomContent .preview .preview-nav ul li {
+    margin-bottom: 5px;
+    position: relative;
+    cursor: pointer;
+    width: 150px;
+    height: 112px;
+    background: #f0f0f0;
+}
+
+.v-room .roomContent .preview .preview-nav ul li img {
+    width: 150px;
+    height: 112px;
+}
+
+.v-room .roomContent .preview .preview-nav ul li .cover {
+    background: rgba(0, 0, 0, 0.4);
+    background: #000 \9;
+    filter: alpha(opacity=40);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 112px;
+    z-index: 1;
+}
+
+.v-room .roomContent .preview .preview-nav ul li.current .cover {
+    background: transparent;
+    filter: normal;
+    border: 4px solid #49bff5;
+    width: 142px;
+    height: 104px;
+}
+
+.v-room .roomContent .slide {
+    border-bottom: 15px solid #f2f3f5;
+}
+
+.v-room .roomContent .slide ul {
+    height: 82px;
+}
+
+.v-room .roomContent .slide ul li {
+    width: 225px;
+    height: 42px;
+    float: left;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.v-room .roomContent .slide ul li em {
+    font-size: 18px;
+    color: #585959;
+    font-style: normal;
+    display: block;
+}
+
+.v-room .roomContent .slide ul li span {
+    font-size: 12px;
+    color: #a4a5a6;
+    display: block;
+}
+
+.v-room .roomContent .detail {
+    padding: 0 20px;
+}
+
+.v-room .roomContent .detail h3 {
+    line-height: 30px;
+    height: 30px;
+    font-size: 18px;
+    color: #585959;
+    margin: 20px 0 10px 0;
+}
+
+.v-room .roomContent .detail .amenities {
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px;
+}
+
+.v-room .roomContent .detail .amenities ul {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.v-room .roomContent .detail .amenities ul li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.v-room .roomContent .detail .amenities ul li i {
+    margin: auto;
+    display: block;
+}
+
+.v-room .roomContent .detail .amenities ul li span {
+    padding-top: 2px;
+    font-size: 12px;
+    display: block;
+}
+
+.v-room .roomContent .detail .amenities p {
+    line-height: 20px;
+}
+
+.v-room .roomContent .detail .roommate {
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px;
+}
+
+.v-room .roomContent .detail .roommate ul {
+    overflow: hidden;
+    margin-top: -20px;
+}
+
+.v-room .roomContent .detail .roommate ul li {
+    width: 175px;
+    margin: 20px 30px 0 0;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    position: relative;
+}
+
+.v-room .roomContent .detail .roommate ul li .title {
+    font-size: 16px;
+    height: 44px;
+    text-align: center;
+    color: #777778;
+    background: #edeef0;
+    color: #fff;
+}
+
+.v-room .roomContent .detail .roommate ul li .title h5 {
+    font-size: 16px;
+    height: 24px;
+    line-height: 32px;
+}
+
+.v-room .roomContent .detail .roommate ul li .title strong {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    display: block;
+}
+
+.v-room .roomContent .detail .roommate ul li .title a {
+    cursor: default;
+}
+
+.v-room .roomContent .detail .roommate ul li .title i {
+    position: absolute;
+    /*background: url(../images/skin.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/skin.png) 1x, url(../images/skin@2x.png) 2x) no-repeat;*/
+}
+
+.v-room .roomContent .detail .roommate ul li b, .v-room .roomContent .detail .roommate ul li span {
+    color: #777778;
+    font-weight: normal;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    background: #f2f3f5;
+}
+
+.v-room .roomContent .detail .roommate ul li.current {
+    border-color: #ff5153;
+}
+
+.v-room .roomContent .detail .roommate ul li.current .title {
+    background: #ff5153;
+    color: #fff;
+}
+
+.v-room .roomContent .detail .roommate ul li.current .title i {
+    right: 12px;
+    top: 13px;
+    background-position: -188px -66px;
+    width: 30px;
+    height: 19px;
+}
+
+.v-room .roomContent .detail .roommate ul li.current b, .v-room .roomContent .detail .roommate ul li.current span {
+    background: transparent;
+}
+
+.v-room .roomContent .detail .roommate ul li.current b {
+    color: #ff5153;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty {
+    border-color: #ffba52;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty .title {
+    background: #ffba52;
+    color: #fff;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty .title a {
+    cursor: pointer;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty .title i {
+    background-position: -291px -44px;
+    width: 35px;
+    height: 35px;
+    bottom: -2px;
+    right: -17px;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty b, .v-room .roomContent .detail .roommate ul li.empty span {
+    background: transparent;
+}
+
+.v-room .roomContent .detail .roommate ul li.empty b {
+    color: #ff5153;
+}
+
+.v-room .roomContent .detail .roommate ul li.boy .title {
+    background: #edeef0;
+    color: #777778;
+}
+
+.v-room .roomContent .detail .roommate ul li.boy .title i {
+    background-position: -247px 0;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    right: 10px;
+}
+
+.v-room .roomContent .detail .roommate ul li.girl .title {
+    background: #edeef0;
+    color: #777778;
+}
+
+.v-room .roomContent .detail .roommate ul li.girl .title i {
+    background-position: -291px 0;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    right: 10px;
+}
+
+.v-room .roomContent .detail .surrounding {
+    width: 100%;
+    height: 543px;
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px;
+}
+
+.v-room .roomContent .detail .surrounding img {
+    max-width: none;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap {
+    float: left;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .tab {
+    border-bottom: 1px solid #e1e3e6;
+    margin-bottom: 10px;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .tab ul {
+    width: 241px;
+    height: 32px;
+    margin: auto;
+    position: relative;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .tab ul li {
+    text-align: center;
+    float: left;
+    width: 80px;
+    padding: 0 20px 10px;
+    border-bottom: 2px solid #fff;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .tab ul li.current {
+    border-bottom: 2px solid #3bbaf5;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .tab ul b {
+    border-right: 1px solid #e1e3e6;
+    height: 10px;
+    position: absolute;
+    left: 120px;
+    top: 16px;
+}
+
+.v-room .roomContent .detail .surrounding .mapWrap .map {
+    width: 600px;
+    height: 500px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap {
+    float: right;
+    width: 240px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap h5 {
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #e1e3e6;
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap ul.action {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap ul.action li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0 0 15px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap ul.action li i {
+    margin: auto;
+    display: block;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap ul.action li span {
+    padding-top: 2px;
+    font-size: 12px;
+    display: block;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap ul.action li.current span {
+    color: #49bff5;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .line {
+    width: 238px;
+    max-height: 212px;
+    margin-top: 18px;
+    border: 1px solid #e1e3e6;
+    overflow-x: hidden;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .line h1 {
+    border-top: none !important;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .line td div {
+    border: none !important;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .search {
+    width: 240px;
+    height: 42px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .search input {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 11px;
+    width: 157px;
+    border: solid #e1e3e6;
+    border-width: 1px 0 1px 1px;
+    border-radius: 3px 0 0 3px;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch .search button {
+    cursor: pointer;
+    height: 42px;
+    float: left;
+    background: #40c2ff;
+    color: #fff;
+    width: 60px;
+    border: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch ul {
+    padding: 10px 0;
+}
+
+.v-room .roomContent .detail .surrounding .actionWrap .lineSearch ul li {
+    cursor: pointer;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 15px;
+}
+
+.v-room .roomContent .detail .recommend {
+    width: 860px;
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+
+.v-room .roomContent .detail .recommend ul {
+    width: 880px;
+    height: 191px;
+}
+
+.v-room .roomContent .detail .recommend ul li {
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.v-room .roomContent .detail .recommend ul li .img {
+    width: 198px;
+    height: 150px;
+    position: relative;
+    border: 1px solid #dedede;
+    border-bottom: 0;
+}
+
+.v-room .roomContent .detail .recommend ul li .img b {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    width: 180px;
+    padding: 0 10px;
+    line-height: 40px;
+    height: 40px;
+    color: #fff;
+    font-weight: normal;
+    /*background: url(../images/recommendShadow.png) no-repeat;*/
+    /*background: -webkit-image-set(url(../images/recommendShadow.png) 1x, url(../images/recommendShadow@2x.png) 2x) no-repeat;*/
+    background-repeat: repeat-x;
+    overflow: hidden;
+}
+
+.v-room .roomContent .detail .recommend ul li .recommendDetail {
+    width: 178px;
+    padding: 0 10px;
+    border: solid #ddd;
+    border-width: 0 1px 1px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+
+.v-room .side {
+    float: right;
+    width: 260px;
+    padding: 15px;
+    background: #fff;
+    position: relative;
+}
+
+.v-room .side .collection {
+    top: 30px;
+    right: 15px;
+    position: absolute;
+}
+
+.v-room .side .price em {
+    color: #ff5153;
+    font-size: 36px;
+    font-style: normal;
+}
+
+.v-room .side p {
+    line-height: 20px;
+    padding: 15px 0;
+}
+
+.v-room .side dl {
+    height: 20px;
+    padding: 10px 0;
+    color: #777778;
+}
+
+.v-room .side dl dt {
+    width: 50px;
+    float: left;
+    text-align: right;
+}
+
+.v-room .side dl dd {
+    width: 75px;
+    float: left;
+    text-align: left;
+    padding-left: 5px;
+    color: #a4a5a6;
+}
+
+.v-room .side .contact {
+    border-top: 1px solid #d7d7d9;
+    margin-top: 10px;
+    padding-top: 15px;
+    height: 80px;
+}
+
+.v-room .side .contact img {
+    float: left;
+    width: 80px;
+    height: 80px;
+}
+
+.v-room .side .contact .contactContent {
+    float: right;
+    width: 170px;
+    height: 80px;
+}
+
+.v-room .side .contact .contactContent h5 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.v-room .side .contact .contactContent span {
+    font-size: 14px;
+    padding: 2px 0;
+    display: block;
+}
+
+.btn.btn-danger,
+.btn:hover.btn-danger {
+    color: #fff;
+    background: #ff5153;
+}
+
+.btn,
+.btn:hover {
+    background: #fff;
+    color: #0ea0ef;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 10px 12px;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
+    margin-top: 15px;
+}
+
+.v-room .roomContent .detail .roommate ul li.current {
+    border-color: #ff5153;
+}
+
+.v-room .roomContent .detail .roommate ul li {
+    width: 175px;
+    margin: 20px 30px 0 0;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    position: relative;
+}
+
+.v-room .roomContent .detail .roommate ul li.current .title {
+    background: #ff5153;
+    color: #fff;
+}
+
+.v-room .roomContent .detail .roommate ul li .title {
+    font-size: 16px;
+    height: 44px;
+    text-align: center;
+    color: #777778;
+    background: #edeef0;
+    color: #fff;
+}
+
+.v-room .roomContent .detail .roommate ul li .title h5 {
+    font-size: 16px;
+    height: 24px;
+    line-height: 32px;
+}
+
+.v-room .roomContent .detail .roommate ul li .title strong {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    display: block;
+}
+
+.v-room .roomContent .detail .roommate ul li .title a {
+    cursor: default;
+}
+
+.v-room .roomContent .detail .roommate ul li.current b {
+    color: #ff5153;
+}
+
+.v-room .roomContent .detail .roommate ul li.current b, .v-room .roomContent .detail .roommate ul li.current span {
+    background: transparent;
+}
+
+.v-room .roomContent .detail .roommate ul li b, .v-room .roomContent .detail .roommate ul li span {
+    color: #777778;
+    font-weight: normal;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    background: #f2f3f5;
+}
+
+/*
+.amenities .wifi{
+    position: absolute;
+    top:0;
+    left:0;
+    width:60px;
+    height:60px;
+    opacity: 0.3;
+    background:rgba(0, 0, 0, 0.6);
+}
+*/
+
+.header .city-change {
+    float: left;
+    width: 62px;
+    color: #40C2FF;
+    cursor: pointer;
+    position: relative;
+    line-height: 44px;
+    height: 44px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.city-change .city-icon {
+    display: inline-block;
+    width: 12px;
+    height: 5px;
+    background: url("img/city.png") no-repeat;
+    margin-left: 8px;
+}
+
+.city-change .city-list {
+    position: absolute;
+    top: 44px;
+    left: -1px;
+    width: 100%;
+    border: 1px solid #dedede;
+    background: white;
+    display: none;
+    color: #575757;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+}
+
+.city-list li {
+    height: 30px;
+    line-height: 30px;
+    color: #575757;
+    text-align: center;
+    cursor: pointer;
+}
+
+.city-list li:hover {
+    color: #40C2FF;
+}
+
+
+.list-box{
+    border:1px solid #dedede;
+    font-size:14px;
+    color:#333;
+    line-height:50px;
+    width:800px;
+    text-align:center;
+}
+.list-box .list-tit{
+    background:#f3f3f3;
+    overflow:hidden;
+}
+.list-tit span{
+    float:left;
+}
+.list-con li{
+    border-top:1px solid #dedede;
+    overflow:hidden;
+}
+.list-con li:hover{
+    color:#40C2FF;
+}
+.list-con li span{
+    float:left;
+}

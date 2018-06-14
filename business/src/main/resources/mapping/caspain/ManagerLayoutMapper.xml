@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.ManagerLayoutMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.ManagerLayout" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="manager_web_id" property="managerWebId" jdbcType="INTEGER" />
+    <result column="title_name" property="titleName" jdbcType="VARCHAR" />
+    <result column="layout_intro" property="layoutIntro" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="layout_status" property="layoutStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.caspain.ManagerLayout" extends="BaseResultMap" >
+    <result column="layout_content" property="layoutContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, manager_web_id, title_name, layout_intro, created_at, created_by_id, updated_at, 
+    updated_by_id, is_delete, deleted_at, deleted_by_id, layout_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    layout_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.caspain.ManagerLayoutExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manager_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.ManagerLayoutExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manager_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manager_layout
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from manager_layout
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.ManagerLayoutExample" >
+    delete from manager_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.ManagerLayout" >
+    insert into manager_layout (id, manager_web_id, title_name, 
+      layout_intro, created_at, created_by_id, 
+      updated_at, updated_by_id, is_delete, 
+      deleted_at, deleted_by_id, layout_status, 
+      layout_content)
+    values (#{id,jdbcType=INTEGER}, #{managerWebId,jdbcType=INTEGER}, #{titleName,jdbcType=VARCHAR}, 
+      #{layoutIntro,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{createdById,jdbcType=INTEGER}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updatedById,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{deletedById,jdbcType=INTEGER}, #{layoutStatus,jdbcType=INTEGER}, 
+      #{layoutContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.ManagerLayout" >
+    insert into manager_layout
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="managerWebId != null" >
+        manager_web_id,
+      </if>
+      <if test="titleName != null" >
+        title_name,
+      </if>
+      <if test="layoutIntro != null" >
+        layout_intro,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="layoutStatus != null" >
+        layout_status,
+      </if>
+      <if test="layoutContent != null" >
+        layout_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="managerWebId != null" >
+        #{managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="titleName != null" >
+        #{titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutIntro != null" >
+        #{layoutIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="layoutStatus != null" >
+        #{layoutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="layoutContent != null" >
+        #{layoutContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.ManagerLayoutExample" resultType="java.lang.Integer" >
+    select count(*) from manager_layout
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update manager_layout
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.managerWebId != null" >
+        manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="record.titleName != null" >
+        title_name = #{record.titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutIntro != null" >
+        layout_intro = #{record.layoutIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.layoutStatus != null" >
+        layout_status = #{record.layoutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.layoutContent != null" >
+        layout_content = #{record.layoutContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update manager_layout
+    set id = #{record.id,jdbcType=INTEGER},
+      manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      title_name = #{record.titleName,jdbcType=VARCHAR},
+      layout_intro = #{record.layoutIntro,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      layout_status = #{record.layoutStatus,jdbcType=INTEGER},
+      layout_content = #{record.layoutContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update manager_layout
+    set id = #{record.id,jdbcType=INTEGER},
+      manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      title_name = #{record.titleName,jdbcType=VARCHAR},
+      layout_intro = #{record.layoutIntro,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      layout_status = #{record.layoutStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.ManagerLayout" >
+    update manager_layout
+    <set >
+      <if test="managerWebId != null" >
+        manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="titleName != null" >
+        title_name = #{titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutIntro != null" >
+        layout_intro = #{layoutIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="layoutStatus != null" >
+        layout_status = #{layoutStatus,jdbcType=INTEGER},
+      </if>
+      <if test="layoutContent != null" >
+        layout_content = #{layoutContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.caspain.ManagerLayout" >
+    update manager_layout
+    set manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      title_name = #{titleName,jdbcType=VARCHAR},
+      layout_intro = #{layoutIntro,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      layout_status = #{layoutStatus,jdbcType=INTEGER},
+      layout_content = #{layoutContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.ManagerLayout" >
+    update manager_layout
+    set manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      title_name = #{titleName,jdbcType=VARCHAR},
+      layout_intro = #{layoutIntro,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      layout_status = #{layoutStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

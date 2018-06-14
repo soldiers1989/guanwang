@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.volga.RoomMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.volga.Room" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
+    <result column="deleted_by" property="deletedBy" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="space" property="space" jdbcType="DOUBLE" />
+    <result column="rent_status" property="rentStatus" jdbcType="VARCHAR" />
+    <result column="lock_end_time" property="lockEndTime" jdbcType="DATE" />
+    <result column="identifier" property="identifier" jdbcType="VARCHAR" />
+    <result column="edited" property="edited" jdbcType="BIT" />
+    <result column="toward" property="toward" jdbcType="VARCHAR" />
+    <result column="apartment_id" property="apartmentId" jdbcType="INTEGER" />
+    <result column="floor_id" property="floorId" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="can_rent_date" property="canRentDate" jdbcType="DATE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="room_type" property="roomType" jdbcType="SMALLINT" />
+    <result column="assets_id" property="assetsId" jdbcType="INTEGER" />
+    <result column="channel_status" property="channelStatus" jdbcType="SMALLINT" />
+    <result column="decoration" property="decoration" jdbcType="SMALLINT" />
+    <result column="pictures_order" property="picturesOrder" jdbcType="VARCHAR" />
+    <result column="layout_id" property="layoutId" jdbcType="INTEGER" />
+    <result column="synchronous" property="synchronous" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.volga.RoomWithBLOBs" extends="BaseResultMap" >
+    <result column="room_desc" property="roomDesc" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, created_by, updated_by, deleted_by, version, 
+    is_delete, name, space, rent_status, lock_end_time, identifier, edited, toward, apartment_id, 
+    floor_id, operator_id, can_rent_date, price, room_type, assets_id, channel_status, 
+    decoration, pictures_order, layout_id, synchronous
+  </sql>
+  <sql id="Blob_Column_List" >
+    room_desc, remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.volga.RoomExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from room
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.volga.RoomExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from room
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.volga.RoomExample" >
+    delete from room
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.volga.RoomWithBLOBs" >
+    insert into room (id, created_at, updated_at, 
+      deleted_at, created_by, updated_by, 
+      deleted_by, version, is_delete, 
+      name, space, rent_status, 
+      lock_end_time, identifier, edited, 
+      toward, apartment_id, floor_id, 
+      operator_id, can_rent_date, price, 
+      room_type, assets_id, channel_status, 
+      decoration, pictures_order, layout_id, 
+      synchronous, room_desc, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{updatedBy,jdbcType=INTEGER}, 
+      #{deletedBy,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{name,jdbcType=VARCHAR}, #{space,jdbcType=DOUBLE}, #{rentStatus,jdbcType=VARCHAR}, 
+      #{lockEndTime,jdbcType=DATE}, #{identifier,jdbcType=VARCHAR}, #{edited,jdbcType=BIT}, 
+      #{toward,jdbcType=VARCHAR}, #{apartmentId,jdbcType=INTEGER}, #{floorId,jdbcType=INTEGER}, 
+      #{operatorId,jdbcType=INTEGER}, #{canRentDate,jdbcType=DATE}, #{price,jdbcType=DOUBLE}, 
+      #{roomType,jdbcType=SMALLINT}, #{assetsId,jdbcType=INTEGER}, #{channelStatus,jdbcType=SMALLINT}, 
+      #{decoration,jdbcType=SMALLINT}, #{picturesOrder,jdbcType=VARCHAR}, #{layoutId,jdbcType=INTEGER}, 
+      #{synchronous,jdbcType=INTEGER}, #{roomDesc,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.volga.RoomWithBLOBs" >
+    insert into room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="space != null" >
+        space,
+      </if>
+      <if test="rentStatus != null" >
+        rent_status,
+      </if>
+      <if test="lockEndTime != null" >
+        lock_end_time,
+      </if>
+      <if test="identifier != null" >
+        identifier,
+      </if>
+      <if test="edited != null" >
+        edited,
+      </if>
+      <if test="toward != null" >
+        toward,
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id,
+      </if>
+      <if test="floorId != null" >
+        floor_id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="canRentDate != null" >
+        can_rent_date,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="roomType != null" >
+        room_type,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="channelStatus != null" >
+        channel_status,
+      </if>
+      <if test="decoration != null" >
+        decoration,
+      </if>
+      <if test="picturesOrder != null" >
+        pictures_order,
+      </if>
+      <if test="layoutId != null" >
+        layout_id,
+      </if>
+      <if test="synchronous != null" >
+        synchronous,
+      </if>
+      <if test="roomDesc != null" >
+        room_desc,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="space != null" >
+        #{space,jdbcType=DOUBLE},
+      </if>
+      <if test="rentStatus != null" >
+        #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lockEndTime != null" >
+        #{lockEndTime,jdbcType=DATE},
+      </if>
+      <if test="identifier != null" >
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="edited != null" >
+        #{edited,jdbcType=BIT},
+      </if>
+      <if test="toward != null" >
+        #{toward,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="floorId != null" >
+        #{floorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="canRentDate != null" >
+        #{canRentDate,jdbcType=DATE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=SMALLINT},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="channelStatus != null" >
+        #{channelStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="decoration != null" >
+        #{decoration,jdbcType=SMALLINT},
+      </if>
+      <if test="picturesOrder != null" >
+        #{picturesOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="synchronous != null" >
+        #{synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="roomDesc != null" >
+        #{roomDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.volga.RoomExample" resultType="java.lang.Integer" >
+    select count(*) from room
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update room
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null" >
+        created_by = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedBy != null" >
+        updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null" >
+        deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.space != null" >
+        space = #{record.space,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rentStatus != null" >
+        rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lockEndTime != null" >
+        lock_end_time = #{record.lockEndTime,jdbcType=DATE},
+      </if>
+      <if test="record.identifier != null" >
+        identifier = #{record.identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.edited != null" >
+        edited = #{record.edited,jdbcType=BIT},
+      </if>
+      <if test="record.toward != null" >
+        toward = #{record.toward,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apartmentId != null" >
+        apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.floorId != null" >
+        floor_id = #{record.floorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.canRentDate != null" >
+        can_rent_date = #{record.canRentDate,jdbcType=DATE},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.roomType != null" >
+        room_type = #{record.roomType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.assetsId != null" >
+        assets_id = #{record.assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelStatus != null" >
+        channel_status = #{record.channelStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.decoration != null" >
+        decoration = #{record.decoration,jdbcType=SMALLINT},
+      </if>
+      <if test="record.picturesOrder != null" >
+        pictures_order = #{record.picturesOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layoutId != null" >
+        layout_id = #{record.layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="record.synchronous != null" >
+        synchronous = #{record.synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomDesc != null" >
+        room_desc = #{record.roomDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update room
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      space = #{record.space,jdbcType=DOUBLE},
+      rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      lock_end_time = #{record.lockEndTime,jdbcType=DATE},
+      identifier = #{record.identifier,jdbcType=VARCHAR},
+      edited = #{record.edited,jdbcType=BIT},
+      toward = #{record.toward,jdbcType=VARCHAR},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      floor_id = #{record.floorId,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      can_rent_date = #{record.canRentDate,jdbcType=DATE},
+      price = #{record.price,jdbcType=DOUBLE},
+      room_type = #{record.roomType,jdbcType=SMALLINT},
+      assets_id = #{record.assetsId,jdbcType=INTEGER},
+      channel_status = #{record.channelStatus,jdbcType=SMALLINT},
+      decoration = #{record.decoration,jdbcType=SMALLINT},
+      pictures_order = #{record.picturesOrder,jdbcType=VARCHAR},
+      layout_id = #{record.layoutId,jdbcType=INTEGER},
+      synchronous = #{record.synchronous,jdbcType=INTEGER},
+      room_desc = #{record.roomDesc,jdbcType=LONGVARCHAR},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update room
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      space = #{record.space,jdbcType=DOUBLE},
+      rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      lock_end_time = #{record.lockEndTime,jdbcType=DATE},
+      identifier = #{record.identifier,jdbcType=VARCHAR},
+      edited = #{record.edited,jdbcType=BIT},
+      toward = #{record.toward,jdbcType=VARCHAR},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      floor_id = #{record.floorId,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      can_rent_date = #{record.canRentDate,jdbcType=DATE},
+      price = #{record.price,jdbcType=DOUBLE},
+      room_type = #{record.roomType,jdbcType=SMALLINT},
+      assets_id = #{record.assetsId,jdbcType=INTEGER},
+      channel_status = #{record.channelStatus,jdbcType=SMALLINT},
+      decoration = #{record.decoration,jdbcType=SMALLINT},
+      pictures_order = #{record.picturesOrder,jdbcType=VARCHAR},
+      layout_id = #{record.layoutId,jdbcType=INTEGER},
+      synchronous = #{record.synchronous,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.volga.RoomWithBLOBs" >
+    update room
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by = #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="space != null" >
+        space = #{space,jdbcType=DOUBLE},
+      </if>
+      <if test="rentStatus != null" >
+        rent_status = #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lockEndTime != null" >
+        lock_end_time = #{lockEndTime,jdbcType=DATE},
+      </if>
+      <if test="identifier != null" >
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="edited != null" >
+        edited = #{edited,jdbcType=BIT},
+      </if>
+      <if test="toward != null" >
+        toward = #{toward,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id = #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="floorId != null" >
+        floor_id = #{floorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="canRentDate != null" >
+        can_rent_date = #{canRentDate,jdbcType=DATE},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="roomType != null" >
+        room_type = #{roomType,jdbcType=SMALLINT},
+      </if>
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="channelStatus != null" >
+        channel_status = #{channelStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="decoration != null" >
+        decoration = #{decoration,jdbcType=SMALLINT},
+      </if>
+      <if test="picturesOrder != null" >
+        pictures_order = #{picturesOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        layout_id = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="synchronous != null" >
+        synchronous = #{synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="roomDesc != null" >
+        room_desc = #{roomDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.volga.RoomWithBLOBs" >
+    update room
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      space = #{space,jdbcType=DOUBLE},
+      rent_status = #{rentStatus,jdbcType=VARCHAR},
+      lock_end_time = #{lockEndTime,jdbcType=DATE},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      edited = #{edited,jdbcType=BIT},
+      toward = #{toward,jdbcType=VARCHAR},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      floor_id = #{floorId,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      can_rent_date = #{canRentDate,jdbcType=DATE},
+      price = #{price,jdbcType=DOUBLE},
+      room_type = #{roomType,jdbcType=SMALLINT},
+      assets_id = #{assetsId,jdbcType=INTEGER},
+      channel_status = #{channelStatus,jdbcType=SMALLINT},
+      decoration = #{decoration,jdbcType=SMALLINT},
+      pictures_order = #{picturesOrder,jdbcType=VARCHAR},
+      layout_id = #{layoutId,jdbcType=INTEGER},
+      synchronous = #{synchronous,jdbcType=INTEGER},
+      room_desc = #{roomDesc,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.volga.Room" >
+    update room
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      space = #{space,jdbcType=DOUBLE},
+      rent_status = #{rentStatus,jdbcType=VARCHAR},
+      lock_end_time = #{lockEndTime,jdbcType=DATE},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      edited = #{edited,jdbcType=BIT},
+      toward = #{toward,jdbcType=VARCHAR},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      floor_id = #{floorId,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      can_rent_date = #{canRentDate,jdbcType=DATE},
+      price = #{price,jdbcType=DOUBLE},
+      room_type = #{roomType,jdbcType=SMALLINT},
+      assets_id = #{assetsId,jdbcType=INTEGER},
+      channel_status = #{channelStatus,jdbcType=SMALLINT},
+      decoration = #{decoration,jdbcType=SMALLINT},
+      pictures_order = #{picturesOrder,jdbcType=VARCHAR},
+      layout_id = #{layoutId,jdbcType=INTEGER},
+      synchronous = #{synchronous,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

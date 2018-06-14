@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.ManagerAboutusMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.ManagerAboutus" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="manager_web_id" property="managerWebId" jdbcType="INTEGER" />
+    <result column="aboutus_title" property="aboutusTitle" jdbcType="VARCHAR" />
+    <result column="aboutus_intro" property="aboutusIntro" jdbcType="VARCHAR" />
+    <result column="aboutus_type" property="aboutusType" jdbcType="INTEGER" />
+    <result column="aboutus_sort" property="aboutusSort" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="about_us__status" property="aboutUsStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.caspain.ManagerAboutus" extends="BaseResultMap" >
+    <result column="aboutus_article" property="aboutusArticle" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, manager_web_id, aboutus_title, aboutus_intro, aboutus_type, aboutus_sort, created_at, 
+    created_by_id, updated_at, updated_by_id, is_delete, deleted_at, deleted_by_id, about_us__status
+  </sql>
+  <sql id="Blob_Column_List" >
+    aboutus_article
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.caspain.ManagerAboutusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manager_aboutus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.ManagerAboutusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manager_aboutus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manager_aboutus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from manager_aboutus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.ManagerAboutusExample" >
+    delete from manager_aboutus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.ManagerAboutus" >
+    insert into manager_aboutus (id, manager_web_id, aboutus_title, 
+      aboutus_intro, aboutus_type, aboutus_sort, 
+      created_at, created_by_id, updated_at, 
+      updated_by_id, is_delete, deleted_at, 
+      deleted_by_id, about_us__status, aboutus_article
+      )
+    values (#{id,jdbcType=INTEGER}, #{managerWebId,jdbcType=INTEGER}, #{aboutusTitle,jdbcType=VARCHAR}, 
+      #{aboutusIntro,jdbcType=VARCHAR}, #{aboutusType,jdbcType=INTEGER}, #{aboutusSort,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{createdById,jdbcType=INTEGER}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{updatedById,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{deletedAt,jdbcType=TIMESTAMP}, 
+      #{deletedById,jdbcType=INTEGER}, #{aboutUsStatus,jdbcType=INTEGER}, #{aboutusArticle,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.ManagerAboutus" >
+    insert into manager_aboutus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="managerWebId != null" >
+        manager_web_id,
+      </if>
+      <if test="aboutusTitle != null" >
+        aboutus_title,
+      </if>
+      <if test="aboutusIntro != null" >
+        aboutus_intro,
+      </if>
+      <if test="aboutusType != null" >
+        aboutus_type,
+      </if>
+      <if test="aboutusSort != null" >
+        aboutus_sort,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="aboutUsStatus != null" >
+        about_us__status,
+      </if>
+      <if test="aboutusArticle != null" >
+        aboutus_article,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="managerWebId != null" >
+        #{managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusTitle != null" >
+        #{aboutusTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutusIntro != null" >
+        #{aboutusIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutusType != null" >
+        #{aboutusType,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusSort != null" >
+        #{aboutusSort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="aboutUsStatus != null" >
+        #{aboutUsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusArticle != null" >
+        #{aboutusArticle,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.ManagerAboutusExample" resultType="java.lang.Integer" >
+    select count(*) from manager_aboutus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update manager_aboutus
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.managerWebId != null" >
+        manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aboutusTitle != null" >
+        aboutus_title = #{record.aboutusTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aboutusIntro != null" >
+        aboutus_intro = #{record.aboutusIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aboutusType != null" >
+        aboutus_type = #{record.aboutusType,jdbcType=INTEGER},
+      </if>
+      <if test="record.aboutusSort != null" >
+        aboutus_sort = #{record.aboutusSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.aboutUsStatus != null" >
+        about_us__status = #{record.aboutUsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.aboutusArticle != null" >
+        aboutus_article = #{record.aboutusArticle,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update manager_aboutus
+    set id = #{record.id,jdbcType=INTEGER},
+      manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      aboutus_title = #{record.aboutusTitle,jdbcType=VARCHAR},
+      aboutus_intro = #{record.aboutusIntro,jdbcType=VARCHAR},
+      aboutus_type = #{record.aboutusType,jdbcType=INTEGER},
+      aboutus_sort = #{record.aboutusSort,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      about_us__status = #{record.aboutUsStatus,jdbcType=INTEGER},
+      aboutus_article = #{record.aboutusArticle,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update manager_aboutus
+    set id = #{record.id,jdbcType=INTEGER},
+      manager_web_id = #{record.managerWebId,jdbcType=INTEGER},
+      aboutus_title = #{record.aboutusTitle,jdbcType=VARCHAR},
+      aboutus_intro = #{record.aboutusIntro,jdbcType=VARCHAR},
+      aboutus_type = #{record.aboutusType,jdbcType=INTEGER},
+      aboutus_sort = #{record.aboutusSort,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      about_us__status = #{record.aboutUsStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.ManagerAboutus" >
+    update manager_aboutus
+    <set >
+      <if test="managerWebId != null" >
+        manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusTitle != null" >
+        aboutus_title = #{aboutusTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutusIntro != null" >
+        aboutus_intro = #{aboutusIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="aboutusType != null" >
+        aboutus_type = #{aboutusType,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusSort != null" >
+        aboutus_sort = #{aboutusSort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="aboutUsStatus != null" >
+        about_us__status = #{aboutUsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="aboutusArticle != null" >
+        aboutus_article = #{aboutusArticle,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.caspain.ManagerAboutus" >
+    update manager_aboutus
+    set manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      aboutus_title = #{aboutusTitle,jdbcType=VARCHAR},
+      aboutus_intro = #{aboutusIntro,jdbcType=VARCHAR},
+      aboutus_type = #{aboutusType,jdbcType=INTEGER},
+      aboutus_sort = #{aboutusSort,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      about_us__status = #{aboutUsStatus,jdbcType=INTEGER},
+      aboutus_article = #{aboutusArticle,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.ManagerAboutus" >
+    update manager_aboutus
+    set manager_web_id = #{managerWebId,jdbcType=INTEGER},
+      aboutus_title = #{aboutusTitle,jdbcType=VARCHAR},
+      aboutus_intro = #{aboutusIntro,jdbcType=VARCHAR},
+      aboutus_type = #{aboutusType,jdbcType=INTEGER},
+      aboutus_sort = #{aboutusSort,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      about_us__status = #{aboutUsStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

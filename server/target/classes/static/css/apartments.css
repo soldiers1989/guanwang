@@ -1,0 +1,751 @@
+.main-bg {
+    position: relative;
+}
+.main-bg img{
+    width: 100%;
+    height: 434px;
+    
+}
+
+.main-bg .apartment_details{
+    width: 345px;
+    height: 307px;
+    background: #fff;
+    font-family: PingFangSC-Regular;    
+    opacity: 0.7;
+    text-align: center;
+    position: absolute;
+    top: 68px;
+    left:112px;
+    color: #4D4D4D;
+}
+.main-bg .apartment_details h2{
+    font-size: 20px;
+    line-height: 24px;
+    padding: 32px 0 10px 0;
+}
+.main-bg .apartment_details em {
+    color: #ff5153;
+    font-size: 36px;
+    font-style: normal;
+}
+.main-bg .apartment_details p{
+    font-size: 14px;
+    line-height: 20px;
+    padding: 4px;
+}
+.main-bg .apartment_details .tel{
+    font-size: 18px;
+    line-height: 25px;
+    padding-bottom: 8px;
+}
+.main-bg .apartment_details input{
+    font-size: 16px;
+    width: 150px;
+    height: 50px;
+    background: #40c2ff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;         
+}
+.alltype,
+.amenities,
+.periphery,
+.similar{
+    overflow: hidden;
+    margin: auto;
+    width: 1250px;
+}
+.alltype img{
+    width: 580px;
+    height: 434px;
+}
+.alltype h3,
+.facilities h3,
+.periphery h3,
+.similar h3{
+    text-align: center;
+    font-size: 24px;
+    color: #585959;
+    padding: 23px;
+    font-family: PingFangSC-Regular;
+}
+.alltype .type_l{
+    float: left;
+    border: 1px solid #F6F7FA;
+}
+.alltype .type_r{
+    float: right;
+    border: 1px solid #F6F7FA;
+}
+.alltype .address{
+    font-size: 16px;
+    color: #585959;
+    letter-spacing: 0;
+    padding: 20px 0 12px 12px;
+}
+.alltype .type_l .space p,
+.alltype .type_r .space p{
+    display: inline-block;
+}
+.type_l .space,
+.type_r .space{
+    float: left;
+    padding-left: 12px;
+}
+.type_l .space p,
+.type_r .space p{
+    padding-right: 15px;
+}
+.type_l .space span,
+.type_r .space span{
+   color:  #ff5153;
+   font-size: 20px;
+}
+.type_l .order,
+.type_r .order{
+    float: right;
+    background: #FF5153;
+    border-radius: 3px;
+    width: 125px;
+    height: 48px;
+    margin: 0 12px 28px 0;
+}
+.type_l .order a,
+.type_r .order a{
+    text-align: center;
+    display: block;
+    line-height: 48px;
+    color: #fff;
+}
+
+.facilities .amenities {
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px; 
+}
+.facilities  .amenities ul {
+    height: 60px;
+    margin-bottom: 20px;
+}
+.facilities .amenities ul li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 90px;
+    text-align: center;
+    margin-bottom: 45px;
+ }
+ .facilities .amenities ul li i {
+    margin: auto;
+    display: block; 
+}
+.facilities .amenities ul li span {
+    padding-top: 2px;
+    font-size: 12px;
+    display: block; 
+}
+.facilities .amenities p {
+    line-height: 20px; 
+}
+.periphery .surrounding {
+    width: 100%;
+    height: 543px;
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px; 
+}
+.periphery .surrounding img {
+    max-width: none; 
+}
+.periphery .surrounding .mapWrap {
+    float: left;
+    width:calc(100% - 260px);
+}
+.periphery .surrounding .mapWrap .tab {
+    border-bottom: 1px solid #e1e3e6;
+    margin-bottom: 10px; 
+}
+.periphery .surrounding .mapWrap .tab ul {
+    width: 241px;
+    height: 32px;
+    margin: auto;
+    position: relative;
+}
+.periphery .surrounding .mapWrap .tab ul li {
+    text-align: center;
+    float: left;
+    width: 80px;
+    padding: 0 20px 10px;
+    border-bottom: 2px solid #fff; 
+}
+.periphery .surrounding .mapWrap .tab ul li.current {
+    border-bottom: 2px solid #3bbaf5; 
+}
+.periphery .surrounding .mapWrap .tab ul b {
+    border-right: 1px solid #e1e3e6;
+    height: 10px;
+    position: absolute;
+    left: 120px;
+    top: 16px; 
+}
+.periphery .surrounding .mapWrap .map {
+    width: 100%;
+    height: 500px; 
+}
+.periphery .surrounding .actionWrap {
+    float: right;
+    width: 240px; 
+}
+.periphery .surrounding .actionWrap h5 {
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #e1e3e6;
+    line-height: 32px;
+    margin-bottom: 10px;
+ }
+.periphery .surrounding .actionWrap ul.action {
+    height: 60px;
+    margin-bottom: 20px; 
+}
+.periphery .surrounding .actionWrap ul.action li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0 0 15px 0;
+    text-align: center;
+    cursor: pointer; 
+}
+.periphery .surrounding .actionWrap ul.action li i {
+    margin: auto;
+    display: block; 
+}
+.periphery .surrounding .actionWrap ul.action li span {
+    padding-top: 2px;
+    font-size: 12px;
+    display: block; 
+}
+.periphery .surrounding .actionWrap ul.action li.current span {
+    color: #49bff5; 
+}
+.periphery .surrounding .actionWrap .lineSearch .line {
+    width: 238px;
+    max-height: 212px;
+    margin-top: 18px;
+    border: 1px solid #e1e3e6;
+    overflow-x: hidden; 
+}
+.periphery .surrounding .actionWrap .lineSearch .line h1 {
+    border-top: none !important; 
+}
+.periphery .surrounding .actionWrap .lineSearch .line td div {
+    border: none !important; 
+}
+.periphery .surrounding .actionWrap .lineSearch .search {
+    width: 240px;
+    height: 42px; 
+}
+.periphery .surrounding .actionWrap .lineSearch .search input {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 11px;
+    width: 157px;
+    border: solid #e1e3e6;
+    border-width: 1px 0 1px 1px;
+    border-radius: 3px 0 0 3px; 
+}
+.periphery .surrounding .actionWrap .lineSearch .search button {
+    cursor: pointer;
+    height: 42px;
+    float: left;
+    background: #40c2ff;
+    color: #fff;
+    width: 60px;
+    border: none;
+    border-radius: 0 3px 3px 0; 
+}
+.periphery .surrounding .actionWrap .lineSearch ul {
+    padding: 10px 0; 
+}
+.periphery .surrounding .actionWrap .lineSearch ul li {
+    cursor: pointer;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 15px; 
+}
+
+.similar .recommend {
+    width: 860px;
+    padding-bottom: 40px;
+    overflow: hidden; 
+}
+.similar .recommend ul {
+    width: 880px;
+    height: 191px; 
+}
+.similar .recommend ul li {
+    float: left;
+    width: 198px;
+    margin-right: 20px;
+    border:1px solid #ddd;
+}
+.similar .recommend ul li .img {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+.similar .recommend ul li .img img{
+    width:100%;
+    height:100%;
+}
+
+.similar .recommend ul li h4 {
+    overflow: hidden;
+    display: block;
+    padding: 10px 10px 0 10px;
+}
+.similar .recommend ul li b a{
+    color: #585959;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.similar .recommend ul li .recommendDetail {
+    width: 178px;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.similar .recommend ul li .recommendDetail .fl{
+    width:85px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.main {
+    background: #f2f3f5;
+    padding-top: 20px;
+}
+.i-main {
+width: 1200px;
+margin: auto;
+background: #fff; 
+}
+.u-h1 {
+font-size: 24px;
+color: #585959;
+margin-left: auto;
+margin-right: auto;
+width: 1200px; 
+}
+.u-breadcrumb {
+width: 1200px;
+line-height: 20px;
+height: 20px;
+margin-left: auto;
+margin-right: auto; 
+}
+.u-breadcrumb li {
+float: left;
+padding: 0 2px;
+font-family: SimSun; 
+}
+.v-room {
+    width: 1200px;
+    margin: 20px auto 0;
+    border-bottom: 30px solid #f2f3f5;
+    overflow: hidden; 
+}
+.v-room .roomContent {
+    float: left;
+    background: #fff;
+    width: 900px; 
+}
+.v-room .roomContent .preview {
+    height: 559px;
+    width: 900px;
+    overflow: hidden; 
+}
+.v-room .roomContent .preview .preview-main {
+    float: left;
+    overflow: hidden;
+    width: 745px;
+    height: 559px; 
+}
+.v-room .roomContent .preview .preview-main img {
+    width: 745px;
+    height: 559px; 
+}
+.v-room .roomContent .preview .preview-nav {
+    float: right;
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 559px; 
+}
+.v-room .roomContent .preview .preview-nav b {
+    background: rgba(0, 0, 0, 0.6);
+    background: #000 \9;
+    filter: alpha(opacity=60);
+    width: 100%;
+    height: 30px;
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    z-index: 11; 
+}
+.v-room .roomContent .preview .preview-nav b em {
+    width: 17px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 12px;
+    margin-left: -8px;
+    background: url(img/ms_preview-arrow.png) no-repeat;
+    background: -webkit-image-set(url(img/ms_preview-arrow.png) 1x, url(img/ms_preview-arrow@2x.png) 2x) no-repeat;
+}
+.v-room .roomContent .preview .preview-nav b.up {
+    top: 0; 
+}
+.v-room .roomContent .preview .preview-nav b.down {
+    bottom: 0; 
+}
+    .v-room .roomContent .preview .preview-nav b.down em {
+    background-position: -17px 0; 
+}
+.v-room .roomContent .preview .preview-nav ul {
+    width: 150px;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0; 
+}
+.v-room .roomContent .preview .preview-nav ul li {
+    margin-bottom: 5px;
+    position: relative;
+    cursor: pointer;
+    width: 150px;
+    height: 112px;
+    background: #f0f0f0; 
+}
+.v-room .roomContent .preview .preview-nav ul li img {
+    width: 150px;
+    height: 112px; 
+}
+.v-room .roomContent .preview .preview-nav ul li .cover {
+    background: rgba(0, 0, 0, 0.4);
+    background: #000 \9;
+    filter: alpha(opacity=40);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 112px;
+    z-index: 1; 
+}
+.v-room .roomContent .preview .preview-nav ul li.current .cover {
+    background: transparent;
+    filter: normal;
+    border: 4px solid #49bff5;
+    width: 142px;
+    height: 104px; 
+}
+.v-room .roomContent .slide {
+border-bottom: 15px solid #f2f3f5; 
+}
+.v-room .roomContent .slide ul {
+    height: 82px; 
+}
+.v-room .roomContent .slide ul li {
+    width: 225px;
+    height: 42px;
+    float: left;
+    text-align: center;
+    padding: 20px 0; 
+}
+.v-room .roomContent .slide ul li em {
+    font-size: 18px;
+    color: #585959;
+    font-style: normal;
+    display: block; 
+}
+.v-room .roomContent .slide ul li span {
+    font-size: 12px;
+    color: #a4a5a6;
+    display: block; 
+}
+
+
+
+.v-room .roomContent .detail {
+    padding: 0 20px;
+}
+.v-room .roomContent .detail h3 {
+    line-height: 30px;
+    height: 30px;
+    font-size: 18px;
+    color: #585959;
+    margin: 20px 0 10px 0; 
+}
+
+
+.v-room .roomContent .detail .roommate {
+    border-bottom: 1px solid #e1e3e6;
+    padding-bottom: 20px; 
+}
+.v-room .roomContent .detail .roommate ul {
+    overflow: hidden;
+    margin-top: -20px; 
+}
+.v-room .roomContent .detail .roommate ul li {
+    width: 175px;
+    margin: 20px 30px 0 0;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    position: relative; }
+.v-room .roomContent .detail .roommate ul li .title {
+    font-size: 16px;
+    height: 44px;
+    text-align: center;
+    color: #777778;
+    background: #edeef0;
+    color: #fff; 
+}
+.v-room .roomContent .detail .roommate ul li .title h5 {
+    font-size: 16px;
+    height: 24px;
+    line-height: 32px; 
+}
+.v-room .roomContent .detail .roommate ul li .title strong {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    display: block; 
+}
+.v-room .roomContent .detail .roommate ul li .title a {
+    cursor: default; 
+}
+.v-room .roomContent .detail .roommate ul li .title i {
+    position: absolute;
+    background: url(img/skin.png) no-repeat;
+    background: -webkit-image-set(url(img/skin.png) 1x, url(img/skin@2x.png) 2x) no-repeat;
+    }
+.v-room .roomContent .detail .roommate ul li b, .v-room .roomContent .detail .roommate ul li span {
+    color: #777778;
+    font-weight: normal;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    background: #f2f3f5; 
+}
+.v-room .roomContent .detail .roommate ul li.current {
+    border-color: #ff5153; 
+}
+.v-room .roomContent .detail .roommate ul li.current .title {
+    background: #ff5153;
+    color: #fff; 
+}
+.v-room .roomContent .detail .roommate ul li.current .title i {
+    right: 12px;
+    top: 13px;
+    background-position: -188px -66px;
+    width: 30px;
+    height: 19px; 
+}
+.v-room .roomContent .detail .roommate ul li.current b, .v-room .roomContent .detail .roommate ul li.current span {
+    background: transparent; 
+}
+.v-room .roomContent .detail .roommate ul li.current b {
+    color: #ff5153; 
+}
+.v-room .roomContent .detail .roommate ul li.empty {
+    border-color: #ffba52; 
+}
+.v-room .roomContent .detail .roommate ul li.empty .title {
+    background: #ffba52;
+    color: #fff; 
+}
+    .v-room .roomContent .detail .roommate ul li.empty .title a {
+    cursor: pointer; 
+}
+    .v-room .roomContent .detail .roommate ul li.empty .title i {
+    background-position: -291px -44px;
+    width: 35px;
+    height: 35px;
+    bottom: -2px;
+    right: -17px; 
+}
+.v-room .roomContent .detail .roommate ul li.empty b, .v-room .roomContent .detail .roommate ul li.empty span {
+    background: transparent; 
+}
+.v-room .roomContent .detail .roommate ul li.empty b {
+    color: #ff5153; 
+}
+.v-room .roomContent .detail .roommate ul li.boy .title {
+    background: #edeef0;
+    color: #777778; 
+}
+.v-room .roomContent .detail .roommate ul li.boy .title i {
+    background-position: -247px 0;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    right: 10px; 
+}
+.v-room .roomContent .detail .roommate ul li.girl .title {
+    background: #edeef0;
+    color: #777778; 
+}
+.v-room .roomContent .detail .roommate ul li.girl .title i {
+    background-position: -291px 0;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    right: 10px; 
+}
+
+ 
+
+.v-room .side {
+    float: right;
+    width: 260px;
+    padding: 15px;
+    background: #fff;
+    position: relative; 
+}
+.v-room .side .collection {
+    top: 30px;
+    right: 15px;
+    position: absolute; 
+}
+.v-room .side .price em {
+    color: #ff5153;
+    font-size: 36px;
+    font-style: normal; 
+}
+.v-room .side p {
+    line-height: 20px;
+    padding: 15px 0; 
+}
+.v-room .side dl {
+    height: 20px;
+    padding: 10px 0;
+    color: #777778; 
+}
+.v-room .side dl dt {
+    width: 50px;
+    float: left;
+    text-align: right; 
+}
+.v-room .side dl dd {
+    width: 75px;
+    float: left;
+    text-align: left;
+    padding-left: 5px;
+    color: #a4a5a6; 
+}
+.v-room .side .contact {
+    border-top: 1px solid #d7d7d9;
+    margin-top: 10px;
+    padding-top: 15px;
+    height: 80px; 
+}
+.v-room .side .contact img {
+    float: left;
+    width: 80px;
+    height: 80px; 
+}
+.v-room .side .contact .contactContent {
+    float: right;
+    width: 170px;
+    height: 80px;
+}
+.v-room .side .contact .contactContent h5 {
+    font-size: 16px;
+    line-height: 24px;
+}
+.v-room .side .contact .contactContent span {
+    font-size: 14px;
+    padding: 2px 0;
+    display: block; 
+}
+.btn.btn-danger, 
+.btn:hover.btn-danger {
+    color: #fff;
+    background: #ff5153;
+}
+.btn, 
+.btn:hover {
+    background: #fff;
+    color: #0ea0ef;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 10px 12px;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+.mt-15 {
+    margin-top: 15px !important;
+    margin-top: 15px;
+}
+.v-room .roomContent .detail .roommate ul li.current {
+    border-color: #ff5153;
+}
+.v-room .roomContent .detail .roommate ul li {
+    width: 175px;
+    margin: 20px 30px 0 0;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    position: relative;
+}
+.v-room .roomContent .detail .roommate ul li.current .title {
+    background: #ff5153;
+    color: #fff;
+}
+.v-room .roomContent .detail .roommate ul li .title {
+    font-size: 16px;
+    height: 44px;
+    text-align: center;
+    color: #777778;
+    background: #edeef0;
+    color: #fff;
+}
+.v-room .roomContent .detail .roommate ul li .title h5 {
+    font-size: 16px;
+    height: 24px;
+    line-height: 32px;
+}
+.v-room .roomContent .detail .roommate ul li .title strong {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    display: block;
+}
+.v-room .roomContent .detail .roommate ul li .title a {
+    cursor: default;
+}
+.v-room .roomContent .detail .roommate ul li.current b {
+    color: #ff5153;
+}
+.v-room .roomContent .detail .roommate ul li.current b, .v-room .roomContent .detail .roommate ul li.current span {
+    background: transparent;
+}
+.v-room .roomContent .detail .roommate ul li b, .v-room .roomContent .detail .roommate ul li span {
+    color: #777778;
+    font-weight: normal;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    background: #f2f3f5;
+}

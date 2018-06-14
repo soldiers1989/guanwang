@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.ManagerWebMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.ManagerWeb" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="undomain_url" property="undomainUrl" jdbcType="VARCHAR" />
+    <result column="domain_url" property="domainUrl" jdbcType="VARCHAR" />
+    <result column="apartment_name" property="apartmentName" jdbcType="VARCHAR" />
+    <result column="slogen_name" property="slogenName" jdbcType="VARCHAR" />
+    <result column="logo_image" property="logoImage" jdbcType="VARCHAR" />
+    <result column="qr_wechat_image" property="qrWechatImage" jdbcType="VARCHAR" />
+    <result column="qr_app_image" property="qrAppImage" jdbcType="VARCHAR" />
+    <result column="service_telephone" property="serviceTelephone" jdbcType="VARCHAR" />
+    <result column="service_time" property="serviceTime" jdbcType="VARCHAR" />
+    <result column="service_email" property="serviceEmail" jdbcType="VARCHAR" />
+    <result column="icp_num" property="icpNum" jdbcType="VARCHAR" />
+    <result column="web_color" property="webColor" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="create_by_id" property="createById" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="update_by_id" property="updateById" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, undomain_url, domain_url, apartment_name, slogen_name, logo_image, qr_wechat_image, 
+    qr_app_image, service_telephone, service_time, service_email, icp_num, web_color, 
+    created_at, create_by_id, updated_at, update_by_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.ManagerWebExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manager_web
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manager_web
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from manager_web
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.ManagerWebExample" >
+    delete from manager_web
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.ManagerWeb" >
+    insert into manager_web (id, undomain_url, domain_url, 
+      apartment_name, slogen_name, logo_image, 
+      qr_wechat_image, qr_app_image, service_telephone, 
+      service_time, service_email, icp_num, 
+      web_color, created_at, create_by_id, 
+      updated_at, update_by_id)
+    values (#{id,jdbcType=INTEGER}, #{undomainUrl,jdbcType=VARCHAR}, #{domainUrl,jdbcType=VARCHAR}, 
+      #{apartmentName,jdbcType=VARCHAR}, #{slogenName,jdbcType=VARCHAR}, #{logoImage,jdbcType=VARCHAR}, 
+      #{qrWechatImage,jdbcType=VARCHAR}, #{qrAppImage,jdbcType=VARCHAR}, #{serviceTelephone,jdbcType=VARCHAR}, 
+      #{serviceTime,jdbcType=VARCHAR}, #{serviceEmail,jdbcType=VARCHAR}, #{icpNum,jdbcType=VARCHAR}, 
+      #{webColor,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{createById,jdbcType=INTEGER}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updateById,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.ManagerWeb" >
+    insert into manager_web
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="undomainUrl != null" >
+        undomain_url,
+      </if>
+      <if test="domainUrl != null" >
+        domain_url,
+      </if>
+      <if test="apartmentName != null" >
+        apartment_name,
+      </if>
+      <if test="slogenName != null" >
+        slogen_name,
+      </if>
+      <if test="logoImage != null" >
+        logo_image,
+      </if>
+      <if test="qrWechatImage != null" >
+        qr_wechat_image,
+      </if>
+      <if test="qrAppImage != null" >
+        qr_app_image,
+      </if>
+      <if test="serviceTelephone != null" >
+        service_telephone,
+      </if>
+      <if test="serviceTime != null" >
+        service_time,
+      </if>
+      <if test="serviceEmail != null" >
+        service_email,
+      </if>
+      <if test="icpNum != null" >
+        icp_num,
+      </if>
+      <if test="webColor != null" >
+        web_color,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createById != null" >
+        create_by_id,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updateById != null" >
+        update_by_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="undomainUrl != null" >
+        #{undomainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="domainUrl != null" >
+        #{domainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentName != null" >
+        #{apartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="slogenName != null" >
+        #{slogenName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoImage != null" >
+        #{logoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="qrWechatImage != null" >
+        #{qrWechatImage,jdbcType=VARCHAR},
+      </if>
+      <if test="qrAppImage != null" >
+        #{qrAppImage,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTelephone != null" >
+        #{serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTime != null" >
+        #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceEmail != null" >
+        #{serviceEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="icpNum != null" >
+        #{icpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="webColor != null" >
+        #{webColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createById != null" >
+        #{createById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateById != null" >
+        #{updateById,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.ManagerWebExample" resultType="java.lang.Integer" >
+    select count(*) from manager_web
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update manager_web
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.undomainUrl != null" >
+        undomain_url = #{record.undomainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domainUrl != null" >
+        domain_url = #{record.domainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apartmentName != null" >
+        apartment_name = #{record.apartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slogenName != null" >
+        slogen_name = #{record.slogenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logoImage != null" >
+        logo_image = #{record.logoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrWechatImage != null" >
+        qr_wechat_image = #{record.qrWechatImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrAppImage != null" >
+        qr_app_image = #{record.qrAppImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTelephone != null" >
+        service_telephone = #{record.serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTime != null" >
+        service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceEmail != null" >
+        service_email = #{record.serviceEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icpNum != null" >
+        icp_num = #{record.icpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webColor != null" >
+        web_color = #{record.webColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createById != null" >
+        create_by_id = #{record.createById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateById != null" >
+        update_by_id = #{record.updateById,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update manager_web
+    set id = #{record.id,jdbcType=INTEGER},
+      undomain_url = #{record.undomainUrl,jdbcType=VARCHAR},
+      domain_url = #{record.domainUrl,jdbcType=VARCHAR},
+      apartment_name = #{record.apartmentName,jdbcType=VARCHAR},
+      slogen_name = #{record.slogenName,jdbcType=VARCHAR},
+      logo_image = #{record.logoImage,jdbcType=VARCHAR},
+      qr_wechat_image = #{record.qrWechatImage,jdbcType=VARCHAR},
+      qr_app_image = #{record.qrAppImage,jdbcType=VARCHAR},
+      service_telephone = #{record.serviceTelephone,jdbcType=VARCHAR},
+      service_time = #{record.serviceTime,jdbcType=VARCHAR},
+      service_email = #{record.serviceEmail,jdbcType=VARCHAR},
+      icp_num = #{record.icpNum,jdbcType=VARCHAR},
+      web_color = #{record.webColor,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      create_by_id = #{record.createById,jdbcType=INTEGER},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      update_by_id = #{record.updateById,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.ManagerWeb" >
+    update manager_web
+    <set >
+      <if test="undomainUrl != null" >
+        undomain_url = #{undomainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="domainUrl != null" >
+        domain_url = #{domainUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentName != null" >
+        apartment_name = #{apartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="slogenName != null" >
+        slogen_name = #{slogenName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoImage != null" >
+        logo_image = #{logoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="qrWechatImage != null" >
+        qr_wechat_image = #{qrWechatImage,jdbcType=VARCHAR},
+      </if>
+      <if test="qrAppImage != null" >
+        qr_app_image = #{qrAppImage,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTelephone != null" >
+        service_telephone = #{serviceTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTime != null" >
+        service_time = #{serviceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceEmail != null" >
+        service_email = #{serviceEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="icpNum != null" >
+        icp_num = #{icpNum,jdbcType=VARCHAR},
+      </if>
+      <if test="webColor != null" >
+        web_color = #{webColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createById != null" >
+        create_by_id = #{createById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateById != null" >
+        update_by_id = #{updateById,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.ManagerWeb" >
+    update manager_web
+    set undomain_url = #{undomainUrl,jdbcType=VARCHAR},
+      domain_url = #{domainUrl,jdbcType=VARCHAR},
+      apartment_name = #{apartmentName,jdbcType=VARCHAR},
+      slogen_name = #{slogenName,jdbcType=VARCHAR},
+      logo_image = #{logoImage,jdbcType=VARCHAR},
+      qr_wechat_image = #{qrWechatImage,jdbcType=VARCHAR},
+      qr_app_image = #{qrAppImage,jdbcType=VARCHAR},
+      service_telephone = #{serviceTelephone,jdbcType=VARCHAR},
+      service_time = #{serviceTime,jdbcType=VARCHAR},
+      service_email = #{serviceEmail,jdbcType=VARCHAR},
+      icp_num = #{icpNum,jdbcType=VARCHAR},
+      web_color = #{webColor,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      create_by_id = #{createById,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      update_by_id = #{updateById,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.HouseMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.House" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="block" property="block" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="building_num" property="buildingNum" jdbcType="VARCHAR" />
+    <result column="unit_num" property="unitNum" jdbcType="VARCHAR" />
+    <result column="floor_num" property="floorNum" jdbcType="VARCHAR" />
+    <result column="house_num" property="houseNum" jdbcType="VARCHAR" />
+    <result column="pay_method_f" property="payMethodF" jdbcType="SMALLINT" />
+    <result column="pay_method_y" property="payMethodY" jdbcType="SMALLINT" />
+    <result column="month_rental" property="monthRental" jdbcType="DOUBLE" />
+    <result column="rent_status" property="rentStatus" jdbcType="VARCHAR" />
+    <result column="is_whole" property="isWhole" jdbcType="BIT" />
+    <result column="space" property="space" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="assets_id" property="assetsId" jdbcType="INTEGER" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="house_type_id" property="houseTypeId" jdbcType="INTEGER" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="decorating_end_at" property="decoratingEndAt" jdbcType="DATE" />
+    <result column="decorating_start_at" property="decoratingStartAt" jdbcType="DATE" />
+    <result column="is_decorating" property="isDecorating" jdbcType="BIT" />
+    <result column="is_show" property="isShow" jdbcType="BIT" />
+    <result column="is_concentrated" property="isConcentrated" jdbcType="BIT" />
+    <result column="room_num" property="roomNum" jdbcType="SMALLINT" />
+    <result column="total_floor_num" property="totalFloorNum" jdbcType="VARCHAR" />
+    <result column="is_stop" property="isStop" jdbcType="BIT" />
+    <result column="decorating_fee" property="decoratingFee" jdbcType="DOUBLE" />
+    <result column="synchronous" property="synchronous" jdbcType="INTEGER" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="source_type" property="sourceType" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.caspain.House" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, version, is_delete, city, district, block, 
+    address, area, building_num, unit_num, floor_num, house_num, pay_method_f, pay_method_y, 
+    month_rental, rent_status, is_whole, space, price, assets_id, created_by_id, deleted_by_id, 
+    house_type_id, updated_by_id, is_new, decorating_end_at, decorating_start_at, is_decorating, 
+    is_show, is_concentrated, room_num, total_floor_num, is_stop, decorating_fee, synchronous, 
+    latitude, longitude, source_type
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.caspain.HouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.HouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+
+  <select id="selectHouseIdByExample" resultType="int" parameterType="com.web.business.model.caspain.HouseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    id
+    from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from house
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from house
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.HouseExample" >
+    delete from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.House" >
+    insert into house (id, created_at, updated_at, 
+      deleted_at, version, is_delete, 
+      city, district, block, 
+      address, area, building_num, 
+      unit_num, floor_num, house_num, 
+      pay_method_f, pay_method_y, month_rental, 
+      rent_status, is_whole, space, 
+      price, assets_id, created_by_id, 
+      deleted_by_id, house_type_id, updated_by_id, 
+      is_new, decorating_end_at, decorating_start_at, 
+      is_decorating, is_show, is_concentrated, 
+      room_num, total_floor_num, is_stop, 
+      decorating_fee, synchronous, latitude, 
+      longitude, source_type, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{block,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{buildingNum,jdbcType=VARCHAR}, 
+      #{unitNum,jdbcType=VARCHAR}, #{floorNum,jdbcType=VARCHAR}, #{houseNum,jdbcType=VARCHAR}, 
+      #{payMethodF,jdbcType=SMALLINT}, #{payMethodY,jdbcType=SMALLINT}, #{monthRental,jdbcType=DOUBLE}, 
+      #{rentStatus,jdbcType=VARCHAR}, #{isWhole,jdbcType=BIT}, #{space,jdbcType=DOUBLE}, 
+      #{price,jdbcType=DOUBLE}, #{assetsId,jdbcType=INTEGER}, #{createdById,jdbcType=INTEGER}, 
+      #{deletedById,jdbcType=INTEGER}, #{houseTypeId,jdbcType=INTEGER}, #{updatedById,jdbcType=INTEGER}, 
+      #{isNew,jdbcType=BIT}, #{decoratingEndAt,jdbcType=DATE}, #{decoratingStartAt,jdbcType=DATE}, 
+      #{isDecorating,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{isConcentrated,jdbcType=BIT}, 
+      #{roomNum,jdbcType=SMALLINT}, #{totalFloorNum,jdbcType=VARCHAR}, #{isStop,jdbcType=BIT}, 
+      #{decoratingFee,jdbcType=DOUBLE}, #{synchronous,jdbcType=INTEGER}, #{latitude,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{sourceType,jdbcType=SMALLINT}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.House" >
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="block != null" >
+        block,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="buildingNum != null" >
+        building_num,
+      </if>
+      <if test="unitNum != null" >
+        unit_num,
+      </if>
+      <if test="floorNum != null" >
+        floor_num,
+      </if>
+      <if test="houseNum != null" >
+        house_num,
+      </if>
+      <if test="payMethodF != null" >
+        pay_method_f,
+      </if>
+      <if test="payMethodY != null" >
+        pay_method_y,
+      </if>
+      <if test="monthRental != null" >
+        month_rental,
+      </if>
+      <if test="rentStatus != null" >
+        rent_status,
+      </if>
+      <if test="isWhole != null" >
+        is_whole,
+      </if>
+      <if test="space != null" >
+        space,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="houseTypeId != null" >
+        house_type_id,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="decoratingEndAt != null" >
+        decorating_end_at,
+      </if>
+      <if test="decoratingStartAt != null" >
+        decorating_start_at,
+      </if>
+      <if test="isDecorating != null" >
+        is_decorating,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="isConcentrated != null" >
+        is_concentrated,
+      </if>
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="totalFloorNum != null" >
+        total_floor_num,
+      </if>
+      <if test="isStop != null" >
+        is_stop,
+      </if>
+      <if test="decoratingFee != null" >
+        decorating_fee,
+      </if>
+      <if test="synchronous != null" >
+        synchronous,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="block != null" >
+        #{block,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null" >
+        #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNum != null" >
+        #{unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="floorNum != null" >
+        #{floorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null" >
+        #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethodF != null" >
+        #{payMethodF,jdbcType=SMALLINT},
+      </if>
+      <if test="payMethodY != null" >
+        #{payMethodY,jdbcType=SMALLINT},
+      </if>
+      <if test="monthRental != null" >
+        #{monthRental,jdbcType=DOUBLE},
+      </if>
+      <if test="rentStatus != null" >
+        #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhole != null" >
+        #{isWhole,jdbcType=BIT},
+      </if>
+      <if test="space != null" >
+        #{space,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="houseTypeId != null" >
+        #{houseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="decoratingEndAt != null" >
+        #{decoratingEndAt,jdbcType=DATE},
+      </if>
+      <if test="decoratingStartAt != null" >
+        #{decoratingStartAt,jdbcType=DATE},
+      </if>
+      <if test="isDecorating != null" >
+        #{isDecorating,jdbcType=BIT},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isConcentrated != null" >
+        #{isConcentrated,jdbcType=BIT},
+      </if>
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=SMALLINT},
+      </if>
+      <if test="totalFloorNum != null" >
+        #{totalFloorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null" >
+        #{isStop,jdbcType=BIT},
+      </if>
+      <if test="decoratingFee != null" >
+        #{decoratingFee,jdbcType=DOUBLE},
+      </if>
+      <if test="synchronous != null" >
+        #{synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.HouseExample" resultType="java.lang.Integer" >
+    select count(*) from house
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.block != null" >
+        block = #{record.block,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingNum != null" >
+        building_num = #{record.buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitNum != null" >
+        unit_num = #{record.unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorNum != null" >
+        floor_num = #{record.floorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseNum != null" >
+        house_num = #{record.houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payMethodF != null" >
+        pay_method_f = #{record.payMethodF,jdbcType=SMALLINT},
+      </if>
+      <if test="record.payMethodY != null" >
+        pay_method_y = #{record.payMethodY,jdbcType=SMALLINT},
+      </if>
+      <if test="record.monthRental != null" >
+        month_rental = #{record.monthRental,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rentStatus != null" >
+        rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isWhole != null" >
+        is_whole = #{record.isWhole,jdbcType=BIT},
+      </if>
+      <if test="record.space != null" >
+        space = #{record.space,jdbcType=DOUBLE},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.assetsId != null" >
+        assets_id = #{record.assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseTypeId != null" >
+        house_type_id = #{record.houseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNew != null" >
+        is_new = #{record.isNew,jdbcType=BIT},
+      </if>
+      <if test="record.decoratingEndAt != null" >
+        decorating_end_at = #{record.decoratingEndAt,jdbcType=DATE},
+      </if>
+      <if test="record.decoratingStartAt != null" >
+        decorating_start_at = #{record.decoratingStartAt,jdbcType=DATE},
+      </if>
+      <if test="record.isDecorating != null" >
+        is_decorating = #{record.isDecorating,jdbcType=BIT},
+      </if>
+      <if test="record.isShow != null" >
+        is_show = #{record.isShow,jdbcType=BIT},
+      </if>
+      <if test="record.isConcentrated != null" >
+        is_concentrated = #{record.isConcentrated,jdbcType=BIT},
+      </if>
+      <if test="record.roomNum != null" >
+        room_num = #{record.roomNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.totalFloorNum != null" >
+        total_floor_num = #{record.totalFloorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isStop != null" >
+        is_stop = #{record.isStop,jdbcType=BIT},
+      </if>
+      <if test="record.decoratingFee != null" >
+        decorating_fee = #{record.decoratingFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.synchronous != null" >
+        synchronous = #{record.synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceType != null" >
+        source_type = #{record.sourceType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update house
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      block = #{record.block,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      building_num = #{record.buildingNum,jdbcType=VARCHAR},
+      unit_num = #{record.unitNum,jdbcType=VARCHAR},
+      floor_num = #{record.floorNum,jdbcType=VARCHAR},
+      house_num = #{record.houseNum,jdbcType=VARCHAR},
+      pay_method_f = #{record.payMethodF,jdbcType=SMALLINT},
+      pay_method_y = #{record.payMethodY,jdbcType=SMALLINT},
+      month_rental = #{record.monthRental,jdbcType=DOUBLE},
+      rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      is_whole = #{record.isWhole,jdbcType=BIT},
+      space = #{record.space,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
+      assets_id = #{record.assetsId,jdbcType=INTEGER},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      house_type_id = #{record.houseTypeId,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_new = #{record.isNew,jdbcType=BIT},
+      decorating_end_at = #{record.decoratingEndAt,jdbcType=DATE},
+      decorating_start_at = #{record.decoratingStartAt,jdbcType=DATE},
+      is_decorating = #{record.isDecorating,jdbcType=BIT},
+      is_show = #{record.isShow,jdbcType=BIT},
+      is_concentrated = #{record.isConcentrated,jdbcType=BIT},
+      room_num = #{record.roomNum,jdbcType=SMALLINT},
+      total_floor_num = #{record.totalFloorNum,jdbcType=VARCHAR},
+      is_stop = #{record.isStop,jdbcType=BIT},
+      decorating_fee = #{record.decoratingFee,jdbcType=DOUBLE},
+      synchronous = #{record.synchronous,jdbcType=INTEGER},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR},
+      source_type = #{record.sourceType,jdbcType=SMALLINT},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      block = #{record.block,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      building_num = #{record.buildingNum,jdbcType=VARCHAR},
+      unit_num = #{record.unitNum,jdbcType=VARCHAR},
+      floor_num = #{record.floorNum,jdbcType=VARCHAR},
+      house_num = #{record.houseNum,jdbcType=VARCHAR},
+      pay_method_f = #{record.payMethodF,jdbcType=SMALLINT},
+      pay_method_y = #{record.payMethodY,jdbcType=SMALLINT},
+      month_rental = #{record.monthRental,jdbcType=DOUBLE},
+      rent_status = #{record.rentStatus,jdbcType=VARCHAR},
+      is_whole = #{record.isWhole,jdbcType=BIT},
+      space = #{record.space,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
+      assets_id = #{record.assetsId,jdbcType=INTEGER},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      house_type_id = #{record.houseTypeId,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      is_new = #{record.isNew,jdbcType=BIT},
+      decorating_end_at = #{record.decoratingEndAt,jdbcType=DATE},
+      decorating_start_at = #{record.decoratingStartAt,jdbcType=DATE},
+      is_decorating = #{record.isDecorating,jdbcType=BIT},
+      is_show = #{record.isShow,jdbcType=BIT},
+      is_concentrated = #{record.isConcentrated,jdbcType=BIT},
+      room_num = #{record.roomNum,jdbcType=SMALLINT},
+      total_floor_num = #{record.totalFloorNum,jdbcType=VARCHAR},
+      is_stop = #{record.isStop,jdbcType=BIT},
+      decorating_fee = #{record.decoratingFee,jdbcType=DOUBLE},
+      synchronous = #{record.synchronous,jdbcType=INTEGER},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR},
+      source_type = #{record.sourceType,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.House" >
+    update house
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="block != null" >
+        block = #{block,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null" >
+        building_num = #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNum != null" >
+        unit_num = #{unitNum,jdbcType=VARCHAR},
+      </if>
+      <if test="floorNum != null" >
+        floor_num = #{floorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null" >
+        house_num = #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethodF != null" >
+        pay_method_f = #{payMethodF,jdbcType=SMALLINT},
+      </if>
+      <if test="payMethodY != null" >
+        pay_method_y = #{payMethodY,jdbcType=SMALLINT},
+      </if>
+      <if test="monthRental != null" >
+        month_rental = #{monthRental,jdbcType=DOUBLE},
+      </if>
+      <if test="rentStatus != null" >
+        rent_status = #{rentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhole != null" >
+        is_whole = #{isWhole,jdbcType=BIT},
+      </if>
+      <if test="space != null" >
+        space = #{space,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=INTEGER},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="houseTypeId != null" >
+        house_type_id = #{houseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="decoratingEndAt != null" >
+        decorating_end_at = #{decoratingEndAt,jdbcType=DATE},
+      </if>
+      <if test="decoratingStartAt != null" >
+        decorating_start_at = #{decoratingStartAt,jdbcType=DATE},
+      </if>
+      <if test="isDecorating != null" >
+        is_decorating = #{isDecorating,jdbcType=BIT},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isConcentrated != null" >
+        is_concentrated = #{isConcentrated,jdbcType=BIT},
+      </if>
+      <if test="roomNum != null" >
+        room_num = #{roomNum,jdbcType=SMALLINT},
+      </if>
+      <if test="totalFloorNum != null" >
+        total_floor_num = #{totalFloorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null" >
+        is_stop = #{isStop,jdbcType=BIT},
+      </if>
+      <if test="decoratingFee != null" >
+        decorating_fee = #{decoratingFee,jdbcType=DOUBLE},
+      </if>
+      <if test="synchronous != null" >
+        synchronous = #{synchronous,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.caspain.House" >
+    update house
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      block = #{block,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      building_num = #{buildingNum,jdbcType=VARCHAR},
+      unit_num = #{unitNum,jdbcType=VARCHAR},
+      floor_num = #{floorNum,jdbcType=VARCHAR},
+      house_num = #{houseNum,jdbcType=VARCHAR},
+      pay_method_f = #{payMethodF,jdbcType=SMALLINT},
+      pay_method_y = #{payMethodY,jdbcType=SMALLINT},
+      month_rental = #{monthRental,jdbcType=DOUBLE},
+      rent_status = #{rentStatus,jdbcType=VARCHAR},
+      is_whole = #{isWhole,jdbcType=BIT},
+      space = #{space,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
+      assets_id = #{assetsId,jdbcType=INTEGER},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      house_type_id = #{houseTypeId,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_new = #{isNew,jdbcType=BIT},
+      decorating_end_at = #{decoratingEndAt,jdbcType=DATE},
+      decorating_start_at = #{decoratingStartAt,jdbcType=DATE},
+      is_decorating = #{isDecorating,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      is_concentrated = #{isConcentrated,jdbcType=BIT},
+      room_num = #{roomNum,jdbcType=SMALLINT},
+      total_floor_num = #{totalFloorNum,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=BIT},
+      decorating_fee = #{decoratingFee,jdbcType=DOUBLE},
+      synchronous = #{synchronous,jdbcType=INTEGER},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=SMALLINT},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.House" >
+    update house
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      block = #{block,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      building_num = #{buildingNum,jdbcType=VARCHAR},
+      unit_num = #{unitNum,jdbcType=VARCHAR},
+      floor_num = #{floorNum,jdbcType=VARCHAR},
+      house_num = #{houseNum,jdbcType=VARCHAR},
+      pay_method_f = #{payMethodF,jdbcType=SMALLINT},
+      pay_method_y = #{payMethodY,jdbcType=SMALLINT},
+      month_rental = #{monthRental,jdbcType=DOUBLE},
+      rent_status = #{rentStatus,jdbcType=VARCHAR},
+      is_whole = #{isWhole,jdbcType=BIT},
+      space = #{space,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
+      assets_id = #{assetsId,jdbcType=INTEGER},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      house_type_id = #{houseTypeId,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      is_new = #{isNew,jdbcType=BIT},
+      decorating_end_at = #{decoratingEndAt,jdbcType=DATE},
+      decorating_start_at = #{decoratingStartAt,jdbcType=DATE},
+      is_decorating = #{isDecorating,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      is_concentrated = #{isConcentrated,jdbcType=BIT},
+      room_num = #{roomNum,jdbcType=SMALLINT},
+      total_floor_num = #{totalFloorNum,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=BIT},
+      decorating_fee = #{decoratingFee,jdbcType=DOUBLE},
+      synchronous = #{synchronous,jdbcType=INTEGER},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.RoomAssetsMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.RoomAssets" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="washing_machines" property="washingMachines" jdbcType="BIT" />
+    <result column="air_conditionings" property="airConditionings" jdbcType="BIT" />
+    <result column="televisions" property="televisions" jdbcType="BIT" />
+    <result column="fridge" property="fridge" jdbcType="BIT" />
+    <result column="internet" property="internet" jdbcType="BIT" />
+    <result column="balconies" property="balconies" jdbcType="BIT" />
+    <result column="windows" property="windows" jdbcType="BIT" />
+    <result column="kitchens" property="kitchens" jdbcType="BIT" />
+    <result column="washrooms" property="washrooms" jdbcType="BIT" />
+    <result column="water_heaters" property="waterHeaters" jdbcType="BIT" />
+    <result column="wardrobes" property="wardrobes" jdbcType="BIT" />
+    <result column="desks" property="desks" jdbcType="BIT" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="bed" property="bed" jdbcType="BIT" />
+    <result column="gas" property="gas" jdbcType="BIT" />
+    <result column="heat" property="heat" jdbcType="BIT" />
+    <result column="induction_cooker" property="inductionCooker" jdbcType="BIT" />
+    <result column="microwave" property="microwave" jdbcType="BIT" />
+    <result column="oven" property="oven" jdbcType="BIT" />
+    <result column="ser_atm" property="serAtm" jdbcType="BIT" />
+    <result column="ser_express" property="serExpress" jdbcType="BIT" />
+    <result column="ser_gymnasium" property="serGymnasium" jdbcType="BIT" />
+    <result column="ser_market" property="serMarket" jdbcType="BIT" />
+    <result column="ser_room_cleaning" property="serRoomCleaning" jdbcType="BIT" />
+    <result column="ser_services" property="serServices" jdbcType="BIT" />
+    <result column="ser_smart_lock" property="serSmartLock" jdbcType="BIT" />
+    <result column="sofa" property="sofa" jdbcType="BIT" />
+    <result column="tag_balcony" property="tagBalcony" jdbcType="BIT" />
+    <result column="tag_kitchen" property="tagKitchen" jdbcType="BIT" />
+    <result column="tag_metro" property="tagMetro" jdbcType="BIT" />
+    <result column="tag_pub_balcony" property="tagPubBalcony" jdbcType="BIT" />
+    <result column="tag_pub_toilet" property="tagPubToilet" jdbcType="BIT" />
+    <result column="tag_toilet" property="tagToilet" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, version, is_delete, name, washing_machines, 
+    air_conditionings, televisions, fridge, internet, balconies, windows, kitchens, washrooms, 
+    water_heaters, wardrobes, desks, created_by_id, deleted_by_id, updated_by_id, bed, 
+    gas, heat, induction_cooker, microwave, oven, ser_atm, ser_express, ser_gymnasium, 
+    ser_market, ser_room_cleaning, ser_services, ser_smart_lock, sofa, tag_balcony, tag_kitchen, 
+    tag_metro, tag_pub_balcony, tag_pub_toilet, tag_toilet
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.RoomAssetsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from room_assets
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_assets
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room_assets
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.RoomAssetsExample" >
+    delete from room_assets
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.RoomAssets" >
+    insert into room_assets (id, created_at, updated_at, 
+      deleted_at, version, is_delete, 
+      name, washing_machines, air_conditionings, 
+      televisions, fridge, internet, 
+      balconies, windows, kitchens, washrooms, 
+      water_heaters, wardrobes, desks, 
+      created_by_id, deleted_by_id, updated_by_id, 
+      bed, gas, heat, induction_cooker, 
+      microwave, oven, ser_atm, ser_express, 
+      ser_gymnasium, ser_market, ser_room_cleaning, 
+      ser_services, ser_smart_lock, sofa, 
+      tag_balcony, tag_kitchen, tag_metro, 
+      tag_pub_balcony, tag_pub_toilet, tag_toilet
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{name,jdbcType=VARCHAR}, #{washingMachines,jdbcType=BIT}, #{airConditionings,jdbcType=BIT}, 
+      #{televisions,jdbcType=BIT}, #{fridge,jdbcType=BIT}, #{internet,jdbcType=BIT}, 
+      #{balconies,jdbcType=BIT}, #{windows,jdbcType=BIT}, #{kitchens,jdbcType=BIT}, #{washrooms,jdbcType=BIT}, 
+      #{waterHeaters,jdbcType=BIT}, #{wardrobes,jdbcType=BIT}, #{desks,jdbcType=BIT}, 
+      #{createdById,jdbcType=INTEGER}, #{deletedById,jdbcType=INTEGER}, #{updatedById,jdbcType=INTEGER}, 
+      #{bed,jdbcType=BIT}, #{gas,jdbcType=BIT}, #{heat,jdbcType=BIT}, #{inductionCooker,jdbcType=BIT}, 
+      #{microwave,jdbcType=BIT}, #{oven,jdbcType=BIT}, #{serAtm,jdbcType=BIT}, #{serExpress,jdbcType=BIT}, 
+      #{serGymnasium,jdbcType=BIT}, #{serMarket,jdbcType=BIT}, #{serRoomCleaning,jdbcType=BIT}, 
+      #{serServices,jdbcType=BIT}, #{serSmartLock,jdbcType=BIT}, #{sofa,jdbcType=BIT}, 
+      #{tagBalcony,jdbcType=BIT}, #{tagKitchen,jdbcType=BIT}, #{tagMetro,jdbcType=BIT}, 
+      #{tagPubBalcony,jdbcType=BIT}, #{tagPubToilet,jdbcType=BIT}, #{tagToilet,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.RoomAssets" >
+    insert into room_assets
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="washingMachines != null" >
+        washing_machines,
+      </if>
+      <if test="airConditionings != null" >
+        air_conditionings,
+      </if>
+      <if test="televisions != null" >
+        televisions,
+      </if>
+      <if test="fridge != null" >
+        fridge,
+      </if>
+      <if test="internet != null" >
+        internet,
+      </if>
+      <if test="balconies != null" >
+        balconies,
+      </if>
+      <if test="windows != null" >
+        windows,
+      </if>
+      <if test="kitchens != null" >
+        kitchens,
+      </if>
+      <if test="washrooms != null" >
+        washrooms,
+      </if>
+      <if test="waterHeaters != null" >
+        water_heaters,
+      </if>
+      <if test="wardrobes != null" >
+        wardrobes,
+      </if>
+      <if test="desks != null" >
+        desks,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="bed != null" >
+        bed,
+      </if>
+      <if test="gas != null" >
+        gas,
+      </if>
+      <if test="heat != null" >
+        heat,
+      </if>
+      <if test="inductionCooker != null" >
+        induction_cooker,
+      </if>
+      <if test="microwave != null" >
+        microwave,
+      </if>
+      <if test="oven != null" >
+        oven,
+      </if>
+      <if test="serAtm != null" >
+        ser_atm,
+      </if>
+      <if test="serExpress != null" >
+        ser_express,
+      </if>
+      <if test="serGymnasium != null" >
+        ser_gymnasium,
+      </if>
+      <if test="serMarket != null" >
+        ser_market,
+      </if>
+      <if test="serRoomCleaning != null" >
+        ser_room_cleaning,
+      </if>
+      <if test="serServices != null" >
+        ser_services,
+      </if>
+      <if test="serSmartLock != null" >
+        ser_smart_lock,
+      </if>
+      <if test="sofa != null" >
+        sofa,
+      </if>
+      <if test="tagBalcony != null" >
+        tag_balcony,
+      </if>
+      <if test="tagKitchen != null" >
+        tag_kitchen,
+      </if>
+      <if test="tagMetro != null" >
+        tag_metro,
+      </if>
+      <if test="tagPubBalcony != null" >
+        tag_pub_balcony,
+      </if>
+      <if test="tagPubToilet != null" >
+        tag_pub_toilet,
+      </if>
+      <if test="tagToilet != null" >
+        tag_toilet,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="washingMachines != null" >
+        #{washingMachines,jdbcType=BIT},
+      </if>
+      <if test="airConditionings != null" >
+        #{airConditionings,jdbcType=BIT},
+      </if>
+      <if test="televisions != null" >
+        #{televisions,jdbcType=BIT},
+      </if>
+      <if test="fridge != null" >
+        #{fridge,jdbcType=BIT},
+      </if>
+      <if test="internet != null" >
+        #{internet,jdbcType=BIT},
+      </if>
+      <if test="balconies != null" >
+        #{balconies,jdbcType=BIT},
+      </if>
+      <if test="windows != null" >
+        #{windows,jdbcType=BIT},
+      </if>
+      <if test="kitchens != null" >
+        #{kitchens,jdbcType=BIT},
+      </if>
+      <if test="washrooms != null" >
+        #{washrooms,jdbcType=BIT},
+      </if>
+      <if test="waterHeaters != null" >
+        #{waterHeaters,jdbcType=BIT},
+      </if>
+      <if test="wardrobes != null" >
+        #{wardrobes,jdbcType=BIT},
+      </if>
+      <if test="desks != null" >
+        #{desks,jdbcType=BIT},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="bed != null" >
+        #{bed,jdbcType=BIT},
+      </if>
+      <if test="gas != null" >
+        #{gas,jdbcType=BIT},
+      </if>
+      <if test="heat != null" >
+        #{heat,jdbcType=BIT},
+      </if>
+      <if test="inductionCooker != null" >
+        #{inductionCooker,jdbcType=BIT},
+      </if>
+      <if test="microwave != null" >
+        #{microwave,jdbcType=BIT},
+      </if>
+      <if test="oven != null" >
+        #{oven,jdbcType=BIT},
+      </if>
+      <if test="serAtm != null" >
+        #{serAtm,jdbcType=BIT},
+      </if>
+      <if test="serExpress != null" >
+        #{serExpress,jdbcType=BIT},
+      </if>
+      <if test="serGymnasium != null" >
+        #{serGymnasium,jdbcType=BIT},
+      </if>
+      <if test="serMarket != null" >
+        #{serMarket,jdbcType=BIT},
+      </if>
+      <if test="serRoomCleaning != null" >
+        #{serRoomCleaning,jdbcType=BIT},
+      </if>
+      <if test="serServices != null" >
+        #{serServices,jdbcType=BIT},
+      </if>
+      <if test="serSmartLock != null" >
+        #{serSmartLock,jdbcType=BIT},
+      </if>
+      <if test="sofa != null" >
+        #{sofa,jdbcType=BIT},
+      </if>
+      <if test="tagBalcony != null" >
+        #{tagBalcony,jdbcType=BIT},
+      </if>
+      <if test="tagKitchen != null" >
+        #{tagKitchen,jdbcType=BIT},
+      </if>
+      <if test="tagMetro != null" >
+        #{tagMetro,jdbcType=BIT},
+      </if>
+      <if test="tagPubBalcony != null" >
+        #{tagPubBalcony,jdbcType=BIT},
+      </if>
+      <if test="tagPubToilet != null" >
+        #{tagPubToilet,jdbcType=BIT},
+      </if>
+      <if test="tagToilet != null" >
+        #{tagToilet,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.RoomAssetsExample" resultType="java.lang.Integer" >
+    select count(*) from room_assets
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update room_assets
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.washingMachines != null" >
+        washing_machines = #{record.washingMachines,jdbcType=BIT},
+      </if>
+      <if test="record.airConditionings != null" >
+        air_conditionings = #{record.airConditionings,jdbcType=BIT},
+      </if>
+      <if test="record.televisions != null" >
+        televisions = #{record.televisions,jdbcType=BIT},
+      </if>
+      <if test="record.fridge != null" >
+        fridge = #{record.fridge,jdbcType=BIT},
+      </if>
+      <if test="record.internet != null" >
+        internet = #{record.internet,jdbcType=BIT},
+      </if>
+      <if test="record.balconies != null" >
+        balconies = #{record.balconies,jdbcType=BIT},
+      </if>
+      <if test="record.windows != null" >
+        windows = #{record.windows,jdbcType=BIT},
+      </if>
+      <if test="record.kitchens != null" >
+        kitchens = #{record.kitchens,jdbcType=BIT},
+      </if>
+      <if test="record.washrooms != null" >
+        washrooms = #{record.washrooms,jdbcType=BIT},
+      </if>
+      <if test="record.waterHeaters != null" >
+        water_heaters = #{record.waterHeaters,jdbcType=BIT},
+      </if>
+      <if test="record.wardrobes != null" >
+        wardrobes = #{record.wardrobes,jdbcType=BIT},
+      </if>
+      <if test="record.desks != null" >
+        desks = #{record.desks,jdbcType=BIT},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.bed != null" >
+        bed = #{record.bed,jdbcType=BIT},
+      </if>
+      <if test="record.gas != null" >
+        gas = #{record.gas,jdbcType=BIT},
+      </if>
+      <if test="record.heat != null" >
+        heat = #{record.heat,jdbcType=BIT},
+      </if>
+      <if test="record.inductionCooker != null" >
+        induction_cooker = #{record.inductionCooker,jdbcType=BIT},
+      </if>
+      <if test="record.microwave != null" >
+        microwave = #{record.microwave,jdbcType=BIT},
+      </if>
+      <if test="record.oven != null" >
+        oven = #{record.oven,jdbcType=BIT},
+      </if>
+      <if test="record.serAtm != null" >
+        ser_atm = #{record.serAtm,jdbcType=BIT},
+      </if>
+      <if test="record.serExpress != null" >
+        ser_express = #{record.serExpress,jdbcType=BIT},
+      </if>
+      <if test="record.serGymnasium != null" >
+        ser_gymnasium = #{record.serGymnasium,jdbcType=BIT},
+      </if>
+      <if test="record.serMarket != null" >
+        ser_market = #{record.serMarket,jdbcType=BIT},
+      </if>
+      <if test="record.serRoomCleaning != null" >
+        ser_room_cleaning = #{record.serRoomCleaning,jdbcType=BIT},
+      </if>
+      <if test="record.serServices != null" >
+        ser_services = #{record.serServices,jdbcType=BIT},
+      </if>
+      <if test="record.serSmartLock != null" >
+        ser_smart_lock = #{record.serSmartLock,jdbcType=BIT},
+      </if>
+      <if test="record.sofa != null" >
+        sofa = #{record.sofa,jdbcType=BIT},
+      </if>
+      <if test="record.tagBalcony != null" >
+        tag_balcony = #{record.tagBalcony,jdbcType=BIT},
+      </if>
+      <if test="record.tagKitchen != null" >
+        tag_kitchen = #{record.tagKitchen,jdbcType=BIT},
+      </if>
+      <if test="record.tagMetro != null" >
+        tag_metro = #{record.tagMetro,jdbcType=BIT},
+      </if>
+      <if test="record.tagPubBalcony != null" >
+        tag_pub_balcony = #{record.tagPubBalcony,jdbcType=BIT},
+      </if>
+      <if test="record.tagPubToilet != null" >
+        tag_pub_toilet = #{record.tagPubToilet,jdbcType=BIT},
+      </if>
+      <if test="record.tagToilet != null" >
+        tag_toilet = #{record.tagToilet,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update room_assets
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      washing_machines = #{record.washingMachines,jdbcType=BIT},
+      air_conditionings = #{record.airConditionings,jdbcType=BIT},
+      televisions = #{record.televisions,jdbcType=BIT},
+      fridge = #{record.fridge,jdbcType=BIT},
+      internet = #{record.internet,jdbcType=BIT},
+      balconies = #{record.balconies,jdbcType=BIT},
+      windows = #{record.windows,jdbcType=BIT},
+      kitchens = #{record.kitchens,jdbcType=BIT},
+      washrooms = #{record.washrooms,jdbcType=BIT},
+      water_heaters = #{record.waterHeaters,jdbcType=BIT},
+      wardrobes = #{record.wardrobes,jdbcType=BIT},
+      desks = #{record.desks,jdbcType=BIT},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      bed = #{record.bed,jdbcType=BIT},
+      gas = #{record.gas,jdbcType=BIT},
+      heat = #{record.heat,jdbcType=BIT},
+      induction_cooker = #{record.inductionCooker,jdbcType=BIT},
+      microwave = #{record.microwave,jdbcType=BIT},
+      oven = #{record.oven,jdbcType=BIT},
+      ser_atm = #{record.serAtm,jdbcType=BIT},
+      ser_express = #{record.serExpress,jdbcType=BIT},
+      ser_gymnasium = #{record.serGymnasium,jdbcType=BIT},
+      ser_market = #{record.serMarket,jdbcType=BIT},
+      ser_room_cleaning = #{record.serRoomCleaning,jdbcType=BIT},
+      ser_services = #{record.serServices,jdbcType=BIT},
+      ser_smart_lock = #{record.serSmartLock,jdbcType=BIT},
+      sofa = #{record.sofa,jdbcType=BIT},
+      tag_balcony = #{record.tagBalcony,jdbcType=BIT},
+      tag_kitchen = #{record.tagKitchen,jdbcType=BIT},
+      tag_metro = #{record.tagMetro,jdbcType=BIT},
+      tag_pub_balcony = #{record.tagPubBalcony,jdbcType=BIT},
+      tag_pub_toilet = #{record.tagPubToilet,jdbcType=BIT},
+      tag_toilet = #{record.tagToilet,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.RoomAssets" >
+    update room_assets
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="washingMachines != null" >
+        washing_machines = #{washingMachines,jdbcType=BIT},
+      </if>
+      <if test="airConditionings != null" >
+        air_conditionings = #{airConditionings,jdbcType=BIT},
+      </if>
+      <if test="televisions != null" >
+        televisions = #{televisions,jdbcType=BIT},
+      </if>
+      <if test="fridge != null" >
+        fridge = #{fridge,jdbcType=BIT},
+      </if>
+      <if test="internet != null" >
+        internet = #{internet,jdbcType=BIT},
+      </if>
+      <if test="balconies != null" >
+        balconies = #{balconies,jdbcType=BIT},
+      </if>
+      <if test="windows != null" >
+        windows = #{windows,jdbcType=BIT},
+      </if>
+      <if test="kitchens != null" >
+        kitchens = #{kitchens,jdbcType=BIT},
+      </if>
+      <if test="washrooms != null" >
+        washrooms = #{washrooms,jdbcType=BIT},
+      </if>
+      <if test="waterHeaters != null" >
+        water_heaters = #{waterHeaters,jdbcType=BIT},
+      </if>
+      <if test="wardrobes != null" >
+        wardrobes = #{wardrobes,jdbcType=BIT},
+      </if>
+      <if test="desks != null" >
+        desks = #{desks,jdbcType=BIT},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="bed != null" >
+        bed = #{bed,jdbcType=BIT},
+      </if>
+      <if test="gas != null" >
+        gas = #{gas,jdbcType=BIT},
+      </if>
+      <if test="heat != null" >
+        heat = #{heat,jdbcType=BIT},
+      </if>
+      <if test="inductionCooker != null" >
+        induction_cooker = #{inductionCooker,jdbcType=BIT},
+      </if>
+      <if test="microwave != null" >
+        microwave = #{microwave,jdbcType=BIT},
+      </if>
+      <if test="oven != null" >
+        oven = #{oven,jdbcType=BIT},
+      </if>
+      <if test="serAtm != null" >
+        ser_atm = #{serAtm,jdbcType=BIT},
+      </if>
+      <if test="serExpress != null" >
+        ser_express = #{serExpress,jdbcType=BIT},
+      </if>
+      <if test="serGymnasium != null" >
+        ser_gymnasium = #{serGymnasium,jdbcType=BIT},
+      </if>
+      <if test="serMarket != null" >
+        ser_market = #{serMarket,jdbcType=BIT},
+      </if>
+      <if test="serRoomCleaning != null" >
+        ser_room_cleaning = #{serRoomCleaning,jdbcType=BIT},
+      </if>
+      <if test="serServices != null" >
+        ser_services = #{serServices,jdbcType=BIT},
+      </if>
+      <if test="serSmartLock != null" >
+        ser_smart_lock = #{serSmartLock,jdbcType=BIT},
+      </if>
+      <if test="sofa != null" >
+        sofa = #{sofa,jdbcType=BIT},
+      </if>
+      <if test="tagBalcony != null" >
+        tag_balcony = #{tagBalcony,jdbcType=BIT},
+      </if>
+      <if test="tagKitchen != null" >
+        tag_kitchen = #{tagKitchen,jdbcType=BIT},
+      </if>
+      <if test="tagMetro != null" >
+        tag_metro = #{tagMetro,jdbcType=BIT},
+      </if>
+      <if test="tagPubBalcony != null" >
+        tag_pub_balcony = #{tagPubBalcony,jdbcType=BIT},
+      </if>
+      <if test="tagPubToilet != null" >
+        tag_pub_toilet = #{tagPubToilet,jdbcType=BIT},
+      </if>
+      <if test="tagToilet != null" >
+        tag_toilet = #{tagToilet,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.RoomAssets" >
+    update room_assets
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      washing_machines = #{washingMachines,jdbcType=BIT},
+      air_conditionings = #{airConditionings,jdbcType=BIT},
+      televisions = #{televisions,jdbcType=BIT},
+      fridge = #{fridge,jdbcType=BIT},
+      internet = #{internet,jdbcType=BIT},
+      balconies = #{balconies,jdbcType=BIT},
+      windows = #{windows,jdbcType=BIT},
+      kitchens = #{kitchens,jdbcType=BIT},
+      washrooms = #{washrooms,jdbcType=BIT},
+      water_heaters = #{waterHeaters,jdbcType=BIT},
+      wardrobes = #{wardrobes,jdbcType=BIT},
+      desks = #{desks,jdbcType=BIT},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      bed = #{bed,jdbcType=BIT},
+      gas = #{gas,jdbcType=BIT},
+      heat = #{heat,jdbcType=BIT},
+      induction_cooker = #{inductionCooker,jdbcType=BIT},
+      microwave = #{microwave,jdbcType=BIT},
+      oven = #{oven,jdbcType=BIT},
+      ser_atm = #{serAtm,jdbcType=BIT},
+      ser_express = #{serExpress,jdbcType=BIT},
+      ser_gymnasium = #{serGymnasium,jdbcType=BIT},
+      ser_market = #{serMarket,jdbcType=BIT},
+      ser_room_cleaning = #{serRoomCleaning,jdbcType=BIT},
+      ser_services = #{serServices,jdbcType=BIT},
+      ser_smart_lock = #{serSmartLock,jdbcType=BIT},
+      sofa = #{sofa,jdbcType=BIT},
+      tag_balcony = #{tagBalcony,jdbcType=BIT},
+      tag_kitchen = #{tagKitchen,jdbcType=BIT},
+      tag_metro = #{tagMetro,jdbcType=BIT},
+      tag_pub_balcony = #{tagPubBalcony,jdbcType=BIT},
+      tag_pub_toilet = #{tagPubToilet,jdbcType=BIT},
+      tag_toilet = #{tagToilet,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

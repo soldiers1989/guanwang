@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.volga.RoomContractMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.volga.RoomContract" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
+    <result column="deleted_by" property="deletedBy" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="actual_end_time" property="actualEndTime" jdbcType="DATE" />
+    <result column="deposit" property="deposit" jdbcType="DOUBLE" />
+    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
+    <result column="pay_method_f" property="payMethodF" jdbcType="INTEGER" />
+    <result column="pay_method_y" property="payMethodY" jdbcType="INTEGER" />
+    <result column="free_days" property="freeDays" jdbcType="SMALLINT" />
+    <result column="advanced_days" property="advancedDays" jdbcType="SMALLINT" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_id_type" property="customerIdType" jdbcType="VARCHAR" />
+    <result column="customer_id_number" property="customerIdNumber" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="renew_times" property="renewTimes" jdbcType="SMALLINT" />
+    <result column="gened_orders" property="genedOrders" jdbcType="BIT" />
+    <result column="apartment_id" property="apartmentId" jdbcType="INTEGER" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="fixed_pay_date" property="fixedPayDate" jdbcType="SMALLINT" />
+    <result column="rent_pay_way" property="rentPayWay" jdbcType="VARCHAR" />
+    <result column="installment_num" property="installmentNum" jdbcType="SMALLINT" />
+    <result column="is_installment" property="isInstallment" jdbcType="BIT" />
+    <result column="is_loan" property="isLoan" jdbcType="SMALLINT" />
+    <result column="loan_amount" property="loanAmount" jdbcType="DOUBLE" />
+    <result column="loan_contract_id" property="loanContractId" jdbcType="VARCHAR" />
+    <result column="scene_cust_id" property="sceneCustId" jdbcType="VARCHAR" />
+    <result column="ignore_time" property="ignoreTime" jdbcType="DATE" />
+    <result column="signed" property="signed" jdbcType="SMALLINT" />
+    <result column="signed_at" property="signedAt" jdbcType="DATE" />
+    <result column="signed_picture" property="signedPicture" jdbcType="VARCHAR" />
+    <result column="offline_no" property="offlineNo" jdbcType="VARCHAR" />
+    <result column="customer_res_id" property="customerResId" jdbcType="INTEGER" />
+    <result column="contract_sort" property="contractSort" jdbcType="VARCHAR" />
+    <result column="contract_type" property="contractType" jdbcType="VARCHAR" />
+    <result column="has_rentfree" property="hasRentfree" jdbcType="BIT" />
+    <result column="natural_month_order" property="naturalMonthOrder" jdbcType="BIT" />
+    <result column="rent_pay_days" property="rentPayDays" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.volga.RoomContractWithBLOBs" extends="BaseResultMap" >
+    <result column="comments" property="comments" jdbcType="LONGVARCHAR" />
+    <result column="eviction_reason" property="evictionReason" jdbcType="LONGVARCHAR" />
+    <result column="ignore_order" property="ignoreOrder" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, created_by, updated_by, deleted_by, version, 
+    is_delete, status, start_time, end_time, actual_end_time, deposit, pay_method, pay_method_f, 
+    pay_method_y, free_days, advanced_days, customer_name, customer_phone, customer_id_type, 
+    customer_id_number, number, renew_times, gened_orders, apartment_id, room_id, fixed_pay_date, 
+    rent_pay_way, installment_num, is_installment, is_loan, loan_amount, loan_contract_id, 
+    scene_cust_id, ignore_time, signed, signed_at, signed_picture, offline_no, customer_res_id, 
+    contract_sort, contract_type, has_rentfree, natural_month_order, rent_pay_days
+  </sql>
+  <sql id="Blob_Column_List" >
+    comments, eviction_reason, ignore_order
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.volga.RoomContractExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from room_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.volga.RoomContractExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from room_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from room_contract
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room_contract
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.volga.RoomContractExample" >
+    delete from room_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.volga.RoomContractWithBLOBs" >
+    insert into room_contract (id, created_at, updated_at, 
+      deleted_at, created_by, updated_by, 
+      deleted_by, version, is_delete, 
+      status, start_time, end_time, 
+      actual_end_time, deposit, pay_method, 
+      pay_method_f, pay_method_y, free_days, 
+      advanced_days, customer_name, customer_phone, 
+      customer_id_type, customer_id_number, number, 
+      renew_times, gened_orders, apartment_id, 
+      room_id, fixed_pay_date, rent_pay_way, 
+      installment_num, is_installment, is_loan, 
+      loan_amount, loan_contract_id, scene_cust_id, 
+      ignore_time, signed, signed_at, 
+      signed_picture, offline_no, customer_res_id, 
+      contract_sort, contract_type, has_rentfree, 
+      natural_month_order, rent_pay_days, comments, 
+      eviction_reason, ignore_order)
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{updatedBy,jdbcType=INTEGER}, 
+      #{deletedBy,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{status,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
+      #{actualEndTime,jdbcType=DATE}, #{deposit,jdbcType=DOUBLE}, #{payMethod,jdbcType=VARCHAR}, 
+      #{payMethodF,jdbcType=INTEGER}, #{payMethodY,jdbcType=INTEGER}, #{freeDays,jdbcType=SMALLINT}, 
+      #{advancedDays,jdbcType=SMALLINT}, #{customerName,jdbcType=VARCHAR}, #{customerPhone,jdbcType=VARCHAR}, 
+      #{customerIdType,jdbcType=VARCHAR}, #{customerIdNumber,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{renewTimes,jdbcType=SMALLINT}, #{genedOrders,jdbcType=BIT}, #{apartmentId,jdbcType=INTEGER}, 
+      #{roomId,jdbcType=INTEGER}, #{fixedPayDate,jdbcType=SMALLINT}, #{rentPayWay,jdbcType=VARCHAR}, 
+      #{installmentNum,jdbcType=SMALLINT}, #{isInstallment,jdbcType=BIT}, #{isLoan,jdbcType=SMALLINT}, 
+      #{loanAmount,jdbcType=DOUBLE}, #{loanContractId,jdbcType=VARCHAR}, #{sceneCustId,jdbcType=VARCHAR}, 
+      #{ignoreTime,jdbcType=DATE}, #{signed,jdbcType=SMALLINT}, #{signedAt,jdbcType=DATE}, 
+      #{signedPicture,jdbcType=VARCHAR}, #{offlineNo,jdbcType=VARCHAR}, #{customerResId,jdbcType=INTEGER}, 
+      #{contractSort,jdbcType=VARCHAR}, #{contractType,jdbcType=VARCHAR}, #{hasRentfree,jdbcType=BIT}, 
+      #{naturalMonthOrder,jdbcType=BIT}, #{rentPayDays,jdbcType=SMALLINT}, #{comments,jdbcType=LONGVARCHAR}, 
+      #{evictionReason,jdbcType=LONGVARCHAR}, #{ignoreOrder,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.volga.RoomContractWithBLOBs" >
+    insert into room_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="actualEndTime != null" >
+        actual_end_time,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="payMethodF != null" >
+        pay_method_f,
+      </if>
+      <if test="payMethodY != null" >
+        pay_method_y,
+      </if>
+      <if test="freeDays != null" >
+        free_days,
+      </if>
+      <if test="advancedDays != null" >
+        advanced_days,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone,
+      </if>
+      <if test="customerIdType != null" >
+        customer_id_type,
+      </if>
+      <if test="customerIdNumber != null" >
+        customer_id_number,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="renewTimes != null" >
+        renew_times,
+      </if>
+      <if test="genedOrders != null" >
+        gened_orders,
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="fixedPayDate != null" >
+        fixed_pay_date,
+      </if>
+      <if test="rentPayWay != null" >
+        rent_pay_way,
+      </if>
+      <if test="installmentNum != null" >
+        installment_num,
+      </if>
+      <if test="isInstallment != null" >
+        is_installment,
+      </if>
+      <if test="isLoan != null" >
+        is_loan,
+      </if>
+      <if test="loanAmount != null" >
+        loan_amount,
+      </if>
+      <if test="loanContractId != null" >
+        loan_contract_id,
+      </if>
+      <if test="sceneCustId != null" >
+        scene_cust_id,
+      </if>
+      <if test="ignoreTime != null" >
+        ignore_time,
+      </if>
+      <if test="signed != null" >
+        signed,
+      </if>
+      <if test="signedAt != null" >
+        signed_at,
+      </if>
+      <if test="signedPicture != null" >
+        signed_picture,
+      </if>
+      <if test="offlineNo != null" >
+        offline_no,
+      </if>
+      <if test="customerResId != null" >
+        customer_res_id,
+      </if>
+      <if test="contractSort != null" >
+        contract_sort,
+      </if>
+      <if test="contractType != null" >
+        contract_type,
+      </if>
+      <if test="hasRentfree != null" >
+        has_rentfree,
+      </if>
+      <if test="naturalMonthOrder != null" >
+        natural_month_order,
+      </if>
+      <if test="rentPayDays != null" >
+        rent_pay_days,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="evictionReason != null" >
+        eviction_reason,
+      </if>
+      <if test="ignoreOrder != null" >
+        ignore_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="actualEndTime != null" >
+        #{actualEndTime,jdbcType=DATE},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethodF != null" >
+        #{payMethodF,jdbcType=INTEGER},
+      </if>
+      <if test="payMethodY != null" >
+        #{payMethodY,jdbcType=INTEGER},
+      </if>
+      <if test="freeDays != null" >
+        #{freeDays,jdbcType=SMALLINT},
+      </if>
+      <if test="advancedDays != null" >
+        #{advancedDays,jdbcType=SMALLINT},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null" >
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIdType != null" >
+        #{customerIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIdNumber != null" >
+        #{customerIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="renewTimes != null" >
+        #{renewTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="genedOrders != null" >
+        #{genedOrders,jdbcType=BIT},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="fixedPayDate != null" >
+        #{fixedPayDate,jdbcType=SMALLINT},
+      </if>
+      <if test="rentPayWay != null" >
+        #{rentPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="installmentNum != null" >
+        #{installmentNum,jdbcType=SMALLINT},
+      </if>
+      <if test="isInstallment != null" >
+        #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="isLoan != null" >
+        #{isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="loanAmount != null" >
+        #{loanAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="loanContractId != null" >
+        #{loanContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCustId != null" >
+        #{sceneCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="ignoreTime != null" >
+        #{ignoreTime,jdbcType=DATE},
+      </if>
+      <if test="signed != null" >
+        #{signed,jdbcType=SMALLINT},
+      </if>
+      <if test="signedAt != null" >
+        #{signedAt,jdbcType=DATE},
+      </if>
+      <if test="signedPicture != null" >
+        #{signedPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineNo != null" >
+        #{offlineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerResId != null" >
+        #{customerResId,jdbcType=INTEGER},
+      </if>
+      <if test="contractSort != null" >
+        #{contractSort,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="hasRentfree != null" >
+        #{hasRentfree,jdbcType=BIT},
+      </if>
+      <if test="naturalMonthOrder != null" >
+        #{naturalMonthOrder,jdbcType=BIT},
+      </if>
+      <if test="rentPayDays != null" >
+        #{rentPayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evictionReason != null" >
+        #{evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ignoreOrder != null" >
+        #{ignoreOrder,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.volga.RoomContractExample" resultType="java.lang.Integer" >
+    select count(*) from room_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update room_contract
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null" >
+        created_by = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedBy != null" >
+        updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null" >
+        deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=DATE},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.actualEndTime != null" >
+        actual_end_time = #{record.actualEndTime,jdbcType=DATE},
+      </if>
+      <if test="record.deposit != null" >
+        deposit = #{record.deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payMethod != null" >
+        pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payMethodF != null" >
+        pay_method_f = #{record.payMethodF,jdbcType=INTEGER},
+      </if>
+      <if test="record.payMethodY != null" >
+        pay_method_y = #{record.payMethodY,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeDays != null" >
+        free_days = #{record.freeDays,jdbcType=SMALLINT},
+      </if>
+      <if test="record.advancedDays != null" >
+        advanced_days = #{record.advancedDays,jdbcType=SMALLINT},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerPhone != null" >
+        customer_phone = #{record.customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerIdType != null" >
+        customer_id_type = #{record.customerIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerIdNumber != null" >
+        customer_id_number = #{record.customerIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.renewTimes != null" >
+        renew_times = #{record.renewTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="record.genedOrders != null" >
+        gened_orders = #{record.genedOrders,jdbcType=BIT},
+      </if>
+      <if test="record.apartmentId != null" >
+        apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomId != null" >
+        room_id = #{record.roomId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fixedPayDate != null" >
+        fixed_pay_date = #{record.fixedPayDate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.rentPayWay != null" >
+        rent_pay_way = #{record.rentPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.installmentNum != null" >
+        installment_num = #{record.installmentNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isInstallment != null" >
+        is_installment = #{record.isInstallment,jdbcType=BIT},
+      </if>
+      <if test="record.isLoan != null" >
+        is_loan = #{record.isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="record.loanAmount != null" >
+        loan_amount = #{record.loanAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.loanContractId != null" >
+        loan_contract_id = #{record.loanContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneCustId != null" >
+        scene_cust_id = #{record.sceneCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ignoreTime != null" >
+        ignore_time = #{record.ignoreTime,jdbcType=DATE},
+      </if>
+      <if test="record.signed != null" >
+        signed = #{record.signed,jdbcType=SMALLINT},
+      </if>
+      <if test="record.signedAt != null" >
+        signed_at = #{record.signedAt,jdbcType=DATE},
+      </if>
+      <if test="record.signedPicture != null" >
+        signed_picture = #{record.signedPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offlineNo != null" >
+        offline_no = #{record.offlineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerResId != null" >
+        customer_res_id = #{record.customerResId,jdbcType=INTEGER},
+      </if>
+      <if test="record.contractSort != null" >
+        contract_sort = #{record.contractSort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractType != null" >
+        contract_type = #{record.contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasRentfree != null" >
+        has_rentfree = #{record.hasRentfree,jdbcType=BIT},
+      </if>
+      <if test="record.naturalMonthOrder != null" >
+        natural_month_order = #{record.naturalMonthOrder,jdbcType=BIT},
+      </if>
+      <if test="record.rentPayDays != null" >
+        rent_pay_days = #{record.rentPayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="record.comments != null" >
+        comments = #{record.comments,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.evictionReason != null" >
+        eviction_reason = #{record.evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.ignoreOrder != null" >
+        ignore_order = #{record.ignoreOrder,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update room_contract
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      status = #{record.status,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      actual_end_time = #{record.actualEndTime,jdbcType=DATE},
+      deposit = #{record.deposit,jdbcType=DOUBLE},
+      pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      pay_method_f = #{record.payMethodF,jdbcType=INTEGER},
+      pay_method_y = #{record.payMethodY,jdbcType=INTEGER},
+      free_days = #{record.freeDays,jdbcType=SMALLINT},
+      advanced_days = #{record.advancedDays,jdbcType=SMALLINT},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      customer_phone = #{record.customerPhone,jdbcType=VARCHAR},
+      customer_id_type = #{record.customerIdType,jdbcType=VARCHAR},
+      customer_id_number = #{record.customerIdNumber,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      renew_times = #{record.renewTimes,jdbcType=SMALLINT},
+      gened_orders = #{record.genedOrders,jdbcType=BIT},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      fixed_pay_date = #{record.fixedPayDate,jdbcType=SMALLINT},
+      rent_pay_way = #{record.rentPayWay,jdbcType=VARCHAR},
+      installment_num = #{record.installmentNum,jdbcType=SMALLINT},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      is_loan = #{record.isLoan,jdbcType=SMALLINT},
+      loan_amount = #{record.loanAmount,jdbcType=DOUBLE},
+      loan_contract_id = #{record.loanContractId,jdbcType=VARCHAR},
+      scene_cust_id = #{record.sceneCustId,jdbcType=VARCHAR},
+      ignore_time = #{record.ignoreTime,jdbcType=DATE},
+      signed = #{record.signed,jdbcType=SMALLINT},
+      signed_at = #{record.signedAt,jdbcType=DATE},
+      signed_picture = #{record.signedPicture,jdbcType=VARCHAR},
+      offline_no = #{record.offlineNo,jdbcType=VARCHAR},
+      customer_res_id = #{record.customerResId,jdbcType=INTEGER},
+      contract_sort = #{record.contractSort,jdbcType=VARCHAR},
+      contract_type = #{record.contractType,jdbcType=VARCHAR},
+      has_rentfree = #{record.hasRentfree,jdbcType=BIT},
+      natural_month_order = #{record.naturalMonthOrder,jdbcType=BIT},
+      rent_pay_days = #{record.rentPayDays,jdbcType=SMALLINT},
+      comments = #{record.comments,jdbcType=LONGVARCHAR},
+      eviction_reason = #{record.evictionReason,jdbcType=LONGVARCHAR},
+      ignore_order = #{record.ignoreOrder,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update room_contract
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      status = #{record.status,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=DATE},
+      end_time = #{record.endTime,jdbcType=DATE},
+      actual_end_time = #{record.actualEndTime,jdbcType=DATE},
+      deposit = #{record.deposit,jdbcType=DOUBLE},
+      pay_method = #{record.payMethod,jdbcType=VARCHAR},
+      pay_method_f = #{record.payMethodF,jdbcType=INTEGER},
+      pay_method_y = #{record.payMethodY,jdbcType=INTEGER},
+      free_days = #{record.freeDays,jdbcType=SMALLINT},
+      advanced_days = #{record.advancedDays,jdbcType=SMALLINT},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      customer_phone = #{record.customerPhone,jdbcType=VARCHAR},
+      customer_id_type = #{record.customerIdType,jdbcType=VARCHAR},
+      customer_id_number = #{record.customerIdNumber,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      renew_times = #{record.renewTimes,jdbcType=SMALLINT},
+      gened_orders = #{record.genedOrders,jdbcType=BIT},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      fixed_pay_date = #{record.fixedPayDate,jdbcType=SMALLINT},
+      rent_pay_way = #{record.rentPayWay,jdbcType=VARCHAR},
+      installment_num = #{record.installmentNum,jdbcType=SMALLINT},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      is_loan = #{record.isLoan,jdbcType=SMALLINT},
+      loan_amount = #{record.loanAmount,jdbcType=DOUBLE},
+      loan_contract_id = #{record.loanContractId,jdbcType=VARCHAR},
+      scene_cust_id = #{record.sceneCustId,jdbcType=VARCHAR},
+      ignore_time = #{record.ignoreTime,jdbcType=DATE},
+      signed = #{record.signed,jdbcType=SMALLINT},
+      signed_at = #{record.signedAt,jdbcType=DATE},
+      signed_picture = #{record.signedPicture,jdbcType=VARCHAR},
+      offline_no = #{record.offlineNo,jdbcType=VARCHAR},
+      customer_res_id = #{record.customerResId,jdbcType=INTEGER},
+      contract_sort = #{record.contractSort,jdbcType=VARCHAR},
+      contract_type = #{record.contractType,jdbcType=VARCHAR},
+      has_rentfree = #{record.hasRentfree,jdbcType=BIT},
+      natural_month_order = #{record.naturalMonthOrder,jdbcType=BIT},
+      rent_pay_days = #{record.rentPayDays,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.volga.RoomContractWithBLOBs" >
+    update room_contract
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by = #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="actualEndTime != null" >
+        actual_end_time = #{actualEndTime,jdbcType=DATE},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="payMethod != null" >
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethodF != null" >
+        pay_method_f = #{payMethodF,jdbcType=INTEGER},
+      </if>
+      <if test="payMethodY != null" >
+        pay_method_y = #{payMethodY,jdbcType=INTEGER},
+      </if>
+      <if test="freeDays != null" >
+        free_days = #{freeDays,jdbcType=SMALLINT},
+      </if>
+      <if test="advancedDays != null" >
+        advanced_days = #{advancedDays,jdbcType=SMALLINT},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIdType != null" >
+        customer_id_type = #{customerIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerIdNumber != null" >
+        customer_id_number = #{customerIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="renewTimes != null" >
+        renew_times = #{renewTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="genedOrders != null" >
+        gened_orders = #{genedOrders,jdbcType=BIT},
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id = #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="fixedPayDate != null" >
+        fixed_pay_date = #{fixedPayDate,jdbcType=SMALLINT},
+      </if>
+      <if test="rentPayWay != null" >
+        rent_pay_way = #{rentPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="installmentNum != null" >
+        installment_num = #{installmentNum,jdbcType=SMALLINT},
+      </if>
+      <if test="isInstallment != null" >
+        is_installment = #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="isLoan != null" >
+        is_loan = #{isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="loanAmount != null" >
+        loan_amount = #{loanAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="loanContractId != null" >
+        loan_contract_id = #{loanContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCustId != null" >
+        scene_cust_id = #{sceneCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="ignoreTime != null" >
+        ignore_time = #{ignoreTime,jdbcType=DATE},
+      </if>
+      <if test="signed != null" >
+        signed = #{signed,jdbcType=SMALLINT},
+      </if>
+      <if test="signedAt != null" >
+        signed_at = #{signedAt,jdbcType=DATE},
+      </if>
+      <if test="signedPicture != null" >
+        signed_picture = #{signedPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineNo != null" >
+        offline_no = #{offlineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerResId != null" >
+        customer_res_id = #{customerResId,jdbcType=INTEGER},
+      </if>
+      <if test="contractSort != null" >
+        contract_sort = #{contractSort,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        contract_type = #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="hasRentfree != null" >
+        has_rentfree = #{hasRentfree,jdbcType=BIT},
+      </if>
+      <if test="naturalMonthOrder != null" >
+        natural_month_order = #{naturalMonthOrder,jdbcType=BIT},
+      </if>
+      <if test="rentPayDays != null" >
+        rent_pay_days = #{rentPayDays,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evictionReason != null" >
+        eviction_reason = #{evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ignoreOrder != null" >
+        ignore_order = #{ignoreOrder,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.volga.RoomContractWithBLOBs" >
+    update room_contract
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      status = #{status,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      actual_end_time = #{actualEndTime,jdbcType=DATE},
+      deposit = #{deposit,jdbcType=DOUBLE},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      pay_method_f = #{payMethodF,jdbcType=INTEGER},
+      pay_method_y = #{payMethodY,jdbcType=INTEGER},
+      free_days = #{freeDays,jdbcType=SMALLINT},
+      advanced_days = #{advancedDays,jdbcType=SMALLINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_id_type = #{customerIdType,jdbcType=VARCHAR},
+      customer_id_number = #{customerIdNumber,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      renew_times = #{renewTimes,jdbcType=SMALLINT},
+      gened_orders = #{genedOrders,jdbcType=BIT},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      room_id = #{roomId,jdbcType=INTEGER},
+      fixed_pay_date = #{fixedPayDate,jdbcType=SMALLINT},
+      rent_pay_way = #{rentPayWay,jdbcType=VARCHAR},
+      installment_num = #{installmentNum,jdbcType=SMALLINT},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      is_loan = #{isLoan,jdbcType=SMALLINT},
+      loan_amount = #{loanAmount,jdbcType=DOUBLE},
+      loan_contract_id = #{loanContractId,jdbcType=VARCHAR},
+      scene_cust_id = #{sceneCustId,jdbcType=VARCHAR},
+      ignore_time = #{ignoreTime,jdbcType=DATE},
+      signed = #{signed,jdbcType=SMALLINT},
+      signed_at = #{signedAt,jdbcType=DATE},
+      signed_picture = #{signedPicture,jdbcType=VARCHAR},
+      offline_no = #{offlineNo,jdbcType=VARCHAR},
+      customer_res_id = #{customerResId,jdbcType=INTEGER},
+      contract_sort = #{contractSort,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=VARCHAR},
+      has_rentfree = #{hasRentfree,jdbcType=BIT},
+      natural_month_order = #{naturalMonthOrder,jdbcType=BIT},
+      rent_pay_days = #{rentPayDays,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=LONGVARCHAR},
+      eviction_reason = #{evictionReason,jdbcType=LONGVARCHAR},
+      ignore_order = #{ignoreOrder,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.volga.RoomContract" >
+    update room_contract
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      status = #{status,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      actual_end_time = #{actualEndTime,jdbcType=DATE},
+      deposit = #{deposit,jdbcType=DOUBLE},
+      pay_method = #{payMethod,jdbcType=VARCHAR},
+      pay_method_f = #{payMethodF,jdbcType=INTEGER},
+      pay_method_y = #{payMethodY,jdbcType=INTEGER},
+      free_days = #{freeDays,jdbcType=SMALLINT},
+      advanced_days = #{advancedDays,jdbcType=SMALLINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_id_type = #{customerIdType,jdbcType=VARCHAR},
+      customer_id_number = #{customerIdNumber,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      renew_times = #{renewTimes,jdbcType=SMALLINT},
+      gened_orders = #{genedOrders,jdbcType=BIT},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      room_id = #{roomId,jdbcType=INTEGER},
+      fixed_pay_date = #{fixedPayDate,jdbcType=SMALLINT},
+      rent_pay_way = #{rentPayWay,jdbcType=VARCHAR},
+      installment_num = #{installmentNum,jdbcType=SMALLINT},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      is_loan = #{isLoan,jdbcType=SMALLINT},
+      loan_amount = #{loanAmount,jdbcType=DOUBLE},
+      loan_contract_id = #{loanContractId,jdbcType=VARCHAR},
+      scene_cust_id = #{sceneCustId,jdbcType=VARCHAR},
+      ignore_time = #{ignoreTime,jdbcType=DATE},
+      signed = #{signed,jdbcType=SMALLINT},
+      signed_at = #{signedAt,jdbcType=DATE},
+      signed_picture = #{signedPicture,jdbcType=VARCHAR},
+      offline_no = #{offlineNo,jdbcType=VARCHAR},
+      customer_res_id = #{customerResId,jdbcType=INTEGER},
+      contract_sort = #{contractSort,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=VARCHAR},
+      has_rentfree = #{hasRentfree,jdbcType=BIT},
+      natural_month_order = #{naturalMonthOrder,jdbcType=BIT},
+      rent_pay_days = #{rentPayDays,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

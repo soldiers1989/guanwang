@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.volga.ApartmentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.volga.ApartmentInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
+    <result column="deleted_by" property="deletedBy" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="apartment_id" property="apartmentId" jdbcType="INTEGER" />
+    <result column="has_lift" property="hasLift" jdbcType="BIT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
+    <result column="rent_require" property="rentRequire" jdbcType="VARCHAR" />
+    <result column="room_assets" property="roomAssets" jdbcType="VARCHAR" />
+    <result column="apartment_pictures" property="apartmentPictures" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.volga.ApartmentInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="sublet_reason" property="subletReason" jdbcType="LONGVARCHAR" />
+    <result column="eviction_reason" property="evictionReason" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, created_by, updated_by, deleted_by, version, 
+    is_delete, apartment_id, has_lift, store_name, store_phone, rent_require, room_assets, 
+    apartment_pictures
+  </sql>
+  <sql id="Blob_Column_List" >
+    sublet_reason, eviction_reason
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.volga.ApartmentInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.volga.ApartmentInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from apartment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apartment_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apartment_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.volga.ApartmentInfoExample" >
+    delete from apartment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.volga.ApartmentInfoWithBLOBs" >
+    insert into apartment_info (id, created_at, updated_at, 
+      deleted_at, created_by, updated_by, 
+      deleted_by, version, is_delete, 
+      apartment_id, has_lift, store_name, 
+      store_phone, rent_require, room_assets, 
+      apartment_pictures, sublet_reason, eviction_reason
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{updatedBy,jdbcType=INTEGER}, 
+      #{deletedBy,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{apartmentId,jdbcType=INTEGER}, #{hasLift,jdbcType=BIT}, #{storeName,jdbcType=VARCHAR}, 
+      #{storePhone,jdbcType=VARCHAR}, #{rentRequire,jdbcType=VARCHAR}, #{roomAssets,jdbcType=VARCHAR}, 
+      #{apartmentPictures,jdbcType=VARCHAR}, #{subletReason,jdbcType=LONGVARCHAR}, #{evictionReason,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.volga.ApartmentInfoWithBLOBs" >
+    insert into apartment_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id,
+      </if>
+      <if test="hasLift != null" >
+        has_lift,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="storePhone != null" >
+        store_phone,
+      </if>
+      <if test="rentRequire != null" >
+        rent_require,
+      </if>
+      <if test="roomAssets != null" >
+        room_assets,
+      </if>
+      <if test="apartmentPictures != null" >
+        apartment_pictures,
+      </if>
+      <if test="subletReason != null" >
+        sublet_reason,
+      </if>
+      <if test="evictionReason != null" >
+        eviction_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="hasLift != null" >
+        #{hasLift,jdbcType=BIT},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="rentRequire != null" >
+        #{rentRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="roomAssets != null" >
+        #{roomAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentPictures != null" >
+        #{apartmentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="subletReason != null" >
+        #{subletReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evictionReason != null" >
+        #{evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.volga.ApartmentInfoExample" resultType="java.lang.Integer" >
+    select count(*) from apartment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update apartment_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null" >
+        created_by = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedBy != null" >
+        updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null" >
+        deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.apartmentId != null" >
+        apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.hasLift != null" >
+        has_lift = #{record.hasLift,jdbcType=BIT},
+      </if>
+      <if test="record.storeName != null" >
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storePhone != null" >
+        store_phone = #{record.storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentRequire != null" >
+        rent_require = #{record.rentRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomAssets != null" >
+        room_assets = #{record.roomAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apartmentPictures != null" >
+        apartment_pictures = #{record.apartmentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subletReason != null" >
+        sublet_reason = #{record.subletReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.evictionReason != null" >
+        eviction_reason = #{record.evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update apartment_info
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      has_lift = #{record.hasLift,jdbcType=BIT},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      store_phone = #{record.storePhone,jdbcType=VARCHAR},
+      rent_require = #{record.rentRequire,jdbcType=VARCHAR},
+      room_assets = #{record.roomAssets,jdbcType=VARCHAR},
+      apartment_pictures = #{record.apartmentPictures,jdbcType=VARCHAR},
+      sublet_reason = #{record.subletReason,jdbcType=LONGVARCHAR},
+      eviction_reason = #{record.evictionReason,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update apartment_info
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=INTEGER},
+      updated_by = #{record.updatedBy,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      apartment_id = #{record.apartmentId,jdbcType=INTEGER},
+      has_lift = #{record.hasLift,jdbcType=BIT},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      store_phone = #{record.storePhone,jdbcType=VARCHAR},
+      rent_require = #{record.rentRequire,jdbcType=VARCHAR},
+      room_assets = #{record.roomAssets,jdbcType=VARCHAR},
+      apartment_pictures = #{record.apartmentPictures,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.volga.ApartmentInfoWithBLOBs" >
+    update apartment_info
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null" >
+        deleted_by = #{deletedBy,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id = #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="hasLift != null" >
+        has_lift = #{hasLift,jdbcType=BIT},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="rentRequire != null" >
+        rent_require = #{rentRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="roomAssets != null" >
+        room_assets = #{roomAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentPictures != null" >
+        apartment_pictures = #{apartmentPictures,jdbcType=VARCHAR},
+      </if>
+      <if test="subletReason != null" >
+        sublet_reason = #{subletReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="evictionReason != null" >
+        eviction_reason = #{evictionReason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.volga.ApartmentInfoWithBLOBs" >
+    update apartment_info
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      has_lift = #{hasLift,jdbcType=BIT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      rent_require = #{rentRequire,jdbcType=VARCHAR},
+      room_assets = #{roomAssets,jdbcType=VARCHAR},
+      apartment_pictures = #{apartmentPictures,jdbcType=VARCHAR},
+      sublet_reason = #{subletReason,jdbcType=LONGVARCHAR},
+      eviction_reason = #{evictionReason,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.volga.ApartmentInfo" >
+    update apartment_info
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      has_lift = #{hasLift,jdbcType=BIT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      rent_require = #{rentRequire,jdbcType=VARCHAR},
+      room_assets = #{roomAssets,jdbcType=VARCHAR},
+      apartment_pictures = #{apartmentPictures,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

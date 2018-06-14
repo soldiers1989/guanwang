@@ -1,0 +1,747 @@
+<#assign base=request.contextPath />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base id="base" href="${base}">
+    <meta charset="UTF-8">
+    <title>${indexVO.managerWeb.apartmentName}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="mobile-agent" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/reset.min.css">
+    <link rel="stylesheet" href="/css/index_css.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body onLoad="goPage(1);" style="background:#f2f3f5">
+<div class="header clearFix">
+    <div class="header_l">
+        <a href="${userId!}/index">
+            <div class="logo">
+                <img src="${indexVO.managerWeb.logoImage}">
+            </div>
+        </a>
+        <span class="symbol">${indexVO.managerWeb.slogenName}</span>
+    </div>
+    <div class="city-change">
+        <span id="city"></span>
+        <b class="city-icon"></b>
+        <ul class="city-list">
+            <#list indexVO.cities as city>
+                <li>${city}</li>
+            </#list>
+        </ul>
+    </div>
+    <div class="header_r clearFix">
+        <ul class="nav J_headerNav">
+            <#list indexVO.headManagerNavigations as headNavigation>
+                <li>
+                    <#if (headNavigation.navigationImage??)>
+                        <img src="${headNavigation.navigationImage}" height="16" width="16"/>
+                    </#if>
+                    <#if (headNavigation.navigationLink!"default")=="entrust">
+                        <!--委托找房功能-->
+                        <a href="javascript:;" onclick="win.entrustroom('${indexVO.managerWeb.id}');" id="b_wt_index"
+                           class="entrust_room">${headNavigation.navigationName}</a>
+                        <#else>
+                            <a href="${userId!}/${headNavigation.navigationLink!}">${headNavigation.navigationName}</a>
+                    </#if>
+                </li>
+            </#list>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <div class="search">
+        <div class="from">
+            <i class="ico"></i>
+            <input type="text" class="input" id="Keywords" placeholder="请输入区域、商圈或小区名开始找房">
+            <input class="btn" id="SearchKeywords" onclick="getSearchList()" type="button" value="搜索">
+        </div>
+        <div class="select">
+        <span class="btn">
+          列表搜房</span>
+            <span class="btn" style="cursor:pointer;" onclick="javascript:window.location.href='${userId!}/map?city='+localStorage.getItem('city')+''">
+          <i class="ico"></i>
+          地图找房
+        </span>
+        </div>
+    </div>
+    <div class="selector">
+        <div class="searchSelect clearFix">
+            <span class="elps fl">区域</span>
+            <div class="metroSelect fl" style="width: 90%;">
+                <div class="option clearFix">
+                    <span class="active">不限</span>
+                    <#list districtList?keys as districts>
+	            <span class="">
+                  <a class="district">${districts}</a>
+                  <ul class="block-station drop-list">
+                    <#assign blocks = districtList[districts]/>
+                    <#list blocks as block>
+                      <li>${block}</li>
+                    </#list>
+                  </ul>
+                </span>
+                    </#list>
+                </div>
+            </div>
+        </div>
+        <div class="searchSelect clearFix">
+            <span class="elps fl">地铁</span>
+            <div class="metroSelect fl" style="width: 90%">
+                <div class="option clearFix">
+                    <span class="active">不限</span>
+                    <#list subwayLinesByCity?keys as line>
+	            <span>
+                  <a class="subway">${line}</a>
+                  <b></b>
+                  <ul class="subway-station drop-list">
+                    <#assign item = subwayLinesByCity[line]/>
+                    <#list item as station>
+                      <li>${station}</li>
+                    </#list>
+                  </ul>
+                </span>
+                    </#list>
+                </div>
+            </div>
+        </div>
+        <div class="searchSelect clearFix">
+            <span class="elps fl">户型</span>
+            <div class="metroSelect fl">
+                <div class="option clearFix">
+                    <span class="active">不限</span>
+                    <span><a class="housetype">1居</a></span>
+                    <span><a class="housetype">2居</a></span>
+                    <span><a class="housetype">3居</a></span>
+                    <span><a class="housetype">4居</a></span>
+                    <span><a class="housetype">4居以上</a></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--  -->
+        <div class="searchSelect clearFix">
+            <span class="elps fl">配置</span>
+            <div class="metroSelect fl">
+                <div class="option clearFix">
+                    <nav class="features">
+                        <span class="active" data-value="">不限</span>
+                        <a href="javascript:;" class="roomconfig" data-value="free_wifi" value="1">
+                            <span class="ico ico-checkbox"></span><b>免费WIFI</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="bathroom" value="1">
+                            <span class="ico ico-checkbox"></span><b>独立卫浴</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="air_condition" value="1">
+                            <span class="ico ico-checkbox"></span><b>空调</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="freezer" value="1">
+                            <span class="ico ico-checkbox"></span><b>冰箱</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="washer" value="1">
+                            <span class="ico ico-checkbox"></span><b>洗衣机</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="tv" value="1">
+                            <span class="ico ico-checkbox"></span><b>电视</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="kitchen" value="1">
+                            <span class="ico ico-checkbox"></span><b>厨房</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="balcony" value="1">
+                            <span class="ico ico-checkbox"></span><b>阳台</b></a>
+                        <a href="javascript:;" class="roomconfig" data-value="window" value="1">
+                            <span class="ico ico-checkbox"></span><b>飘窗</b></a>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <div class="searchSelect clearFix">
+            <span class="elps fl">价格</span>
+            <div class="metroSelect fl">
+                <div class="option clearFix">
+                    <span class="active">不限</span>
+                    <span><a class="price" data-value="0-1500">1500以下</a></span>
+                    <span><a class="price" data-value="1500-2000">1500~2000</a></span>
+                    <span><a class="price" data-value="2000-3000">2000~3000</a></span>
+                    <span><a class="price" data-value="3000-5000">3000~5000</a></span>
+                    <span><a class="price" data-value="5000-6500">5000~6500</a></span>
+                    <span><a class="price" data-value="6500-8000">6500~8000</a></span>
+                    <span><a class="price" data-value="8000-">8000以上</a></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="searchSelect clearFix">
+            <span class="elps fl">面积</span>
+            <div class="metroSelect fl">
+                <div class="option clearFix">
+                    <span class="active">不限</span>
+                    <span><a class="space" data-value="0-40">40㎡以下</a></span>
+                    <span><a class="space" data-value="40-60">40~60㎡</a></span>
+                    <span><a class="space" data-value="60-80">60~80㎡</a></span>
+                    <span><a class="space" data-value="80-100">80~100㎡</a></span>
+                    <span><a class="space" data-value="100-120">100~120㎡</a></span>
+                    <span><a class="space" data-value="120-">120㎡以上</a></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="searchSelect clearFix">
+            <span class="elps fl">更多</span>
+            <div class="metroSelect fl">
+                <div class="option clearFix">
+                    <div class="u-select  J_floor" data-type="floorNum_chose">
+                        <span>楼层</span>
+                        <b></b>
+                        <ul>
+                            <li data-option="" class="_selectClear">不限</li>
+                            <li data-option="1-3">低层</li>
+                            <li data-option="3-6">中层</li>
+                            <li data-option="6-">高层</li>
+                        </ul>
+                    </div>
+                    <div class="u-select  J_orientation" data-type="toward_chose">
+                        <span>朝向</span>
+                        <b></b>
+                        <ul>
+                            <li data-option="" class="_selectClear">不限</li>
+
+                            <li data-option="0">朝东</li>
+
+                            <li data-option="1">朝南</li>
+
+                            <li data-option="2">朝西</li>
+
+                            <li data-option="3">朝北</li>
+
+                        </ul>
+                    </div>
+                    <div class="u-select  J_style" data-type="apartmentType_chose">
+                        <span>主题公寓</span>
+                        <b></b>
+                        <ul>
+                            <li data-option="" class="_selectClear">不限</li>
+                            <li data-option="爱情公寓">爱情公寓</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="searchSelect  selected clearFix" id="Selected">
+            <span class="elps fl">已选</span>
+            <div class="fl" name="conditions" style="margin-top:8px;width:calc(100% - 88px);">
+                <!--<div class="option clearFix fl" name="condition">-->
+                <!--<span class="active"><em>不限</em>-->
+                <!--<i class="del"></i>-->
+                <!--</span>-->
+                <!--</div>-->
+                <span class="fl clear-all" name="delall"
+                      style="margin-left: 3px;line-height:30px;position:static;margin-top: 0;">
+            	全部清除
+          </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="searchResults">
+    <div class="searchResultsTop clearFix">
+        <ul class="sorting">
+            <li class="sortingItem current">推荐</li>
+            <li class="u-dropdown sortingItem" data-default="价格">
+                <span>价格</span>
+                <b class="ico ico-arrow-down"></b>
+                <div class="dropdownMenu" data-default="价格">
+                    <i></i>
+                    <ul>
+                        <li>
+                            <a href="javascript:;" data-option="price">价格从低到高</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-option="-price">价格从高到低</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="u-dropdown sortingItem" data-default="面积">
+                <span>面积</span>
+                <b class="ico ico-arrow-down"></b>
+                <div class="dropdownMenu">
+                    <i></i>
+                    <ul>
+                        <li>
+                            <a href="javascript:;" data-option="-size">面积从大到小</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-option="size">面积从小到大</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="navigationWrap fr">
+        </div>
+    </div>
+    <div class="u-roomList J_roomList">
+        <ul class="loading" id="houseData">
+            <!--<#list apartmentList as apartment>-->
+                <!--<li class="clearFix">-->
+                    <!--<a class="img imgErr" href="${base}/aparment/${apartment.apartmentId!}" target="_blank">-->
+                        <!--<img src="${apartment.imgUrl!}">-->
+                    <!--</a>-->
+                    <!--<div class="detail">-->
+                        <!--<h3>-->
+                            <!--<a href="${base}/aparment/${apartment.apartmentId!}" target="_blank">${apartment.apartmentNam!}</a>-->
+                        <!--</h3>-->
+                        <!--<p class="elps location">${apartment.storeNam!}</p>-->
+                        <!--<p class="elps">${apartment.space!}㎡&nbsp;&nbsp;|&nbsp;&nbsp;${apartment.floorNum!}/${apartment.totalFloorNum!}楼&nbsp;&nbsp;|&nbsp;&nbsp;${apartment.roomNum!}室${apartment.livingroom!}厅${apartment.washroom!}卫</p>-->
+                        <!--<p class="h_style">-->
+                            <!--<b>水滴公寓</b>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div class="detailMore">-->
+                        <!--<div class="info">公寓房</div>-->
+                        <!--<div class="price">-->
+                            <!--<b>${apartment.price!}</b>-->
+                            <!--<span>&nbsp;元/月</span>-->
+                            <!--<a id="b_point_list" href="javascript:;">我要预约看房</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</#list>-->
+            <!--<#list houseList as room>-->
+                <!--<li class="clearFix">-->
+                    <!--<a class="img imgErr" href="${base}/room/${room.roomId!}" target="_blank">-->
+                        <!--<img src="${room.imgUrl!}" alt="图片丢失">-->
+                    <!--</a>-->
+                    <!--<div class="detail">-->
+                        <!--<h3>-->
+                            <!--<a href="${base}/room/${room.roomId}" target="_blank">${room.rent!}-${room.houseNam!}-${room.roomNum!}居&nbsp;&nbsp;${room.toward!"迷之方向"}</a>-->
+                        <!--</h3>-->
+                        <!--<p class="elps location"></p>-->
+                        <!--<p class="elps">${room.space!}㎡&nbsp;&nbsp;|&nbsp;&nbsp;${room.floorNum!}/${room.totalFloorNum!}楼&nbsp;&nbsp;|&nbsp;&nbsp;${room.roomNum!}室${room.livingroom!}厅${room.washroom!}卫</p>-->
+                        <!--<p class="h_style">-->
+                            <!--<b>水滴公寓</b>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div class="detailMore">-->
+                        <!--<div class="price">-->
+                            <!--<b>${room.price!"正在装修中..."}</b>-->
+                            <!--<a id="b_point_list" href="javascript:;"">我要预约看房</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</#list>-->
+        </ul>
+    </div>
+    <div class="navigationWrap">
+        <ul class="pagination" id="barcon"></ul>
+    </div>
+</div>
+
+<!-- 引入尾部导航模板 -->
+<div class="footer">
+    <div class="footer_cell">
+        <div class="contact">
+            <img src="${indexVO.managerWeb.logoImage}" alt="">
+        </div>
+        <div class="content_c">
+            <div class="about">
+                <ul>
+                    <#list indexVO.tailManagerNavigations as tailNavigation>
+                        <a href="${userId!}/${tailNavigation.navigationLink!}">
+                            <li>
+                                <h5>
+                                    <#if (tailNavigation.navigationImage??)>
+                                        <img src="${tailNavigation.navigationImage}" height="16" width="16"/>
+                                    </#if>
+                                    ${tailNavigation.navigationName}
+                                </h5>
+                            </li>
+                        </a>
+                    </#list>
+                </ul>
+            </div>
+            <div>
+                <p class="mailbox">${indexVO.managerWeb.serviceEmail}</p>
+                <p class="hotline">${indexVO.managerWeb.serviceTelephone}(${indexVO.managerWeb.serviceTime})</p>
+                <p class="copyright">&copy;${indexVO.managerWeb.icpNum}</p>
+            </div>
+
+        </div>
+        <div class="qrcode">
+            <ul>
+                <li class="renterQrcode">
+                    <span>微信公众号二维码</span>
+                </li>
+                <li class="landlordQrcode">
+                    <span>微博二维码</span>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="/lib/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/js/pages.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/ms_modalPicker.js"></script>
+<script>
+    var managerWebId = "${managerWebId}";
+    //獲取url搜索值
+    $.request = function (name) {
+        var search = location.search.slice(1);
+        var arr = search.split("&");
+        for (var i = 0; i < arr.length; i++) {
+            var ar = arr[i].split("=");
+            if (ar[0] == name) {
+                if (decodeURI(ar[1]) == 'undefined') {
+                    return "";
+                } else {
+                    return decodeURI(ar[1]);
+                }
+            }
+        }
+        return "";
+    }
+
+    function filterNum(num){
+        if(!num){
+            num = 0;
+        }
+        return num
+    }
+
+    //获取筛选值
+    function getSearch(managerWebId) {
+        var Json = {
+            managerWebId: managerWebId,
+            city: $("#city").text(),
+            block: "",
+            district: "",
+            subway: "",
+            roomNum: "",
+            priceTop: "",
+            priceLow: "",
+            spaceTop: "",
+            spaceLow: "",
+            floorNum: "",
+            toward: "",
+            apartmentType: "",
+            roomConfig: ""
+        }
+        var roomconfig = [];
+        $.each($("[name='conditions'] .option"), function () {
+            if ($(this).attr("name") == "district_chose") {
+                Json.district = $(this).data("value")
+            }
+            if ($(this).attr("name") == "block_chose") {
+                Json.block = $(this).data("value")
+            }
+            if ($(this).attr("name") == "subway_chose") {
+                Json.subway = $(this).data("value")
+            }
+            if ($(this).attr("name") == "housetype_chose") {
+                Json.roomNum = $(this).data("value")
+            }
+            if ($(this).attr("name") == "price_chose") {
+                var price_value = $(this).data("value");
+                Json.priceTop = price_value.split("-")[1];
+                Json.priceLow = price_value.split("-")[0];
+            }
+            if ($(this).attr("name") == "space_chose") {
+                var space_value = $(this).data("value");
+                Json.spaceTop = space_value.split("-")[1];
+                Json.spaceLow = space_value.split("-")[0];
+            }
+            if ($(this).attr("name") == "floorNum_chose") {
+                Json.floorNum = $(this).data("value")
+            }
+            if ($(this).attr("name") == "toward_chose") {
+                Json.toward = $(this).data("value")
+            }
+            if ($(this).attr("name") == "apartmentType_chose") {
+                Json.apartmentType = $(this).data("value")
+            }
+            if ($(this).attr("name") == "roomconfig_chose") {
+                roomconfig.push($(this).data("value"));
+                Json.roomConfig = roomconfig;
+            }
+        })
+        $.ajax({
+            url: "/housecontition",
+            data: Json,
+            success: function (res) {
+                var dateList = JSON.parse(res);
+                var apartmentList = dateList.apartmentList;
+                var houseList = dateList.housesList;
+                $("#houseData").empty();
+                //分散式
+                for (var i = 0; i < houseList.length; i++) {
+                    var houseListHtml = $("<li class='clearFix' style='display: block;'>" +
+                        "<a class='img imgErr' href='/room/" + houseList[i].roomId + "'>" +
+                        "<img src=" + houseList[i].imgUrl + " alt='图片丢失'>" +
+                        "</a>" +
+                        "<div class='detail'>" +
+                        "<h3><a href='/room/" + houseList[i].roomId + "' target='_blank'>" + houseList[i].rent + "-" + houseList[i].houseNam + houseList[i].toward + "</a></h3>" +
+                        "<p class='elps location'>" + houseList[i].address + "</p>" +
+                        "<p class='elps'>" + filterNum(houseList[i].space) + "m² 丨" + filterNum(houseList[i].floorNum) + "/" + filterNum(houseList[i].totalFloorNum) + "楼 丨" + filterNum(houseList[i].roomNum) + "室" + filterNum(houseList[i].livingroom) + "厅" + filterNum(houseList[i].washroom) + "卫</p>" +
+                        "<p class='h_style'><b>水滴公寓</b></p></div>" +
+                        "<div class='detailMore'>" +
+                        "<div class='price'><b>" + filterNum(houseList[i].price) + "</b><span>&nbsp;元/月</span><a id='b_point_list' href='2701/room/" + houseList[i].roomId + "'>查看详情</a>" +
+                        "</div></div></li>");
+                    $("#houseData").append(houseListHtml);
+                }
+                //公寓
+                for (var i = 0; i < apartmentList.length; i++) {
+                    var apartmentListHtml = $("<li class='clearFix' style='display: block;'>" +
+                        "<a class='img imgErr' href='/room/" + apartmentList[i].roomId + "'>" +
+                        "<img src=" + apartmentList[i].imgUrl + " alt='图片丢失'>" +
+                        "</a>" +
+                        "<div class='detail'>" +
+                        "<h3><a href='/room/" + apartmentList[i].roomId + "' target='_blank'>" + apartmentList[i].apartmentNam + "</a></h3>" +
+                        "<p class='elps location'>" + apartmentList[i].apartmentAddress + "</p>" +
+                        "<p class='elps'>" + filterNum(apartmentList[i].space) + "m² 丨" + filterNum(apartmentList[i].floorNum) + "/" + filterNum(apartmentList[i].totalFloorNum) + "楼 丨" + filterNum(apartmentList[i].roomNum) + "室" + filterNum(apartmentList[i].livingroom) + "厅" + filterNum(apartmentList[i].washroom) + "卫</p>" +
+                        "<p class='h_style'><b>水滴公寓</b></p></div>" +
+                        "<div class='detailMore'>" +
+                        "<div class='price'><b>" + filterNum(apartmentList[i].price) + "</b><span>&nbsp;元/月</span><a id='b_point_list' href='${userId!}/room/" + apartmentList[i].roomId + "'>查看详情</a>" +
+                        "</div></div></li>");
+                    $("#houseData").append(apartmentListHtml);
+                }
+                //初始化分頁插件
+                goPage(1);
+            }
+        })
+    }
+
+    //加載搜索頁面
+    function getSearchList() {
+        $.ajax({
+            url: "/houseList",
+            data: {
+                managerWebId: managerWebId,
+                city:$("#city").text(),
+                search: $("#Keywords").val() || ""
+            },
+            success: function (res) {
+                var dateList = JSON.parse(res);
+                var apartmentList = dateList.apartmentListVos;
+                var houseList = dateList.houseListBySearch;
+                $("#houseData").empty();
+                //分散式
+                for (var i = 0; i < houseList.length; i++) {
+                    var houseListHtml = $("<li class='clearFix' style='display: block;'>" +
+                        "<a class='img imgErr' href='/room/" + houseList[i].roomId + "'>" +
+                        "<img src=" + houseList[i].imgUrl + " alt='图片丢失'>" +
+                        "</a>" +
+                        "<div class='detail'>" +
+                        "<h3><a href='/room/" + houseList[i].roomId + "' target='_blank'>" + houseList[i].rent + "-" + houseList[i].houseNam + houseList[i].toward + "</a></h3>" +
+                        "<p class='elps location'>" + houseList[i].address + "</p>" +
+                        "<p class='elps'>" + filterNum(houseList[i].space) + "m² 丨" + filterNum(houseList[i].floorNum) + "/" + filterNum(houseList[i].totalFloorNum) + "楼 丨" + filterNum(houseList[i].roomNum) + "室" + filterNum(houseList[i].livingroom) + "厅" + filterNum(houseList[i].washroom) + "卫</p>" +
+                        "<p class='h_style'><b>水滴公寓</b></p></div>" +
+                        "<div class='detailMore'>" +
+                        "<div class='price'><b>" + filterNum(houseList[i].price) + "</b><span>&nbsp;元/月</span><a id='b_point_list' href='${userId!}/room/" + houseList[i].roomId + "'>查看详情</a>" +
+                        "</div></div></li>");
+                    $("#houseData").append(houseListHtml);
+                }
+                //公寓
+                for (var i = 0; i < apartmentList.length; i++) {
+                    var apartmentListHtml = $("<li class='clearFix' style='display: block;'>" +
+                        "<a class='img imgErr' href='/room/" + apartmentList[i].roomId + "'>" +
+                        "<img src=" + apartmentList[i].imgUrl + " alt='图片丢失'>" +
+                        "</a>" +
+                        "<div class='detail'>" +
+                        "<h3><a href='/room/" + apartmentList[i].roomId + "' target='_blank'>" + apartmentList[i].apartmentNam + "</a></h3>" +
+                        "<p class='elps location'>" + apartmentList[i].apartmentAddress + "</p>" +
+                        "<p class='elps'>" + filterNum(apartmentList[i].space) + "m² 丨" + filterNum(apartmentList[i].floorNum) + "/" + filterNum(apartmentList[i].totalFloorNum) + "楼 丨" + filterNum(apartmentList[i].roomNum) + "室" + filterNum(apartmentList[i].livingroom) + "厅" + filterNum(apartmentList[i].washroom) + "卫</p>" +
+                        "<p class='h_style'><b>水滴公寓</b></p></div>" +
+                        "<div class='detailMore'>" +
+                        "<div class='price'><b>" + filterNum(apartmentList[i].price) + "</b><span>&nbsp;元/月</span><a id='b_point_list' href='/room/" + apartmentList[i].roomId + "'>查看详情</a>" +
+                        "</div></div></li>");
+                    $("#houseData").append(apartmentListHtml);
+                }
+                //初始化分頁插件
+                goPage(1);
+            }
+        })
+    }
+
+    //城市下拉Js
+    function changeCity() {
+        //默认展示第一个城市
+        var defaultCity = localStorage.getItem("city") ? localStorage.getItem("city") : $(".city-list li").first().text();
+        $("#city").text(defaultCity);
+        $(".city-change").click(function () {
+            $(".city-list").show();
+        });
+        //下拉表单的切换事件
+        $(".city-list li").click(function (e) {
+            e.stopPropagation();
+            $(".city-change #city").text($(this).text());
+            localStorage.setItem("city",$(this).text());
+            //点击切换城市，并刷新首页
+            self.location.href = "${userId!}/house/houseList?city=" + $(this).text();
+            $(".city-list").hide();
+        });
+        //鼠标城市下拉表单离开事件
+        $(".city-list").mouseleave(function () {
+            $(".city-list").hide();
+        });
+    }
+    changeCity();
+    //初始化頁面
+    function init() {
+        $("#Keywords").val($.request("key"));
+        if($.request("city") !== ""){
+            $("#city").text($.request("city"));
+        }
+        getSearchList();
+    }
+    init();
+
+    $(function () {
+        //动态获取商圈信息
+        $('.district').click(function () {
+            $("[name='block']").empty();
+            $("[name='subway_chose']").remove();
+            $("[name='district_chose']").remove();
+            $("[name='block_chose']").remove();
+            $(".metroSearchSelect").show();
+            var district = $(this).text();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='district_chose' data-value=" + district + "><span class='active'><em>" + district + "</em><i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+        //动态获取筛选信息
+        $(".block-station li").click(function () {
+            var block = $(this).text();
+            $("[name='district_chose']").remove();
+            $("[name='block_chose']").remove();
+            $("[name='subway_chose']").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='block_chose' data-value=" + block + "><span class='active'><em>" + block + "</em><i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+        //动态获取筛选信息
+        $(".subway-station li").click(function () {
+            var subway = $(this).text();
+            $("[name='district_chose']").remove();
+            $("[name='block_chose']").remove();
+            $("[name='subway_chose']").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='subway_chose' data-value=" + subway + "><span class='active'><em>" + subway + "</em><i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+        $(".housetype").click(function () {
+            var housetype = $(this).text();
+            $("[name='housetype_chose']").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='housetype_chose' data-value=" + housetype + "><span class='active'><em>" + housetype + "</em><i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+        $(".roomconfig").click(function () {
+            var roomconfig = $(this).find("b").text();
+            //添加选中的样式
+            if ($(this).find(".ico-checkbox").hasClass("checked")) {
+                $(this).find(".ico-checkbox").removeClass("checked");
+                $.each($("[name='roomconfig_chose']"), function () {
+                    if ($(this).data("value") === roomconfig) {
+                        $(this).remove();
+                    }
+                })
+            } else {
+                $(this).find(".ico-checkbox").addClass("checked");
+                $("[name='delall']")
+                    .before("<div class='option clearFix fl' name='roomconfig_chose' data-value=" + roomconfig + "><span class='active'><em>" + roomconfig + "</em><i class='del'></i></span></div>");
+            }
+            getSearch(managerWebId);
+        });
+        $(".price").click(function () {
+            var price = $(this).text();
+            var price_value = $(this).data("value");
+            $("[name='price_chose']").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='price_chose' data-value=" + price_value + "><span class='active'>" + price + "<i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+        $(".space").click(function () {
+            var space = $(this).text();
+            var space_value = $(this).data("value");
+            $("[name='space_chose']").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name='space_chose' data-value=" + space_value + "><span class='active' name='space_chose'><span name='space'><em>" + space + "</em></span><i class='del'></i></span></div>");
+            getSearch(managerWebId);
+        });
+
+        //筛选条件删除按钮
+        $("#Selected").on("click", ".del", function () {
+            $(this).parents(".option").remove();
+            getSearch(managerWebId);
+        })
+        //全部清除筛选条件
+        $("[name='delall']").click(function () {
+            $("[name$='_chose']").remove();
+            getSearch(managerWebId);
+        });
+
+        //地铁选择
+        $(".metroSelect .option span").mouseover(function () {
+            $(".metroSelect .option span").find(".drop-list").hide();
+            var _top = $(this).offset().top;
+            var _tops = $(this).parents().offset().top;
+            var topEnd = _top - _tops + 34;
+            $(this).find(".drop-list").css({
+                "top": topEnd + "px",
+            }).show();
+        })
+        //更多选择
+        $(".u-select").mouseenter(function () {
+            $(this).find("ul").show();
+        }).mouseleave(function () {
+            $(this).find("ul").hide();
+        })
+        $(".u-select li").click(function () {
+            $(this).parents(".u-select").find("span").text($(this).text());
+            $(this).parents("ul").hide();
+
+            var val = $(this).data("option");
+            var type = $(this).parents(".u-select").data("type");
+            $("[name=" + type + "]").remove();
+            $("[name='delall']")
+                .before("<div class='option clearFix fl' name=" + type + " data-value=" + val + "><span class='active'>" + $(this).text() + "<i class='delmore'></i></span></div>");
+            $(".delmore").click(function () {
+                $("[name=" + type + "]").remove();
+            });
+            getSearch(managerWebId);
+        })
+
+        $(".metroSelect .option span").mouseout(function () {
+            $(".metroSelect .option span").find(".drop-list").hide();
+        })
+
+        $(".metroSelect .option .drop-list li").click(function () {
+            $(".metroSelect .option span").find(".drop-list").hide();
+        })
+
+        //回車搜索
+        $("#Keywords").keydown(function (e) {
+            if (e.keyCode == 13) {
+                getSearchList();
+            }
+        })
+
+
+        /********************************************************************************/
+
+
+        //微信公众号二维码图片
+        $(".renterQrcode").css("background", "url(${indexVO.managerWeb.qrWechatImage}) no-repeat");
+        //微博二维码图片
+        $(".landlordQrcode").css("background", "url(${indexVO.managerWeb.qrAppImage}) no-repeat");
+    })
+</script>
+</html>

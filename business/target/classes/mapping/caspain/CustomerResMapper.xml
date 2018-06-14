@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.CustomerResMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.CustomerRes" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="SMALLINT" />
+    <result column="wanted_day" property="wantedDay" jdbcType="DATE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="min_rent" property="minRent" jdbcType="VARCHAR" />
+    <result column="max_rent" property="maxRent" jdbcType="VARCHAR" />
+    <result column="headcount" property="headcount" jdbcType="SMALLINT" />
+    <result column="house_type" property="houseType" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="VARCHAR" />
+    <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="length" property="length" jdbcType="SMALLINT" />
+    <result column="book_time" property="bookTime" jdbcType="CHAR" />
+    <result column="urgency" property="urgency" jdbcType="SMALLINT" />
+    <result column="operated_at" property="operatedAt" jdbcType="TIMESTAMP" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="room_source" property="roomSource" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.web.business.model.caspain.CustomerRes" extends="BaseResultMap" >
+    <result column="comments" property="comments" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, version, is_delete, name, sex, phone, source, 
+    wanted_day, address, min_rent, max_rent, headcount, house_type, customer_type, operator_name, 
+    status, created_by_id, deleted_by_id, operator_id, updated_by_id, length, book_time, 
+    urgency, operated_at, room_id, room_source
+  </sql>
+  <sql id="Blob_Column_List" >
+    comments
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.web.business.model.caspain.CustomerResExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from customer_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.CustomerResExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from customer_res
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_res
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.CustomerResExample" >
+    delete from customer_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.CustomerRes" >
+    insert into customer_res (id, created_at, updated_at, 
+      deleted_at, version, is_delete, 
+      name, sex, phone, source, 
+      wanted_day, address, min_rent, 
+      max_rent, headcount, house_type, 
+      customer_type, operator_name, status, 
+      created_by_id, deleted_by_id, operator_id, 
+      updated_by_id, length, book_time, 
+      urgency, operated_at, room_id, 
+      room_source, comments)
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{source,jdbcType=SMALLINT}, 
+      #{wantedDay,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{minRent,jdbcType=VARCHAR}, 
+      #{maxRent,jdbcType=VARCHAR}, #{headcount,jdbcType=SMALLINT}, #{houseType,jdbcType=VARCHAR}, 
+      #{customerType,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{createdById,jdbcType=INTEGER}, #{deletedById,jdbcType=INTEGER}, #{operatorId,jdbcType=INTEGER}, 
+      #{updatedById,jdbcType=INTEGER}, #{length,jdbcType=SMALLINT}, #{bookTime,jdbcType=CHAR}, 
+      #{urgency,jdbcType=SMALLINT}, #{operatedAt,jdbcType=TIMESTAMP}, #{roomId,jdbcType=INTEGER}, 
+      #{roomSource,jdbcType=SMALLINT}, #{comments,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.CustomerRes" >
+    insert into customer_res
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="wantedDay != null" >
+        wanted_day,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="minRent != null" >
+        min_rent,
+      </if>
+      <if test="maxRent != null" >
+        max_rent,
+      </if>
+      <if test="headcount != null" >
+        headcount,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="operatorName != null" >
+        operator_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="bookTime != null" >
+        book_time,
+      </if>
+      <if test="urgency != null" >
+        urgency,
+      </if>
+      <if test="operatedAt != null" >
+        operated_at,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomSource != null" >
+        room_source,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=SMALLINT},
+      </if>
+      <if test="wantedDay != null" >
+        #{wantedDay,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="minRent != null" >
+        #{minRent,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRent != null" >
+        #{maxRent,jdbcType=VARCHAR},
+      </if>
+      <if test="headcount != null" >
+        #{headcount,jdbcType=SMALLINT},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=SMALLINT},
+      </if>
+      <if test="bookTime != null" >
+        #{bookTime,jdbcType=CHAR},
+      </if>
+      <if test="urgency != null" >
+        #{urgency,jdbcType=SMALLINT},
+      </if>
+      <if test="operatedAt != null" >
+        #{operatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="roomSource != null" >
+        #{roomSource,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.CustomerResExample" resultType="java.lang.Integer" >
+    select count(*) from customer_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customer_res
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=SMALLINT},
+      </if>
+      <if test="record.wantedDay != null" >
+        wanted_day = #{record.wantedDay,jdbcType=DATE},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minRent != null" >
+        min_rent = #{record.minRent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxRent != null" >
+        max_rent = #{record.maxRent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headcount != null" >
+        headcount = #{record.headcount,jdbcType=SMALLINT},
+      </if>
+      <if test="record.houseType != null" >
+        house_type = #{record.houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerType != null" >
+        customer_type = #{record.customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorName != null" >
+        operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.length != null" >
+        length = #{record.length,jdbcType=SMALLINT},
+      </if>
+      <if test="record.bookTime != null" >
+        book_time = #{record.bookTime,jdbcType=CHAR},
+      </if>
+      <if test="record.urgency != null" >
+        urgency = #{record.urgency,jdbcType=SMALLINT},
+      </if>
+      <if test="record.operatedAt != null" >
+        operated_at = #{record.operatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.roomId != null" >
+        room_id = #{record.roomId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomSource != null" >
+        room_source = #{record.roomSource,jdbcType=SMALLINT},
+      </if>
+      <if test="record.comments != null" >
+        comments = #{record.comments,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update customer_res
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=SMALLINT},
+      wanted_day = #{record.wantedDay,jdbcType=DATE},
+      address = #{record.address,jdbcType=VARCHAR},
+      min_rent = #{record.minRent,jdbcType=VARCHAR},
+      max_rent = #{record.maxRent,jdbcType=VARCHAR},
+      headcount = #{record.headcount,jdbcType=SMALLINT},
+      house_type = #{record.houseType,jdbcType=VARCHAR},
+      customer_type = #{record.customerType,jdbcType=VARCHAR},
+      operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=SMALLINT},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      length = #{record.length,jdbcType=SMALLINT},
+      book_time = #{record.bookTime,jdbcType=CHAR},
+      urgency = #{record.urgency,jdbcType=SMALLINT},
+      operated_at = #{record.operatedAt,jdbcType=TIMESTAMP},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      room_source = #{record.roomSource,jdbcType=SMALLINT},
+      comments = #{record.comments,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customer_res
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=SMALLINT},
+      wanted_day = #{record.wantedDay,jdbcType=DATE},
+      address = #{record.address,jdbcType=VARCHAR},
+      min_rent = #{record.minRent,jdbcType=VARCHAR},
+      max_rent = #{record.maxRent,jdbcType=VARCHAR},
+      headcount = #{record.headcount,jdbcType=SMALLINT},
+      house_type = #{record.houseType,jdbcType=VARCHAR},
+      customer_type = #{record.customerType,jdbcType=VARCHAR},
+      operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=SMALLINT},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      length = #{record.length,jdbcType=SMALLINT},
+      book_time = #{record.bookTime,jdbcType=CHAR},
+      urgency = #{record.urgency,jdbcType=SMALLINT},
+      operated_at = #{record.operatedAt,jdbcType=TIMESTAMP},
+      room_id = #{record.roomId,jdbcType=INTEGER},
+      room_source = #{record.roomSource,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.CustomerRes" >
+    update customer_res
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=SMALLINT},
+      </if>
+      <if test="wantedDay != null" >
+        wanted_day = #{wantedDay,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="minRent != null" >
+        min_rent = #{minRent,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRent != null" >
+        max_rent = #{maxRent,jdbcType=VARCHAR},
+      </if>
+      <if test="headcount != null" >
+        headcount = #{headcount,jdbcType=SMALLINT},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=SMALLINT},
+      </if>
+      <if test="bookTime != null" >
+        book_time = #{bookTime,jdbcType=CHAR},
+      </if>
+      <if test="urgency != null" >
+        urgency = #{urgency,jdbcType=SMALLINT},
+      </if>
+      <if test="operatedAt != null" >
+        operated_at = #{operatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="roomSource != null" >
+        room_source = #{roomSource,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.business.model.caspain.CustomerRes" >
+    update customer_res
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      source = #{source,jdbcType=SMALLINT},
+      wanted_day = #{wantedDay,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      min_rent = #{minRent,jdbcType=VARCHAR},
+      max_rent = #{maxRent,jdbcType=VARCHAR},
+      headcount = #{headcount,jdbcType=SMALLINT},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      length = #{length,jdbcType=SMALLINT},
+      book_time = #{bookTime,jdbcType=CHAR},
+      urgency = #{urgency,jdbcType=SMALLINT},
+      operated_at = #{operatedAt,jdbcType=TIMESTAMP},
+      room_id = #{roomId,jdbcType=INTEGER},
+      room_source = #{roomSource,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.CustomerRes" >
+    update customer_res
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      source = #{source,jdbcType=SMALLINT},
+      wanted_day = #{wantedDay,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      min_rent = #{minRent,jdbcType=VARCHAR},
+      max_rent = #{maxRent,jdbcType=VARCHAR},
+      headcount = #{headcount,jdbcType=SMALLINT},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      length = #{length,jdbcType=SMALLINT},
+      book_time = #{bookTime,jdbcType=CHAR},
+      urgency = #{urgency,jdbcType=SMALLINT},
+      operated_at = #{operatedAt,jdbcType=TIMESTAMP},
+      room_id = #{roomId,jdbcType=INTEGER},
+      room_source = #{roomSource,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.business.dao.caspain.UserProfileMapper" >
+  <resultMap id="BaseResultMap" type="com.web.business.model.caspain.UserProfile" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="is_delete" property="isDelete" jdbcType="BIT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="created_by_id" property="createdById" jdbcType="INTEGER" />
+    <result column="deleted_by_id" property="deletedById" jdbcType="INTEGER" />
+    <result column="updated_by_id" property="updatedById" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="is_franchisee" property="isFranchisee" jdbcType="BIT" />
+    <result column="is_first_login" property="isFirstLogin" jdbcType="BIT" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="credit_ceiling" property="creditCeiling" jdbcType="DOUBLE" />
+    <result column="credit_used" property="creditUsed" jdbcType="DOUBLE" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="is_test" property="isTest" jdbcType="BIT" />
+    <result column="terminal" property="terminal" jdbcType="VARCHAR" />
+    <result column="company_postfix" property="companyPostfix" jdbcType="VARCHAR" />
+    <result column="url_from" property="urlFrom" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="company_brand" property="companyBrand" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="avatar_id" property="avatarId" jdbcType="INTEGER" />
+    <result column="backups_at" property="backupsAt" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="interval" property="interval" jdbcType="INTEGER" />
+    <result column="is_freeze" property="isFreeze" jdbcType="BIT" />
+    <result column="is_online" property="isOnline" jdbcType="BIT" />
+    <result column="level" property="level" jdbcType="SMALLINT" />
+    <result column="is_channel" property="isChannel" jdbcType="SMALLINT" />
+    <result column="is_loan" property="isLoan" jdbcType="SMALLINT" />
+    <result column="referral" property="referral" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="vip_action" property="vipAction" jdbcType="INTEGER" />
+    <result column="vip_expire_at" property="vipExpireAt" jdbcType="DATE" />
+    <result column="vip_level" property="vipLevel" jdbcType="SMALLINT" />
+    <result column="vip_status" property="vipStatus" jdbcType="INTEGER" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="operate_city" property="operateCity" jdbcType="VARCHAR" />
+    <result column="operate_mode" property="operateMode" jdbcType="SMALLINT" />
+    <result column="idauth_type" property="idauthType" jdbcType="SMALLINT" />
+    <result column="shuidi_vip" property="shuidiVip" jdbcType="SMALLINT" />
+    <result column="is_effective" property="isEffective" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, is_delete, created_at, updated_at, deleted_at, version, company, name, phone, 
+    created_by_id, deleted_by_id, updated_by_id, user_id, address, is_franchisee, is_first_login, 
+    area, credit_ceiling, credit_used, id_number, is_test, terminal, company_postfix, 
+    url_from, city, company_brand, province, avatar_id, backups_at, email,
+    is_freeze, is_online, level, is_channel, is_loan, referral, status, vip_action, vip_expire_at, 
+    vip_level, vip_status, legal_person, operate_city, operate_mode, idauth_type, shuidi_vip, 
+    is_effective, identity
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.UserProfileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.web.business.model.caspain.UserProfileKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_profile
+    where id = #{id,jdbcType=INTEGER}
+      and is_delete = #{isDelete,jdbcType=BIT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.web.business.model.caspain.UserProfileKey" >
+    delete from user_profile
+    where id = #{id,jdbcType=INTEGER}
+      and is_delete = #{isDelete,jdbcType=BIT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.business.model.caspain.UserProfileExample" >
+    delete from user_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.business.model.caspain.UserProfile" >
+    insert into user_profile (id, is_delete, created_at, 
+      updated_at, deleted_at, version, 
+      company, name, phone, 
+      created_by_id, deleted_by_id, updated_by_id, 
+      user_id, address, is_franchisee, 
+      is_first_login, area, credit_ceiling, 
+      credit_used, id_number, is_test, 
+      terminal, company_postfix, url_from, 
+      city, company_brand, province, 
+      avatar_id, backups_at, email, 
+      interval, is_freeze, is_online, 
+      level, is_channel, is_loan, 
+      referral, status, vip_action, 
+      vip_expire_at, vip_level, vip_status, 
+      legal_person, operate_city, operate_mode, 
+      idauth_type, shuidi_vip, is_effective, 
+      identity)
+    values (#{id,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{deletedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{company,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createdById,jdbcType=INTEGER}, #{deletedById,jdbcType=INTEGER}, #{updatedById,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{isFranchisee,jdbcType=BIT}, 
+      #{isFirstLogin,jdbcType=BIT}, #{area,jdbcType=VARCHAR}, #{creditCeiling,jdbcType=DOUBLE}, 
+      #{creditUsed,jdbcType=DOUBLE}, #{idNumber,jdbcType=VARCHAR}, #{isTest,jdbcType=BIT}, 
+      #{terminal,jdbcType=VARCHAR}, #{companyPostfix,jdbcType=VARCHAR}, #{urlFrom,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{companyBrand,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{avatarId,jdbcType=INTEGER}, #{backupsAt,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, 
+      #{interval,jdbcType=INTEGER}, #{isFreeze,jdbcType=BIT}, #{isOnline,jdbcType=BIT}, 
+      #{level,jdbcType=SMALLINT}, #{isChannel,jdbcType=SMALLINT}, #{isLoan,jdbcType=SMALLINT}, 
+      #{referral,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{vipAction,jdbcType=INTEGER}, 
+      #{vipExpireAt,jdbcType=DATE}, #{vipLevel,jdbcType=SMALLINT}, #{vipStatus,jdbcType=INTEGER}, 
+      #{legalPerson,jdbcType=VARCHAR}, #{operateCity,jdbcType=VARCHAR}, #{operateMode,jdbcType=SMALLINT}, 
+      #{idauthType,jdbcType=SMALLINT}, #{shuidiVip,jdbcType=SMALLINT}, #{isEffective,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.business.model.caspain.UserProfile" >
+    insert into user_profile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="createdById != null" >
+        created_by_id,
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id,
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="isFranchisee != null" >
+        is_franchisee,
+      </if>
+      <if test="isFirstLogin != null" >
+        is_first_login,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="creditCeiling != null" >
+        credit_ceiling,
+      </if>
+      <if test="creditUsed != null" >
+        credit_used,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="isTest != null" >
+        is_test,
+      </if>
+      <if test="terminal != null" >
+        terminal,
+      </if>
+      <if test="companyPostfix != null" >
+        company_postfix,
+      </if>
+      <if test="urlFrom != null" >
+        url_from,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="companyBrand != null" >
+        company_brand,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="avatarId != null" >
+        avatar_id,
+      </if>
+      <if test="backupsAt != null" >
+        backups_at,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="interval != null" >
+        interval,
+      </if>
+      <if test="isFreeze != null" >
+        is_freeze,
+      </if>
+      <if test="isOnline != null" >
+        is_online,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="isChannel != null" >
+        is_channel,
+      </if>
+      <if test="isLoan != null" >
+        is_loan,
+      </if>
+      <if test="referral != null" >
+        referral,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="vipAction != null" >
+        vip_action,
+      </if>
+      <if test="vipExpireAt != null" >
+        vip_expire_at,
+      </if>
+      <if test="vipLevel != null" >
+        vip_level,
+      </if>
+      <if test="vipStatus != null" >
+        vip_status,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="operateCity != null" >
+        operate_city,
+      </if>
+      <if test="operateMode != null" >
+        operate_mode,
+      </if>
+      <if test="idauthType != null" >
+        idauth_type,
+      </if>
+      <if test="shuidiVip != null" >
+        shuidi_vip,
+      </if>
+      <if test="isEffective != null" >
+        is_effective,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createdById != null" >
+        #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isFranchisee != null" >
+        #{isFranchisee,jdbcType=BIT},
+      </if>
+      <if test="isFirstLogin != null" >
+        #{isFirstLogin,jdbcType=BIT},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCeiling != null" >
+        #{creditCeiling,jdbcType=DOUBLE},
+      </if>
+      <if test="creditUsed != null" >
+        #{creditUsed,jdbcType=DOUBLE},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isTest != null" >
+        #{isTest,jdbcType=BIT},
+      </if>
+      <if test="terminal != null" >
+        #{terminal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPostfix != null" >
+        #{companyPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFrom != null" >
+        #{urlFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="companyBrand != null" >
+        #{companyBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarId != null" >
+        #{avatarId,jdbcType=INTEGER},
+      </if>
+      <if test="backupsAt != null" >
+        #{backupsAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="isFreeze != null" >
+        #{isFreeze,jdbcType=BIT},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline,jdbcType=BIT},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="isChannel != null" >
+        #{isChannel,jdbcType=SMALLINT},
+      </if>
+      <if test="isLoan != null" >
+        #{isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="referral != null" >
+        #{referral,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="vipAction != null" >
+        #{vipAction,jdbcType=INTEGER},
+      </if>
+      <if test="vipExpireAt != null" >
+        #{vipExpireAt,jdbcType=DATE},
+      </if>
+      <if test="vipLevel != null" >
+        #{vipLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="vipStatus != null" >
+        #{vipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCity != null" >
+        #{operateCity,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMode != null" >
+        #{operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="idauthType != null" >
+        #{idauthType,jdbcType=SMALLINT},
+      </if>
+      <if test="shuidiVip != null" >
+        #{shuidiVip,jdbcType=SMALLINT},
+      </if>
+      <if test="isEffective != null" >
+        #{isEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.business.model.caspain.UserProfileExample" resultType="java.lang.Integer" >
+    select count(*) from user_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_profile
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdById != null" >
+        created_by_id = #{record.createdById,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedById != null" >
+        deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedById != null" >
+        updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFranchisee != null" >
+        is_franchisee = #{record.isFranchisee,jdbcType=BIT},
+      </if>
+      <if test="record.isFirstLogin != null" >
+        is_first_login = #{record.isFirstLogin,jdbcType=BIT},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditCeiling != null" >
+        credit_ceiling = #{record.creditCeiling,jdbcType=DOUBLE},
+      </if>
+      <if test="record.creditUsed != null" >
+        credit_used = #{record.creditUsed,jdbcType=DOUBLE},
+      </if>
+      <if test="record.idNumber != null" >
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTest != null" >
+        is_test = #{record.isTest,jdbcType=BIT},
+      </if>
+      <if test="record.terminal != null" >
+        terminal = #{record.terminal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyPostfix != null" >
+        company_postfix = #{record.companyPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlFrom != null" >
+        url_from = #{record.urlFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyBrand != null" >
+        company_brand = #{record.companyBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatarId != null" >
+        avatar_id = #{record.avatarId,jdbcType=INTEGER},
+      </if>
+      <if test="record.backupsAt != null" >
+        backups_at = #{record.backupsAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interval != null" >
+        interval = #{record.interval,jdbcType=INTEGER},
+      </if>
+      <if test="record.isFreeze != null" >
+        is_freeze = #{record.isFreeze,jdbcType=BIT},
+      </if>
+      <if test="record.isOnline != null" >
+        is_online = #{record.isOnline,jdbcType=BIT},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isChannel != null" >
+        is_channel = #{record.isChannel,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isLoan != null" >
+        is_loan = #{record.isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="record.referral != null" >
+        referral = #{record.referral,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.vipAction != null" >
+        vip_action = #{record.vipAction,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipExpireAt != null" >
+        vip_expire_at = #{record.vipExpireAt,jdbcType=DATE},
+      </if>
+      <if test="record.vipLevel != null" >
+        vip_level = #{record.vipLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="record.vipStatus != null" >
+        vip_status = #{record.vipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.legalPerson != null" >
+        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateCity != null" >
+        operate_city = #{record.operateCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateMode != null" >
+        operate_mode = #{record.operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="record.idauthType != null" >
+        idauth_type = #{record.idauthType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.shuidiVip != null" >
+        shuidi_vip = #{record.shuidiVip,jdbcType=SMALLINT},
+      </if>
+      <if test="record.isEffective != null" >
+        is_effective = #{record.isEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_profile
+    set id = #{record.id,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      created_by_id = #{record.createdById,jdbcType=INTEGER},
+      deleted_by_id = #{record.deletedById,jdbcType=INTEGER},
+      updated_by_id = #{record.updatedById,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      is_franchisee = #{record.isFranchisee,jdbcType=BIT},
+      is_first_login = #{record.isFirstLogin,jdbcType=BIT},
+      area = #{record.area,jdbcType=VARCHAR},
+      credit_ceiling = #{record.creditCeiling,jdbcType=DOUBLE},
+      credit_used = #{record.creditUsed,jdbcType=DOUBLE},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      is_test = #{record.isTest,jdbcType=BIT},
+      terminal = #{record.terminal,jdbcType=VARCHAR},
+      company_postfix = #{record.companyPostfix,jdbcType=VARCHAR},
+      url_from = #{record.urlFrom,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      company_brand = #{record.companyBrand,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      avatar_id = #{record.avatarId,jdbcType=INTEGER},
+      backups_at = #{record.backupsAt,jdbcType=TIMESTAMP},
+      email = #{record.email,jdbcType=VARCHAR},
+      interval = #{record.interval,jdbcType=INTEGER},
+      is_freeze = #{record.isFreeze,jdbcType=BIT},
+      is_online = #{record.isOnline,jdbcType=BIT},
+      level = #{record.level,jdbcType=SMALLINT},
+      is_channel = #{record.isChannel,jdbcType=SMALLINT},
+      is_loan = #{record.isLoan,jdbcType=SMALLINT},
+      referral = #{record.referral,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=SMALLINT},
+      vip_action = #{record.vipAction,jdbcType=INTEGER},
+      vip_expire_at = #{record.vipExpireAt,jdbcType=DATE},
+      vip_level = #{record.vipLevel,jdbcType=SMALLINT},
+      vip_status = #{record.vipStatus,jdbcType=INTEGER},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      operate_city = #{record.operateCity,jdbcType=VARCHAR},
+      operate_mode = #{record.operateMode,jdbcType=SMALLINT},
+      idauth_type = #{record.idauthType,jdbcType=SMALLINT},
+      shuidi_vip = #{record.shuidiVip,jdbcType=SMALLINT},
+      is_effective = #{record.isEffective,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.business.model.caspain.UserProfile" >
+    update user_profile
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createdById != null" >
+        created_by_id = #{createdById,jdbcType=INTEGER},
+      </if>
+      <if test="deletedById != null" >
+        deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      </if>
+      <if test="updatedById != null" >
+        updated_by_id = #{updatedById,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isFranchisee != null" >
+        is_franchisee = #{isFranchisee,jdbcType=BIT},
+      </if>
+      <if test="isFirstLogin != null" >
+        is_first_login = #{isFirstLogin,jdbcType=BIT},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCeiling != null" >
+        credit_ceiling = #{creditCeiling,jdbcType=DOUBLE},
+      </if>
+      <if test="creditUsed != null" >
+        credit_used = #{creditUsed,jdbcType=DOUBLE},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isTest != null" >
+        is_test = #{isTest,jdbcType=BIT},
+      </if>
+      <if test="terminal != null" >
+        terminal = #{terminal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPostfix != null" >
+        company_postfix = #{companyPostfix,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFrom != null" >
+        url_from = #{urlFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="companyBrand != null" >
+        company_brand = #{companyBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarId != null" >
+        avatar_id = #{avatarId,jdbcType=INTEGER},
+      </if>
+      <if test="backupsAt != null" >
+        backups_at = #{backupsAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="interval != null" >
+        interval = #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="isFreeze != null" >
+        is_freeze = #{isFreeze,jdbcType=BIT},
+      </if>
+      <if test="isOnline != null" >
+        is_online = #{isOnline,jdbcType=BIT},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="isChannel != null" >
+        is_channel = #{isChannel,jdbcType=SMALLINT},
+      </if>
+      <if test="isLoan != null" >
+        is_loan = #{isLoan,jdbcType=SMALLINT},
+      </if>
+      <if test="referral != null" >
+        referral = #{referral,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="vipAction != null" >
+        vip_action = #{vipAction,jdbcType=INTEGER},
+      </if>
+      <if test="vipExpireAt != null" >
+        vip_expire_at = #{vipExpireAt,jdbcType=DATE},
+      </if>
+      <if test="vipLevel != null" >
+        vip_level = #{vipLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="vipStatus != null" >
+        vip_status = #{vipStatus,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCity != null" >
+        operate_city = #{operateCity,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMode != null" >
+        operate_mode = #{operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="idauthType != null" >
+        idauth_type = #{idauthType,jdbcType=SMALLINT},
+      </if>
+      <if test="shuidiVip != null" >
+        shuidi_vip = #{shuidiVip,jdbcType=SMALLINT},
+      </if>
+      <if test="isEffective != null" >
+        is_effective = #{isEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and is_delete = #{isDelete,jdbcType=BIT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.business.model.caspain.UserProfile" >
+    update user_profile
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      company = #{company,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      created_by_id = #{createdById,jdbcType=INTEGER},
+      deleted_by_id = #{deletedById,jdbcType=INTEGER},
+      updated_by_id = #{updatedById,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      is_franchisee = #{isFranchisee,jdbcType=BIT},
+      is_first_login = #{isFirstLogin,jdbcType=BIT},
+      area = #{area,jdbcType=VARCHAR},
+      credit_ceiling = #{creditCeiling,jdbcType=DOUBLE},
+      credit_used = #{creditUsed,jdbcType=DOUBLE},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      is_test = #{isTest,jdbcType=BIT},
+      terminal = #{terminal,jdbcType=VARCHAR},
+      company_postfix = #{companyPostfix,jdbcType=VARCHAR},
+      url_from = #{urlFrom,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      company_brand = #{companyBrand,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      avatar_id = #{avatarId,jdbcType=INTEGER},
+      backups_at = #{backupsAt,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      interval = #{interval,jdbcType=INTEGER},
+      is_freeze = #{isFreeze,jdbcType=BIT},
+      is_online = #{isOnline,jdbcType=BIT},
+      level = #{level,jdbcType=SMALLINT},
+      is_channel = #{isChannel,jdbcType=SMALLINT},
+      is_loan = #{isLoan,jdbcType=SMALLINT},
+      referral = #{referral,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      vip_action = #{vipAction,jdbcType=INTEGER},
+      vip_expire_at = #{vipExpireAt,jdbcType=DATE},
+      vip_level = #{vipLevel,jdbcType=SMALLINT},
+      vip_status = #{vipStatus,jdbcType=INTEGER},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      operate_city = #{operateCity,jdbcType=VARCHAR},
+      operate_mode = #{operateMode,jdbcType=SMALLINT},
+      idauth_type = #{idauthType,jdbcType=SMALLINT},
+      shuidi_vip = #{shuidiVip,jdbcType=SMALLINT},
+      is_effective = #{isEffective,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and is_delete = #{isDelete,jdbcType=BIT}
+  </update>
+</mapper>

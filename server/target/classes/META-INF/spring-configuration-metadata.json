@@ -1,0 +1,24 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.web.server.config.DruidDataSourceConfig",
+      "name": "spring.caspain-druid-datasource",
+      "sourceMethod": "caspainDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.web.server.config.DruidDataSourceConfig",
+      "name": "spring.hardware-druid-datasource",
+      "sourceMethod": "hardwareDataSource()",
+      "type": "javax.sql.DataSource"
+    },
+    {
+      "sourceType": "com.web.server.config.DruidDataSourceConfig",
+      "name": "spring.volga-druid-datasource",
+      "sourceMethod": "volgaDataSource()",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": []
+}

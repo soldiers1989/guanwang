@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base id="base" href="${request.contextPath}">
+    <meta charset="UTF-8">
+    <title>${indexVO.managerWeb.apartmentName}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="mobile-agent" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/css/index_css.css">
+    <link rel="stylesheet" href="/css/reset.min.css">
+    <link rel="stylesheet" href="/css/global.css">
+
+    <style type="text/css">
+    </style>
+</head>
+<body>
+<div class="header clearFix">
+    <div class="header_l">
+        <a href="index">
+            <div class="logo">
+                <img src="${indexVO.managerWeb.logoImage}">
+            </div>
+        </a>
+        <span class="symbol">${indexVO.managerWeb.slogenName}</span>
+    </div>
+    <div class="city-change">
+        <span id="city"></span>
+        <b class="city-icon"></b>
+        <ul class="city-list">
+            <#list indexVO.cities as city>
+                <li>${city}</li>
+            </#list>
+        </ul>
+    </div>
+    <div class="header_r clearFix">
+        <ul class="nav J_headerNav">
+            <#list indexVO.headManagerNavigations as headNavigation>
+                <li>
+                    <#if (headNavigation.navigationImage??)>
+                        <img src="${headNavigation.navigationImage}" height="16" width="16"/>
+                    </#if>
+                    <#if (headNavigation.navigationLink!"default")=="entrust">
+                        <!--委托找房功能-->
+                        <a href="javascript:;" onclick="win.entrustroom('${indexVO.managerWeb.id}');" id="b_wt_index"
+                           class="entrust_room">${headNavigation.navigationName}</a>
+                        <#else>
+                            <a href="${userId!}/${headNavigation.navigationLink!}">${headNavigation.navigationName}</a>
+                    </#if>
+                </li>
+            </#list>
+        </ul>
+    </div>
+</div>
+
+<div class="J_modal"></div>
+<div class="top_wraper">
+    <ul id="wraper_imglist">
+        <#list model0.managerModelImages as images>
+            <li>
+                <img id="wraper_image${images_index}" src="${images.slideshowImage}" style="display: none"></img>
+            </li>
+        </#list>
+    </ul>
+    <div class="top_wraper_cell">
+        <div class="top_wraper_search">
+            <div class="autoSuggest keywordAutoSuggest J_keywordAutoSuggest">
+                <input type="text" id="keyword" class="keyword J_keyword" autocomplete="off" name="key"
+                       placeholder="请输入区域、商圈或小区名开始找房"/>
+            </div>
+            <input type="button" class="search_btn" value="开始找房" onClick="searchKey()">
+        </div>
+    </div>
+    <div class="top_wraper_bg">
+        <a class="previous"></a>
+        <a class="next"></a>
+    </div>
+</div>
+
+<!--精品房源-->
+<div class="index_slider">
+    <div class="title">
+        <h2>${model1.managerModelTitle}</h2>
+        <span>${model1.managerModelSubTitle}</span>
+    </div>
+    <div class="slider">
+        <ul>
+            <#list model1.homeVOS as indexhome>
+                <li>
+                    <a href="${userId!}/${indexhome.homeImageLinkUrl}" target="_blank"> <img
+                            src="${indexhome.homeImageUrl}" alt=""></a>
+                    <div class="content">
+                        <h5 class="elps">
+                            <a href="${userId!}/${indexhome.homeImageLinkUrl}" target="_blank">${indexhome.homeName}</a>
+                        </h5>
+                        <span title="${indexhome.homeInfo}"
+                              style="color:#666;width: 170px;overflow: hidden;display: inline-block;white-space: nowrap;text-overflow: ellipsis;">${indexhome.homeInfo}</span>
+                        <#if indexhome.homeType==0>
+                            <span style="color:#999;float:right;"><b style="color:red;margin-right:3px;">${indexhome.price?c}</b>元/月起</span>
+                            <#else>
+                                <span style="color:#999;float:right;"><b style="color:red;margin-right:3px;">${indexhome.price?c}</b>元/月</span>
+                        </#if>
+                    </div>
+                </li>
+            </#list>
+        </ul>
+    </div>
+</div>
+<!--社区活动-->
+<div class="community grayBackground">
+    <div class="community_all">
+        <div class="title">
+            <h2>${model2.managerModelTitle}</h2>
+            <span>${model2.managerModelSubTitle}</span>
+        </div>
+        <!--展示方式是左右方式-->
+        <#if model2.articleShowWay==1>
+            <div class="community_middle clearFix" name="community_middle1">
+                <#list model2.managerArticles as articles>
+                    <#if articles_index==0>
+                        <div class="list-l">
+                            <a href="#">
+                                <img src="${articles.articleCovers}" alt="">
+                            </a>
+                            <div class="shownews" name="community1_shownews">
+                                <div class="shade">
+                                    <div class="shadow-text">
+                                        <h2>${articles.titleName}</h2>
+                                        <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                 style="color:#FFFFFF" ; target="_blank">立即查看</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-r news">
+                            <ul class="right-news">
+                                <#elseif articles_index==1>
+                                    <li class="t-news">
+                                        <a href="#">
+                                            <img src="${articles.articleCovers}" alt="">
+                                        </a>
+                                        <div class="shownews-right" name="community1_shownews_right1">
+                                            <div class="shade-right">
+                                                <div class="shadows">
+                                                    <h2>${articles.titleName}</h2>
+                                                    <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                             style="color:#FFFFFF" ;
+                                                             target="_blank">立即查看</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <#else>
+                                        <li>
+                                            <a href="#">
+                                                <img src="${articles.articleCovers}" alt="">
+                                            </a>
+                                            <div class="shownews-bottom" name="community1_shownews_right2">
+                                                <div class="shade-bottom">
+                                                    <div class="shadows-b">
+                                                        <h2>${articles.titleName}</h2>
+                                                        <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                                 style="color:#FFFFFF;"
+                                                                 target="_blank">立即查看</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                            </ul>
+                        </div>
+                    </#if>
+                </#list>
+            </div>
+            <!--展示方式是列表方式-->
+            <#else>
+                <div class="list news">
+                    <ul class="clearFix">
+                        <#list model2.managerArticles as articles>
+                            <li>
+                                <a href="${userId!}/news/articleinfor/${articles.id}" target="_blank">
+                                    <img src="${articles.articleCovers}" alt="">
+                                </a>
+                                <div class="content">
+                                    <h5 class="elps">
+                                        <a href="${userId!}/news/articleinfor/${articles.id}" target="_blank">${articles.titleName}</a>
+                                    </h5>
+                                    <p>${articles.articleIntro}</p>
+                                    <a href="${userId!}/news/articleinfor/${articles.id}" class="details"
+                                       target="_blank">了解详情</a>
+                                </div>
+                            </li>
+                        </#list>
+                    </ul>
+                </div>
+        </#if>
+    </div>
+</div>
+
+<!--新闻资讯-->
+<div class="community">
+    <div class="community_cell">
+        <div class="title">
+            <h2>${model3.managerModelTitle}</h2>
+            <span>${model3.managerModelSubTitle}</span>
+        </div>
+        <!--展示方式是左右方式-->
+        <#if model3.articleShowWay==1>
+            <div class="community_middle clearFix" name="community_middle2">
+                <#list model3.managerArticles as articles>
+                    <#if articles_index==0>
+                        <div class="list-l">
+                            <a href="">
+                                <img src="${articles.articleCovers}" alt="">
+                            </a>
+                            <div class="shownews" name="community2_shownews">
+                                <div class="shade">
+                                    <div class="shadow-text">
+                                        <h2>${articles.titleName}</h2>
+                                        <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                 style="color:#FFFFFF;" target="_blank">立即查看</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <#elseif articles_index==1>
+                            <div class="list-r news">
+                                <ul class="right-news">
+                                    <li class="t-news">
+                                        <a href="">
+                                            <img src="${articles.articleCovers}" alt="">
+                                        </a>
+                                        <div class="shownews-right" name="community2_shownews_right1">
+                                            <div class="shade-right">
+                                                <div class="shadows">
+                                                    <h2>${articles.titleName}</h2>
+                                                    <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                             style="color:#FFFFFF;"
+                                                             target="_blank">立即查看</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <#else>
+                                        <li>
+                                            <a href="../news/articleinfor/${articles.id}">
+                                                <img src="${articles.articleCovers}" alt="">
+                                            </a>
+                                            <div class="shownews-bottom" name="community2_shownews_right2">
+                                                <div class="shade-bottom">
+                                                    <div class="shadows-b">
+                                                        <h2>${articles.titleName}</h2>
+                                                        <span><a href="${userId!}/news/articleinfor/${articles.id}"
+                                                                 style="color:#FFFFFF;"
+                                                                 target="_blank">立即查看</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                </ul>
+                            </div>
+                    </#if>
+                </#list>
+            </div>
+            <!--展示方式是列表方式-->
+            <#else>
+                <div class="list news">
+                    <ul class="clearFix">
+                        <#list model3.managerArticles as articles>
+                            <li>
+                                <a href="${userId!}/news/articleinfor/${articles.id}" target="_blank">
+                                    <img src="${articles.articleCovers}" alt="">
+                                </a>
+                                <div class="content">
+                                    <h5 class="elps">
+                                        <a href="${userId!}/news/articleinfor/${articles.id}" target="_blank">${articles.titleName}</a>
+                                    </h5>
+                                    <p>${articles.articleIntro}</p>
+                                    <a href="${userId!}/news/articleinfor/${articles.id}" class="details"
+                                       target="_blank">了解详情</a>
+                                </div>
+                            </li>
+                        </#list>
+                    </ul>
+                </div>
+        </#if>
+    </div>
+</div>
+<!--老板寄语-->
+<#if model4.imageShowWay==1>
+    <div class="chooseus1">
+        <#list model4.managerModelImages as images>
+            <a href="${images.linkUrl!}">
+                <img src="${images.slideshowImage}" style="display: none"></img>
+            </a>
+        </#list>
+        <a href="">
+            <img class="model4_showimg" src="" alt="">
+        </a>
+    </div>
+    <#else>
+        <div class="service">
+            <ul>
+                <#list model4.managerModelImages as images>
+                    <li class="Homefurnishing">
+                        <a href="${images.linkUrl!}">
+                            <img src="${images.slideshowImage}" alt="">
+                        </a>
+                    </li>
+                </#list>
+            </ul>
+        </div>
+</#if>
+
+<!--公寓服务-->
+<#if model5.imageShowWay==1>
+    <div class="chooseus2">
+        <#list model5.managerModelImages as images>
+            <li>
+                <a href="${images.linkUrl}">
+                    <img src="${images.slideshowImage}" style="display: none"></img>
+                </a>
+            </li>
+        </#list>
+        <a href="">
+            <img class="model5_showimg" src="" alt="">
+        </a>
+    </div>
+    <#else>
+        <div class="service">
+            <ul>
+                <#list model5.managerModelImages as images>
+                    <li class="Homefurnishing">
+                        <a href="${images.linkUrl}">
+                            <img src="${images.slideshowImage}" alt="">
+                        </a>
+                    </li>
+                </#list>
+            </ul>
+        </div>
+</#if>
+
+<div class="footer">
+    <div class="footer_cell">
+        <div class="contact">
+            <img src="${indexVO.managerWeb.logoImage}" alt="">
+        </div>
+        <div class="content_c">
+            <div class="about">
+                <ul>
+                    <#list indexVO.tailManagerNavigations as tailNavigation>
+                        <a href="${userId!}/${tailNavigation.navigationLink!}">
+                            <li>
+                                <h5>
+                                    <#if (tailNavigation.navigationImage??)>
+                                        <img src="${tailNavigation.navigationImage}" height="16" width="16"/>
+                                    </#if>
+                                    ${tailNavigation.navigationName}
+                                </h5>
+                            </li>
+                        </a>
+                    </#list>
+                </ul>
+            </div>
+            <div>
+                <p class="mailbox">${indexVO.managerWeb.serviceEmail}</p>
+                <p class="hotline">${indexVO.managerWeb.serviceTelephone}(${indexVO.managerWeb.serviceTime})</p>
+                <p class="copyright">&copy;${indexVO.managerWeb.icpNum}</p>
+            </div>
+
+        </div>
+        <div class="qrcode">
+            <ul>
+                <li class="renterQrcode">
+                    <span>微信公众号二维码</span>
+                </li>
+                <li class="landlordQrcode">
+                    <span>微博二维码</span>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+</body>
+
+<!--js代码-->
+<script src="/lib/jquery-1.11.3.js" type="text/javascript"></script>
+<script src="/js/common.js"></script>
+<script src="/js/ms_modalPicker.js"></script>
+<script>
+    //页面加载完成执行
+    $(function () {
+        //首页轮播function方法调用
+        flashview();
+
+        //老板寄语模块function方法调用
+        if ($(".chooseus1").length > 0) {
+            model4img();
+        }
+        //公寓服务模块function方法调用
+        if ($(".chooseus2").length > 0) {
+            model5img();
+        }
+        //微信公众号二维码图片
+        $(".renterQrcode").css("background", "url(${indexVO.managerWeb.qrWechatImage}) no-repeat");
+        //微博二维码图片
+        $(".landlordQrcode").css("background", "url(${indexVO.managerWeb.qrAppImage}) no-repeat");
+
+        //社区活动模块阴影浮动js效果
+        communityActivity();
+
+        //
+        $("#keyword").keydown(function(e){
+            if (e.keyCode == 13) {
+                searchKey();
+            }
+
+        })
+    });
+
+
+    //社区活动模块阴影浮动js效果
+    function communityActivity() {
+        //社区活动模块展示模式是左右模式
+        if ($("div[name='community_middle1']").length > 0) {
+            var $img0 = $("div[name='community_middle1'] img:eq(0)");
+            var $img1 = $("div[name='community_middle1'] img:eq(1)");
+            var $img2 = $("div[name='community_middle1'] img:eq(2)");
+            var $out0 = $("div[name='community1_shownews'] .shade");
+            var $out1 = $("div[name='community1_shownews_right1'] .shade-right");
+            var $out2 = $("div[name='community1_shownews_right2'] .shade-bottom");
+            //第一张图片的鼠标移入事件
+            $img0.mouseenter(function () {
+                $("div[name='community1_shownews'] .shade").css({"display": "block"});
+            });
+            //第一张图片的鼠标移出事件
+            $out0.mouseleave(function () {
+                $("div[name='community1_shownews'] .shade").css({"display": "none"});
+            });
+
+            //第二张图片的鼠标移入事件
+            $img1.mouseenter(function () {
+                $("div[name='community1_shownews_right1'] .shade-right").css({"display": "block"});
+            });
+            //第二张图片的鼠标移出事件
+            $out1.mouseleave(function () {
+                $("div[name='community1_shownews_right1'] .shade-right").css({"display": "none"});
+            });
+
+            //第三张图片的鼠标移出事件
+            $img2.mouseenter(function () {
+                $("div[name='community1_shownews_right2'] .shade-bottom").css({"display": "block"});
+            });
+            $out2.mouseleave(function () {
+                $("div[name='community1_shownews_right2'] .shade-bottom").css({"display": "none"});
+            });
+        }
+
+        //新闻资讯模块展示模式是左右模式
+        if ($("div[name='community_middle2']").length > 0) {
+            var $img0 = $("div[name='community_middle2'] img:eq(0)");
+            var $img1 = $("div[name='community_middle2'] img:eq(1)");
+            var $img2 = $("div[name='community_middle2'] img:eq(2)");
+            var $out0 = $("div[name='community2_shownews'] .shade");
+            var $out1 = $("div[name='community2_shownews_right1'] .shade-right");
+            var $out2 = $("div[name='community2_shownews_right2'] .shade-bottom");
+            //第一张图片的鼠标移入事件
+            $img0.mouseenter(function () {
+                $("div[name='community2_shownews'] .shade").css({"display": "block"});
+            });
+            //第一张图片的鼠标移出事件
+            $out0.mouseleave(function () {
+                $("div[name='community2_shownews'] .shade").css({"display": "none"});
+            });
+
+            //第二张图片的鼠标移入事件
+            $img1.mouseenter(function () {
+                $("div[name='community2_shownews_right1'] .shade-right").css({"display": "block"});
+            });
+            //第二张图片的鼠标移出事件
+            $out1.mouseleave(function () {
+                $("div[name='community2_shownews_right1'] .shade-right").css({"display": "none"});
+            });
+
+            //第三张图片的鼠标移出事件
+            $img2.mouseenter(function () {
+                $("div[name='community2_shownews_right2'] .shade-bottom").css({"display": "block"});
+            });
+            $out2.mouseleave(function () {
+                $("div[name='community2_shownews_right2'] .shade-bottom").css({"display": "none"});
+            });
+        }
+
+    }
+
+    //老板寄语模块
+    function model4img() {
+        var imgLen = $(".chooseus1 a").length;
+        var defaultImgLink = $(".chooseus1 a").eq(0).attr("href");
+        var defaultImgSrc = $(".chooseus1 img:first").attr("src");
+        $(".chooseus1 a:last").attr("href", defaultImgLink);
+        $(".chooseus1 img:last").attr("src", defaultImgSrc);
+        var timer3 = null;
+        var cur = 0;
+        //当鼠标移到图片上关闭定时器，离开时则重置定时器
+        $(".chooseus1 img:last").hover(function () {
+            clearInterval(timer3);
+        }, function () {
+            timer3 = setInterval(function () {
+                if (cur < imgLen - 2) {
+                    cur++;
+                } else {
+                    cur = 0;
+                }
+                var imgLink = $(".chooseus1 a").eq(cur).attr("href");
+                var imgSrc = $(".chooseus1 img").eq(cur).attr("src");
+                $(".chooseus1 a:last").attr("href", imgLink);
+                $(".chooseus1 img:last").attr("src", imgSrc);
+            }, 5000);
+        });
+    }
+
+    //公寓服务模块轮播
+    function model5img() {
+        var imgLen = $(".chooseus2 a").length;
+        var defaultImgLink = $(".chooseus2 a").eq(0).attr("href");
+        var defaultImgSrc = $(".chooseus2 img:first").attr("src");
+        $(".chooseus2 a:last").attr("href", defaultImgLink);
+        $(".chooseus2 img:last").attr("src", defaultImgSrc);
+        var timer2 = null;
+        var cur = 0;
+        //当鼠标移到图片上关闭定时器，离开时则重置定时器
+        $(".chooseus1 img:last").hover(function () {
+            clearInterval(timer2);
+        }, function () {
+            var timer2 = setInterval(function () {
+                if (cur < imgLen - 2) {
+                    cur++;
+                } else {
+                    cur = 0;
+                }
+                var imgLink = $(".chooseus2 a").eq(cur).attr("href");
+                var imgSrc = $(".chooseus2 img").eq(cur).attr("src");
+                $(".chooseus2 a:last").attr("href", imgLink);
+                $(".chooseus2 img:last").attr("src", imgSrc);
+            }, 5000);
+        });
+    }
+
+    //首页轮播方法
+    function flashview() {
+        var defaultImg = $("#wraper_imglist li img").first().attr("src");//获取轮播图的默认图片
+        $(".top_wraper").css("background-image", "url(" + defaultImg + ")");//设置轮播图的默认图片
+        var imgLen = $("#wraper_imglist li").length;//获取图片的数量
+        var timer1 = null;
+        var cur = 0;    //当前的图片序号
+        //调用切换图片的方法
+        timer1 = changeImg(cur, imgLen);
+        //当鼠标移到向左和向右的图标上关闭定时器，离开时则重置定时器
+        $(".previous,.next").hover(function () {
+            if ($(this).is($(".previous"))) {
+                $(this).css({"background": "url(/css/img/maxprevious.png)", "width": "59px", "height": "59px"});
+            } else {
+                $(this).css({"background": "url(/css/img/maxnext.png)", "width": "59px", "height": "59px"});
+            }
+        }, function () {
+            if ($(this).is($(".previous"))) {
+                $(this).css({"background": "url(/css/img/previous.png) no-repeat center"});
+            } else {
+                $(this).css({"background": "url(/css/img/next.png) no-repeat center"});
+            }
+        });
+        //当鼠标移到图片上关闭定时器，离开时则重置定时器
+        $(".top_wraper").hover(function () {
+            clearInterval(timer1);
+        }, function () {
+            timer1 = changeImg(cur, imgLen);
+        });
+        //点击向左图标
+        $(".previous").click(function () {
+            --cur;
+            if (cur < 0) {
+                cur = imgLen - 1;
+            }
+            var imgAddress = $("#wraper_imglist img").eq(cur).attr("src");
+            $(".top_wraper").css("background-image", "url(" + imgAddress + ")");
+
+        });
+        //点击向右图标
+        $(".next").click(function () {
+            ++cur;
+            if (cur > imgLen - 1) {
+                cur = 0;
+            }
+            var imgAddress = $("#wraper_imglist img").eq(cur).attr("src");
+            $(".top_wraper").css("background-image", "url(" + imgAddress + ")");
+        });
+
+    }
+
+    //封装图片自动播放函数
+    function changeImg(cur, imgLen) {
+        return setInterval(function () {
+            if (cur < imgLen - 1) {
+                cur++;
+            } else {
+                cur = 0;
+            }
+            var imgAddress = $("#wraper_imglist img").eq(cur).attr("src");
+            $(".top_wraper").css("backgroundImage", "url(" + imgAddress + ")");
+        }, 2000);
+    }
+
+    //搜索跳轉
+    function searchKey(){
+        var key = $("#keyword").val();
+        console.log(key)
+        window.location.href = "house/houseList?key="+key;
+    }
+
+</script>
+</html>

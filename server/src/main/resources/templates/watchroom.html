@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="/css/global.css">
+<div class="v-modal">
+    <h1>预约看房</h1>
+    <form action="" class="J_watchroomForm">
+        <!--预约房间的roomId(分散式)-->
+        <#if roomId??>
+            <input type="hidden" name="roomId" value="${roomId?c}">
+        </#if>
+
+        <input type="hidden" name="comment" value="${comment!''}">
+
+        <div class="container">
+            <dl>
+                <dt>我们怎么称呼您？</dt>
+                <dd>
+                    <input type="text" name="nickname" class="text" placeholder="请输入您的姓名">
+                </dd>
+            </dl>
+        </div>
+
+        <div class="container J_userValidation">
+            <dl>
+                <dt>您的手机号</dt>
+                <dd>
+                    <input type="text" class="text" name="phone" placeholder="手机号码">
+                    <button type="button" class="btn btn-default J_sendSms">发送验证码</button>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="container J_userValidation">
+            <dl>
+                <dd>
+                    <input type="text" class="text" name="code" placeholder="验证码">
+                </dd>
+            </dl>
+        </div>
+
+        <div class="container">
+            <dl>
+                <dt>您想什么时候看房？</dt>
+                <dd>
+                    <div class="u-select J_liveDate mr-5">
+                        <span>请选择入住时间</span><b></b>
+                        <ul></ul>
+                        <input name="area" type="hidden">
+                    </div>
+                    <div class="u-select J_liveTime">
+                        <span>请选择入住时间</span><b></b>
+                        <ul></ul>
+                        <input name="area" type="hidden">
+                    </div>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="container">
+            <dl>
+                <dt>其他要求</dt>
+                <dd>
+                    <textarea name="remark" placeholder="例：想要厨房，想一个人住"></textarea>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="container">
+            <dl>
+                <input type="submit" class="btn btn-primary submit" value="提交">
+            </dl>
+        </div>
+
+    </form>
+</div>
+<script src="/lib/jquery-1.11.3.js"></script>
+<script src="/lib/jquery.validate.min.js"></script>
+<script src="/js/watchrooms.js"></script>
+<script src="/js/common.js"></script>

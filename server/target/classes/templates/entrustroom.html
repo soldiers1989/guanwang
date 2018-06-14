@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/pikaday.css">
+<div class="v-modal">
+    <h1>委托找房</h1>
+    <form action="" class="J_needroomForm">
+        <!--网站主账号用户id-->
+        <input type="hidden" name="userId" value="${userId?c}">
+        <div class="container">
+            <dl>
+                <dt>我们怎么称呼您？</dt>
+                <dd>
+                    <input type="text" name="nickname" class="text" value=""
+                           placeholder="请输入您的姓名">
+                </dd>
+            </dl>
+        </div>
+        <div class="container J_userValidation">
+            <dl>
+                <dt>您的手机号</dt>
+                <dd>
+                    <input type="text" class="text" name="phone" placeholder="手机号码" value="">
+                    <button type="button" class="btn btn-default J_sendSms">发送验证码</button>
+                </dd>
+            </dl>
+        </div>
+        <div class="container J_userValidation">
+            <dl>
+                <dd>
+                    <input type="text" class="text" name="code" placeholder="验证码">
+                </dd>
+            </dl>
+        </div>
+        <div class="container">
+            <dl class="col-4">
+                <dt>您期望什么时候入住？</dt>
+                <dd>
+                    <div class="u-select J_liveDate">
+                        <span style="padding-left:0;"><input type="text" id="liveDate" readonly placeholder="请填写入住时间"
+                                                             style="line-height:34px;border:0;width:100%;padding-left:10px;"></span>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="container">
+            <dl class="col-4">
+                <dt>您想住在哪座城市？</dt>
+                <dd>
+                    <div class="u-select J_city">
+                        <span>&nbsp;</span><b></b>
+                        <ul></ul>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="col-4">
+                <dt>您期望住在什么区域？</dt>
+                <dd>
+                    <div class="u-select J_district">
+                        <span>&nbsp;</span><b></b>
+                        <ul></ul>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="container">
+            <dl>
+                <dt>期望价格</dt>
+                <dd>
+                    <input type="text" class="J_range" value="" name="range"/>
+                </dd>
+            </dl>
+        </div>
+        <div class="container">
+            <dl>
+                <dt>其他要求</dt>
+                <dd>
+                    <textarea name="remark" placeholder="例：想要厨房，想一个人住"></textarea>
+                </dd>
+            </dl>
+        </div>
+        <input type="submit" class="btn btn-primary submit mt-15 fl" value="提交">
+    </form>
+</div>
+<script src="/lib/jquery-1.11.3.js"></script>
+<script src="/lib/jquery.validate.min.js"></script>
+<script src="/js/ion.rangeSlider.js"></script>
+<script src="js/entrustroom.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/pikaday.js"></script>
+<script>
+    var cities = "${cities}";
+    var userId = "${userId?c}";
+    var picker = new Pikaday(
+        {
+            field: document.getElementById('liveDate'),
+            firstDay: 1,
+            minDate: new Date(),
+            maxDate: new Date(2020, 12, 31),
+            yearRange: [2000,2020]
+        });
+</script>
